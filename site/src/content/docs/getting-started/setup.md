@@ -335,9 +335,17 @@ Python dependencies for diagrams, Azure Pricing MCP, and related tools are insta
 Review and commit the initialization changes:
 
 ```bash
-git diff
+git --no-pager diff
 git add -A && git commit -m "chore: initialize from template"
+git push
 ```
+
+:::note[Expected diff]
+You will see changes to `AGENTS.md`, `CONTRIBUTING.md`, and one or more `.github/workflows/` files.
+You may also see formatting-only changes to `.vscode/mcp.json` — the dev container normalizes its JSON arrays on first start. This is expected and safe to commit.
+
+Use `git --no-pager diff` to avoid the `less` pager. If you see a `:` prompt, press `q` to exit or `Space` to scroll.
+:::
 
 </details>
 
