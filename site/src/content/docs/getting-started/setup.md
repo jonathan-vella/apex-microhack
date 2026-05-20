@@ -366,7 +366,27 @@ See the [Azure Setup documentation](https://jonathan-vella.github.io/azure-agent
 </details>
 
 <details>
-<summary>5. Run the maintenance workflows</summary>
+<summary>5. Allow GitHub Actions to create pull requests</summary>
+
+The maintenance workflows open pull requests automatically when they detect drift.
+This requires one permission change in your repository settings before you trigger them.
+
+1. Open your repository on GitHub.
+2. Go to **Settings → Actions → General**.
+3. Scroll to **Workflow permissions**.
+4. Check **Allow GitHub Actions to create and approve pull requests**.
+5. Click **Save**.
+
+:::caution[Required before running workflows]
+GitHub disables this by default on all new repositories. Without it, any workflow
+that opens a PR will fail with:
+`GitHub Actions is not permitted to create or approve pull requests`
+:::
+
+</details>
+
+<details>
+<summary>6. Run the maintenance workflows</summary>
 
 After Azure setup completes, trigger the two scheduled maintenance workflows once so your repository has a fresh baseline before the event. Both run weekly on Mondays after this initial seed.
 
