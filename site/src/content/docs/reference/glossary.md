@@ -30,7 +30,7 @@ Key terms and definitions for APEX.
 | Specific AI persona | **Agent** (e.g., `02-Requirements`) | bot, assistant |
 | Scoring document | **Scoring rubric** | rubric, scorecard |
 | Working repository | **Template repo** (`azure-agentic-infraops-accelerator`) | starter repo, base repo |
-| This documentation repo | **Docs repo** (`microhack-agentic-infraops`) | main repo, source repo |
+| This documentation repo | **Docs repo** (`apex-microhack`) | main repo, source repo |
 | Team subscription model | **One subscription per team** | shared subscription (prohibited) |
 | MCP server access | **GitHub MCP Allow all** | registry-only MCP access for this MicroHack |
 | Post-event resource deletion | **Cleanup** | teardown, decommission |

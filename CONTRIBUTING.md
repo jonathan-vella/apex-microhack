@@ -15,7 +15,7 @@ Use Node 24 (see `.nvmrc` / `.node-version`).
 npm install
 cd site
 npm install
-npm run dev         # local preview at http://localhost:4321/microhack-agentic-infraops/
+npm run dev         # local preview at http://localhost:4321/
 npm run build       # production build
 npm run lint:md     # markdownlint
 npm run lint:prose  # Vale (requires `vale` on PATH; run `vale sync` once)
