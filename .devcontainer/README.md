@@ -32,7 +32,7 @@ npm run dev
 
 ### 3. Preview the Site
 
-Open <http://localhost:4321/microhack-agentic-infraops/> in your browser (port 4321 is auto-forwarded).
+Open <http://localhost:4321/> in your browser (port 4321 is auto-forwarded).
 
 ## Useful Commands
 

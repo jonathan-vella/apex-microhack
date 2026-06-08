@@ -44,7 +44,7 @@ You need **Owner** or **Resource Policy Contributor** role on the subscription t
 
 ## Running the Scripts
 
-Scripts are located in the [`scripts/`](https://github.com/jonathan-vella/microhack-agentic-infraops/tree/main/scripts) folder of this repository.
+Scripts are located in the [`scripts/`](https://github.com/jonathan-vella/apex-microhack/tree/main/scripts) folder of this repository.
 
 Run from the **repository root**:
 
@@ -65,7 +65,7 @@ pwsh -File ./Setup-GovernancePolicies.ps1 -Subscription "<subscription-name-or-i
 
 ### 1. Setup-GovernancePolicies.ps1
 
-[View source on GitHub](https://github.com/jonathan-vella/microhack-agentic-infraops/blob/main/scripts/Setup-GovernancePolicies.ps1)
+[View source on GitHub](https://github.com/jonathan-vella/apex-microhack/blob/main/scripts/Setup-GovernancePolicies.ps1)
 
 **When to use:** Before the event starts, to deploy governance constraints that teams must work around.
 
@@ -134,7 +134,7 @@ using `Get-GovernanceStatus.ps1 -Subscription "<subscription-name-or-id>" -Micro
 
 ### 2. Get-GovernanceStatus.ps1
 
-[View source on GitHub](https://github.com/jonathan-vella/microhack-agentic-infraops/blob/main/scripts/Get-GovernanceStatus.ps1)
+[View source on GitHub](https://github.com/jonathan-vella/apex-microhack/blob/main/scripts/Get-GovernanceStatus.ps1)
 
 **When to use:** Anytime — before, during, or after the event — to verify which policies are active
 and their compliance state.
@@ -182,7 +182,7 @@ If `State` shows `Unknown`, compliance data is still being collected. Wait a few
 
 ### 3. Remove-GovernancePolicies.ps1
 
-[View source on GitHub](https://github.com/jonathan-vella/microhack-agentic-infraops/blob/main/scripts/Remove-GovernancePolicies.ps1)
+[View source on GitHub](https://github.com/jonathan-vella/apex-microhack/blob/main/scripts/Remove-GovernancePolicies.ps1)
 
 **When to use:** After the event ends, to restore the subscription to its pre-event state.
 

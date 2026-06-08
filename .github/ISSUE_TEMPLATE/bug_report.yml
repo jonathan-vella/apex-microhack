@@ -12,7 +12,7 @@ body:
     attributes:
       label: Where is the problem?
       description: "URL on the docs site, or path to a file in this repo."
-      placeholder: "https://jonathan-vella.github.io/microhack-agentic-infraops/... or facilitator/scoring-rubric.md"
+      placeholder: "https://microhack.apexops.pro/... or facilitator/scoring-rubric.md"
     validations:
       required: true
   - type: textarea

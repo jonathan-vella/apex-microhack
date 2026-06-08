@@ -5,8 +5,8 @@ import rehypeMermaid from "rehype-mermaid-lite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://jonathan-vella.github.io",
-  base: "/microhack-agentic-infraops",
+  site: "https://microhack.apexops.pro",
+  base: "/",
   trailingSlash: "always",
   vite: {
     build: {
@@ -27,14 +27,14 @@ export default defineConfig({
         src: "./src/assets/images/logo.svg",
       },
       editLink: {
-        baseUrl: "https://github.com/jonathan-vella/microhack-agentic-infraops/edit/main/site/",
+        baseUrl: "https://github.com/jonathan-vella/apex-microhack/edit/main/site/",
       },
       lastUpdated: true,
       social: [
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/jonathan-vella/microhack-agentic-infraops",
+          href: "https://github.com/jonathan-vella/apex-microhack",
         },
       ],
       expressiveCode: {

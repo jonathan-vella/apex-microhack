@@ -26,7 +26,7 @@
 
 **APEX MicroHack** = "Agentic Platform Engineering eXperience for Azure". A 1-day team hackathon (09:00–17:00) where 4–5-person teams use GitHub Copilot custom agents and skills to take *Nordic Fresh Foods*' fictional FreshConnect platform from requirements → WAF-aligned Azure design → IaC implementation (Bicep **or** Terraform) → DR curveball → load test → docs → diagnostics → stakeholder showcase. Eight challenges score **105 base + 25 bonus = 130 points max**. The repo this report covers holds the docs site only (Astro Starlight) — participants work in a separate template repo, [`azure-agentic-infraops-accelerator`](https://github.com/jonathan-vella/azure-agentic-infraops-accelerator).
 
-Site is published at [https://jonathan-vella.github.io/microhack-agentic-infraops/](https://jonathan-vella.github.io/microhack-agentic-infraops/). Sidebar autogenerates from five top-level directories (`getting-started`, `challenges`, `guides`, `reference`, `about`) per [site/astro.config.mjs](../site/astro.config.mjs#L45-L70). `trailingSlash: "always"` and `base: "/microhack-agentic-infraops"` are wired in.
+Site is published at [https://microhack.apexops.pro/](https://microhack.apexops.pro/). Sidebar autogenerates from five top-level directories (`getting-started`, `challenges`, `guides`, `reference`, `about`) per [site/astro.config.mjs](../site/astro.config.mjs#L45-L70). `trailingSlash: "always"` and `base: "/apex-microhack"` are wired in.
 
 ---
 
