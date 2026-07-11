@@ -11,9 +11,9 @@
     "lint:md": "markdownlint-cli2"
   },
   "devDependencies": {
-    "lefthook": "^2.1.9",
+    "lefthook": "^2.1.10",
     "markdownlint-cli2": "^0.23.0",
-    "prettier": "^3.9.4",
+    "prettier": "^3.9.5",
     "prettier-plugin-astro": "^0.14.1"
   },
   "overrides": {
