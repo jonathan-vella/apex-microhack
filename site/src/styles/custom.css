@@ -35,6 +35,15 @@
   --sl-color-black: #ffffff;
 }
 
+footer .meta.sl-flex,
+footer .meta > .sl-flex {
+  color: var(--sl-color-gray-2);
+}
+
+footer .meta > .sl-flex:hover {
+  color: var(--sl-color-white);
+}
+
 body,
 button,
 input,
@@ -622,6 +631,16 @@ tr:last-child td {
   border: 1px solid var(--sl-color-gray-5);
   margin-block: 1rem;
   overflow-x: auto;
+}
+
+@media (max-width: 767px) {
+  .sl-markdown-content .sl-anchor-link::after {
+    inset: calc((2.75rem - var(--sl-anchor-icon-size)) / -2);
+  }
+
+  .mermaid > svg {
+    min-width: 52rem;
+  }
 }
 
 .starlight-aside {

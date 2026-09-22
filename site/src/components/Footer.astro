@@ -18,8 +18,8 @@ import StarlightFooter from "@astrojs/starlight/components/Footer.astro";
     return document.documentElement.dataset.theme === "light" ? "default" : "dark";
   }
 
-  async function renderMermaid() {
-    const elements = document.querySelectorAll(".mermaid");
+  async function renderMermaid(nodes) {
+    const elements = nodes ?? document.querySelectorAll(".mermaid");
     if (elements.length === 0) return;
 
     const mermaid = await loadMermaid();
@@ -39,11 +39,35 @@ import StarlightFooter from "@astrojs/starlight/components/Footer.astro";
     }
   }
 
-  // Initial render once DOM is ready
+  // Diagrams pull in a heavy layout engine, so only fetch and render them once
+  // they scroll near the viewport instead of on every page load.
+  function observeMermaid() {
+    const elements = document.querySelectorAll(".mermaid");
+    if (elements.length === 0) return;
+
+    if (!("IntersectionObserver" in window)) {
+      renderMermaid(elements);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        const pending = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target);
+        if (pending.length === 0) return;
+        pending.forEach((el) => obs.unobserve(el));
+        renderMermaid(pending);
+      },
+      { rootMargin: "200px" },
+    );
+    elements.forEach((el) => observer.observe(el));
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", renderMermaid);
+    document.addEventListener("DOMContentLoaded", observeMermaid);
   } else {
-    renderMermaid();
+    observeMermaid();
   }
 
   // Re-render on theme change
