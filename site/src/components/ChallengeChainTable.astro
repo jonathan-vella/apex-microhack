@@ -112,38 +112,36 @@ const renderCellParts = (parts: string | string[]) =>
         </tr>
       </thead>
       <tbody>
-        {
-          rows.map((row) => (
-            <tr>
-              <td>
-                <a href={row.challengeHref}>{row.challengeLabel}</a>
-              </td>
-              <td>{row.duration}</td>
-              <td>{row.points}</td>
-              <td>
-                {renderCellParts(row.input).map((part, index) => (
-                  <>
-                    {typeof row.input !== "string" && part.endsWith(".md") ? (
-                      <code>{part}</code>
-                    ) : (
-                      part
-                    )}
-                    {index < renderCellParts(row.input).length - 1 ? ", " : ""}
-                  </>
-                ))}
-              </td>
-              <td>
-                {renderCellParts(row.output).map((part, index) => (
-                  <>
-                    {part.includes(".md") ? <code>{part}</code> : part}
-                    {index < renderCellParts(row.output).length - 1 ? ", " : ""}
-                  </>
-                ))}
-              </td>
-              <td>{row.nextStep}</td>
-            </tr>
-          ))
-        }
+        {rows.map((row) => (
+          <tr>
+            <td>
+              <a href={row.challengeHref}>{row.challengeLabel}</a>
+            </td>
+            <td>{row.duration}</td>
+            <td>{row.points}</td>
+            <td>
+              {renderCellParts(row.input).map((part, index) => (
+                <>
+                  {typeof row.input !== "string" && part.endsWith(".md") ? (
+                    <code>{part}</code>
+                  ) : (
+                    part
+                  )}
+                  {index < renderCellParts(row.input).length - 1 ? ", " : ""}
+                </>
+              ))}
+            </td>
+            <td>
+              {renderCellParts(row.output).map((part, index) => (
+                <>
+                  {part.includes(".md") ? <code>{part}</code> : part}
+                  {index < renderCellParts(row.output).length - 1 ? ", " : ""}
+                </>
+              ))}
+            </td>
+            <td>{row.nextStep}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   </div>
@@ -190,38 +188,36 @@ const renderCellParts = (parts: string | string[]) =>
             </tr>
           </thead>
           <tbody>
-            {
-              rows.map((row) => (
-                <tr>
-                  <td>
-                    <a href={row.challengeHref}>{row.challengeLabel}</a>
-                  </td>
-                  <td>{row.duration}</td>
-                  <td>{row.points}</td>
-                  <td>
-                    {renderCellParts(row.input).map((part, index) => (
-                      <>
-                        {typeof row.input !== "string" && part.endsWith(".md") ? (
-                          <code>{part}</code>
-                        ) : (
-                          part
-                        )}
-                        {index < renderCellParts(row.input).length - 1 ? ", " : ""}
-                      </>
-                    ))}
-                  </td>
-                  <td>
-                    {renderCellParts(row.output).map((part, index) => (
-                      <>
-                        {part.includes(".md") ? <code>{part}</code> : part}
-                        {index < renderCellParts(row.output).length - 1 ? ", " : ""}
-                      </>
-                    ))}
-                  </td>
-                  <td>{row.nextStep}</td>
-                </tr>
-              ))
-            }
+            {rows.map((row) => (
+              <tr>
+                <td>
+                  <a href={row.challengeHref}>{row.challengeLabel}</a>
+                </td>
+                <td>{row.duration}</td>
+                <td>{row.points}</td>
+                <td>
+                  {renderCellParts(row.input).map((part, index) => (
+                    <>
+                      {typeof row.input !== "string" && part.endsWith(".md") ? (
+                        <code>{part}</code>
+                      ) : (
+                        part
+                      )}
+                      {index < renderCellParts(row.input).length - 1 ? ", " : ""}
+                    </>
+                  ))}
+                </td>
+                <td>
+                  {renderCellParts(row.output).map((part, index) => (
+                    <>
+                      {part.includes(".md") ? <code>{part}</code> : part}
+                      {index < renderCellParts(row.output).length - 1 ? ", " : ""}
+                    </>
+                  ))}
+                </td>
+                <td>{row.nextStep}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

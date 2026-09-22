@@ -2,7 +2,9 @@
 import StarlightFooter from "@astrojs/starlight/components/Footer.astro";
 ---
 
-<StarlightFooter {...Astro.props}><slot /></StarlightFooter>
+<StarlightFooter {...Astro.props}>
+  <slot />
+</StarlightFooter>
 
 <script>
   let mermaidModulePromise;

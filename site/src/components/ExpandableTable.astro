@@ -42,32 +42,30 @@ const hasColumnWidths = columnWidths.length === headers.length;
 
   <div class="expandable-data-table__viewport">
     <table class="expandable-data-table__table">
-      {
-        hasColumnWidths && (
-          <colgroup>
-            {columnWidths.map((width) => (
-              <col style={`width: ${width}`} />
-            ))}
-          </colgroup>
-        )
-      }
+      {hasColumnWidths && (
+        <colgroup>
+          {columnWidths.map((width) => (
+            <col style={`width: ${width}`} />
+          ))}
+        </colgroup>
+      )}
       <thead>
         <tr>
-          {headers.map((header) => <th>{header}</th>)}
+          {headers.map((header) => (
+            <th>{header}</th>
+          ))}
         </tr>
       </thead>
       <tbody>
-        {
-          rows.map((row) => (
-            <tr>
-              {headers.map((_, index) => (
-                <td>
-                  <Fragment set:html={row[index] ?? ""} />
-                </td>
-              ))}
-            </tr>
-          ))
-        }
+        {rows.map((row) => (
+          <tr>
+            {headers.map((_, index) => (
+              <td>
+                <Fragment set:html={row[index] ?? ""} />
+              </td>
+            ))}
+          </tr>
+        ))}
       </tbody>
     </table>
   </div>
@@ -91,32 +89,30 @@ const hasColumnWidths = columnWidths.length === headers.length;
 
       <div class="expandable-data-table__dialog-body">
         <table class="expandable-data-table__table expandable-data-table__table--expanded">
-          {
-            hasColumnWidths && (
-              <colgroup>
-                {columnWidths.map((width) => (
-                  <col style={`width: ${width}`} />
-                ))}
-              </colgroup>
-            )
-          }
+          {hasColumnWidths && (
+            <colgroup>
+              {columnWidths.map((width) => (
+                <col style={`width: ${width}`} />
+              ))}
+            </colgroup>
+          )}
           <thead>
             <tr>
-              {headers.map((header) => <th>{header}</th>)}
+              {headers.map((header) => (
+                <th>{header}</th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {
-              rows.map((row) => (
-                <tr>
-                  {headers.map((_, index) => (
-                    <td>
-                      <Fragment set:html={row[index] ?? ""} />
-                    </td>
-                  ))}
-                </tr>
-              ))
-            }
+            {rows.map((row) => (
+              <tr>
+                {headers.map((_, index) => (
+                  <td>
+                    <Fragment set:html={row[index] ?? ""} />
+                  </td>
+                ))}
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
