@@ -17,9 +17,12 @@ Keep workshop documentation consistent, accurate, and fresh.
 - Collapsible sections use `<details><summary>Title</summary>` HTML syntax
 - Keep language concise and scannable — workshop participants are under time pressure
 - Preserve scoring consistency with `facilitator/scoring-rubric.md`
+- Verify APEX facts, commands, agent names, artifacts, and links before editorial cleanup
+- After technical review, explicitly invoke `microhack-unslop` for authorized prose changes
 
 ## Constraints
 
 - Do not reveal facilitator-only content (solutions, scoring details) in participant-facing docs
 - Do not change challenge timings or points without updating all canonical references
 - Use relative links without `.md` extension for internal navigation
+- Do not use `microhack-unslop` to change facts, workshop timings, points, required structure, or facilitator boundaries

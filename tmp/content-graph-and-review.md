@@ -515,7 +515,7 @@ Severity legend: **Major** = brand/accuracy guarantee broken; **Minor** = local 
 | `cd site && npm run lint:prose` (Vale, error-level) | exit 0 (33 files, 0 errors / 0 warnings) | exit 0 (33 files, 0 errors / 0 warnings) | ✓ |
 | Internal-link audit (`dist/`) | 1967 links / 0 broken | 1967 links / 0 broken | ✓ |
 | Brand regex `\bMicrohack\b` (single capital) | 1 hit | 0 hits | ✓ |
-| en-GB regex `\b(organis(e|er|ation)|optimisation)\b` | 5 hits | 0 hits | ✓ |
+| en-GB regex `\b(organis(e\|er\|ation)\|optimisation)\b` | 5 hits | 0 hits | ✓ |
 | Persona-emoji audit `🏤` | 1 hit (glossary) | 0 hits | ✓ |
 | Numeric invariants (105/130/€500/€700/RTO/RPO/regions) | consistent | consistent | ✓ |
 | Challenge chain integrity (`prev`/`next`) | 8/8 unbroken | 8/8 unbroken | ✓ |

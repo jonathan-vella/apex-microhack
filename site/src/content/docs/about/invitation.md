@@ -26,10 +26,10 @@ the Nordic Fresh Foods scenario from requirements to deployment planning and fin
 ## What to Bring
 
 - A laptop that can run VS Code and a Dev Container.
-- A GitHub Copilot Business or Enterprise license with the required Claude and GPT models enabled.
-- GitHub Copilot MCP server access set to **Allow all** for your organization or enterprise.
+- GitHub Copilot access in VS Code, with your account or organization permitting the custom agents and current models declared by the APEX Accelerator.
+- Access to the GitHub and Azure MCP servers configured by the Accelerator.
 - One Azure subscription for your team.
-- A repository created from the [template repo](https://github.com/jonathan-vella/azure-agentic-infraops-accelerator).
+- A repository created from the [APEX Accelerator template](https://github.com/jonathan-vella/apex-accelerator).
 
 ---
 

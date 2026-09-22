@@ -16,7 +16,7 @@ next:
 ---
 
 :::note[Challenge Info]
-⏱️ **30 min** · 🏆 **5 pts** · 🤖 `04-Design` (optional report support) · 📄 `agent-output/freshconnect/05-load-test-results.md`
+⏱️ **30 min** · 🏆 **5 pts** · 🤖 no additional workflow agent required · 📄 `agent-output/freshconnect/05-load-test-results.md`
 
 :::
 

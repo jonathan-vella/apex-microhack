@@ -120,12 +120,12 @@ Design and deploy the Azure infrastructure for the **FreshConnect MVP** (Minimum
 
 8 challenges across a 1-day hackathon:
 
-1. **Requirements** — Capture business needs using the Requirements agent
-2. **Architecture** — Design Azure solution aligned with Well-Architected Framework
-3. **Implementation** — Generate IaC templates for deployment
-4. **DR Curveball** — Adapt to multi-region disaster recovery requirements
+1. **Requirements** — Capture requirements, review Challenger findings, and approve the architecture handoff
+2. **Architecture** — Assess architecture and cost evidence, resolve review findings, and approve the design
+3. **Implementation** — Discover governance, approve the IaC plan, generate and validate code, then authorize deployment
+4. **DR Curveball** — Revise affected requirements, design, plan, code, and approvals for disaster recovery
 5. **Load Testing** — Validate performance under stress
-6. **Documentation** — Create operational guides and runbooks
+6. **Documentation** — Create evidence-based as-built guides and runbooks
 7. **Diagnostics** — Build troubleshooting procedures
 8. **Team Showcase** — Present your solution professionally
 

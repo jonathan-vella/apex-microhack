@@ -16,7 +16,7 @@ next:
 ---
 
 :::note[Challenge Info]
-⏱️ **5 min** · 🏆 **5 pts** · 🤖 `09-Diagnose` or `04-Design` · 📄 `agent-output/freshconnect/07-diagnostics-quick-card.md`
+⏱️ **5 min** · 🏆 **5 pts** · 🤖 `09-Diagnose` · 📄 `agent-output/freshconnect/07-diagnostics-quick-card.md`
 
 :::
 

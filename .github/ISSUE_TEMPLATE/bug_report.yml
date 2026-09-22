@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         Participants working inside the template repo should file bugs against
-        [azure-agentic-infraops-accelerator](https://github.com/jonathan-vella/azure-agentic-infraops-accelerator) instead.
+        [apex-accelerator](https://github.com/jonathan-vella/apex-accelerator) instead.
   - type: input
     id: location
     attributes:

@@ -14,6 +14,7 @@ This repository uses a workshop-first skill set.
 
 ## Utility Skills
 
+- `microhack-unslop`: manually polishes authorized prose after technical review while preserving APEX and workshop contracts
 - `git-commit`: conventional commit support
 - `github-operations`: GitHub issue/PR/release operations
 - `make-skill-template`: scaffold a new skill for this repository

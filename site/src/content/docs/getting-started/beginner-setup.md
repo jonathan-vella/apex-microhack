@@ -49,7 +49,7 @@ On current Windows 11, `wsl --install` should install Ubuntu automatically. If U
 
 :::caution
 
-Installing software is not enough for this MicroHack. Before event day, confirm the mandatory GitHub Copilot plan, required model access, and GitHub MCP **Allow all** setting in the [Setup Guide](../setup/#participation-gate).
+Installing software is not enough for this MicroHack. Before event day, confirm Copilot works in VS Code and that your organization permits the current Accelerator agents, selected models, and configured MCP servers in the [Setup Guide](../setup/#participation-gate).
 
 :::
 
@@ -79,7 +79,7 @@ Replace `<your-username>` with your Ubuntu username. You can check it by running
 
 ## Step 3 — Create your repository from the template
 
-1. Open the [azure-agentic-infraops-accelerator template](https://github.com/jonathan-vella/azure-agentic-infraops-accelerator) in your browser.
+1. Open the [APEX Accelerator template](https://github.com/jonathan-vella/apex-accelerator) in your browser.
 2. Click **Use this template** → **Create a new repository**.
 
 ![Use this template button on the accelerator repo](../../../assets/images/getting-started/01-accelerator-use-this-template.png)
@@ -157,4 +157,4 @@ Do not skip the Dev Container step. All challenge work during the workshop happe
 
 ## What to do next
 
-Once the Dev Container is running and you have completed the [Setup Guide](../setup/) checks, including model access and MCP access, head to [Workshop Prep](../workshop-prep/) to read the scenario brief and team roles before event day.
+Once the Dev Container is running and you have completed the [Setup Guide](../setup/) checks, including agent, model, and MCP access, head to [Workshop Prep](../workshop-prep/) to read the scenario brief and team roles before event day.

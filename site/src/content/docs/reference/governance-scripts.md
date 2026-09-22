@@ -18,6 +18,12 @@ The scripts live in this documentation repository, not in the participant templa
 
 ---
 
+:::caution
+
+These event policies are workshop controls. They do not replace APEX Governance Step 3.5. Participants must still use `04g-Governance` to discover effective policy constraints, preserve the Markdown and JSON artifacts, complete reconciliation when constraints exist, and approve the result before IaC planning.
+
+:::
+
 ## Prerequisites
 
 ```bash

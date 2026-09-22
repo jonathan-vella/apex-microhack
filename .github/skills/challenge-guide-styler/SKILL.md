@@ -29,3 +29,4 @@ Every challenge file should follow this section order:
 - Do not change point allocations without updating `facilitator/scoring-rubric.md`
 - Sidebar badge text should match challenge duration
 - Use `prev`/`next` frontmatter for sequential challenge navigation
+- Apply `microhack-unslop` only after the challenge's APEX facts, artifacts, approvals, scoring, and structure are verified

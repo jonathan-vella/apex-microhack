@@ -18,48 +18,48 @@ export const challengeSummaryHeaders = [
 ];
 
 export const challengeSummaryRows = [
-  ["1", "Requirements Capture", "30 min", "20", "<code>02-Requirements</code>"],
+  ["1", "Requirements Capture", "30 min", "20", "<code>02-Requirements</code>, <code>10-Challenger</code>"],
   [
     "2",
     "Architecture Design",
     "30 min",
     "25",
-    "<code>03-Architect</code>, <code>04-Design</code>",
+    "<code>03-Architect</code>, <code>10-Challenger</code>, optional <code>04-Design</code>",
   ],
   [
     "3",
     "IaC Implementation &amp; Deploy",
     "45 min",
     "25",
-    "<code>05-IaC Planner</code>, <code>06b-Bicep CodeGen</code>/<code>06t-Terraform CodeGen</code>, <code>07b-Bicep Deploy</code>/<code>07t-Terraform Deploy</code>",
+    "<code>04g-Governance</code>, <code>05-IaC Planner</code>, <code>10-Challenger</code>, CodeGen/Deploy track",
   ],
   [
     "4",
     "DR Curveball &amp; Deploy",
     "45 min",
     "10",
-    "<code>03-Architect</code>, <code>04-Design</code>, <code>06b-Bicep CodeGen</code>/<code>06t-Terraform CodeGen</code>, <code>07b-Bicep Deploy</code>/<code>07t-Terraform Deploy</code>",
+    "<code>03-Architect</code>, <code>10-Challenger</code>, optional <code>04-Design</code>, <code>06b-Bicep CodeGen</code>/<code>06t-Terraform CodeGen</code>, <code>07b-Bicep Deploy</code>/<code>07t-Terraform Deploy</code>",
   ],
   [
     "5",
     "Load Testing",
     "30 min",
     "5",
-    "<code>04-Design</code> (optional report support), k6",
+    "k6 or Azure Load Testing",
   ],
   [
     "6",
     "Documentation",
     "15 min",
     "5",
-    "<code>08-As-Built</code> or <code>04-Design</code>",
+    "<code>08-As-Built</code>",
   ],
   [
     "7",
     "Diagnostics",
     "5 min",
     "5",
-    "<code>09-Diagnose</code> or <code>04-Design</code>",
+    "<code>09-Diagnose</code>",
   ],
   ["8", "Team Showcase 🎤", "60 min", "10", "(presentation)"],
 ];
@@ -137,7 +137,7 @@ Challenge 8 focuses on professional communication and presentation skills.
 | ----- | ----------------------------- |
 | 09:00 | Welcome & logistics           |
 | 09:10 | MicroHack overview            |
-| 09:20 | 7-step workflow demo          |
+| 09:20 | human-approved APEX workflow demo          |
 | 09:35 | Setup verification            |
 | 09:45 | Team formation                |
 | 09:55 | Scenario briefing and handoff |
@@ -236,8 +236,8 @@ pitch, 2-min Q&A, stakeholder questions, facilitator feedback, and transition.
 
 ## Quick Reference
 
-- **Template Repo**: [github.com/jonathan-vella/azure-agentic-infraops-accelerator](https://github.com/jonathan-vella/azure-agentic-infraops-accelerator)
-- **Workshop Docs**: [jonathan-vella.github.io/apex-microhack/](https://microhack.apexops.pro/)
+- **Template Repo**: [github.com/jonathan-vella/apex-accelerator](https://github.com/jonathan-vella/apex-accelerator)
+- **Workshop Docs**: [microhack.apexops.pro](https://microhack.apexops.pro/)
 - **Challenges**: [microhack/challenges/](../../challenges/)
 - **Facilitator Guide**: Shared separately with coaches
 - **Pre-Work**: [Getting Started](../../getting-started/setup/)

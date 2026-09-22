@@ -16,7 +16,7 @@ next:
 ---
 
 :::note[Challenge Info]
-⏱️ **15 min** · 🏆 **5 pts** · 🤖 `08-As-Built` or `04-Design` · 📄 `07-ab-operations-guide.md` + 1 additional doc
+⏱️ **15 min** · 🏆 **5 pts** · 🤖 `08-As-Built` · 📄 `07-operations-runbook.md` + 1 additional as-built document
 
 :::
 
@@ -24,7 +24,7 @@ next:
 
 - **Do now:** Produce two audience-specific documents from the artifacts you already created.
 - **Input:** All prior artifacts, especially the architecture diagram, ADR, load-test results, and deployment evidence.
-- **Output:** `agent-output/freshconnect/07-ab-operations-guide.md` plus at least one additional document.
+- **Output:** `agent-output/freshconnect/07-operations-runbook.md` plus at least one additional document from the as-built suite.
 - **Required to move on:** One operations guide and one more document that answers a real stakeholder question.
 - **Decisions now:** Audience, document type, level of detail, and which evidence matters enough to include inline.
 - **Next:** C7 compresses this broader documentation into a one-page diagnostics card.
@@ -43,7 +43,7 @@ workshop story.
 ## Your Tasks
 
 1. Pick the two highest-value audiences for FreshConnect right now.
-2. Generate `agent-output/freshconnect/07-ab-operations-guide.md` for the operations
+2. Use `08-As-Built` to generate `agent-output/freshconnect/07-operations-runbook.md` for the operations
    audience.
 3. Generate one additional document that closes a different gap such as architecture,
    DR, cost, deployment, or security.
@@ -65,7 +65,7 @@ workshop story.
 
 ## Deliverables
 
-- `agent-output/freshconnect/07-ab-operations-guide.md`
+- `agent-output/freshconnect/07-operations-runbook.md`
 - At least one additional document covering architecture, cost, DR, deployment, or
   security.
 - Each document states its audience and purpose clearly.
@@ -106,7 +106,7 @@ ideas, and keep the output tight enough that another team could use it without c
 ## Watch Out
 
 - Two documents for the same audience usually means you skipped a more valuable gap.
-- Do not let `08-As-Built` or `04-Design` generate generic Azure background that does not help
+- Do not let `08-As-Built` generate generic Azure background that does not help
   FreshConnect.
 - The required operations guide still needs concrete steps, not just architecture prose.
 - Keep the docs grounded in the artifacts you actually produced, especially if some
@@ -117,7 +117,7 @@ ideas, and keep the output tight enough that another team could use it without c
 | Item | Value |
 | --- | --- |
 | **Input from** | All prior artifacts (requirements, architecture, IaC templates, ADR, load test results) |
-| **Your output** | `agent-output/freshconnect/07-ab-operations-guide.md` and at least one additional doc |
+| **Your output** | `agent-output/freshconnect/07-operations-runbook.md` and at least one additional as-built document |
 | **Next challenge uses** | C7 distills this broader documentation into a one-page diagnostic quick card |
 
 ## Next Step

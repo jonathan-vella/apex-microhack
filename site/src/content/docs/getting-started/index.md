@@ -6,10 +6,10 @@ sidebar:
 ---
 
 APEX MicroHack is a one-day team exercise where you use GitHub Copilot to move from
-business requirements to an Azure platform design, deployment plan, and final showcase.
+business requirements to reviewed Azure architecture, governed IaC delivery, deployment evidence, and a final showcase.
 
 Start here if you are preparing for the event or running the workshop on your own time.
-Your hands-on work happens in a repository created from the template repo. This docs repo
+Your hands-on work happens in a repository created from the [APEX Accelerator](https://github.com/jonathan-vella/apex-accelerator). This docs repo
 is the guide for setup, scenario context, and challenge navigation.
 
 ## What You Will Do
@@ -20,10 +20,10 @@ is the guide for setup, scenario context, and challenge navigation.
 
 ## What You Need
 
-- A GitHub Copilot Business or Enterprise license with the required Claude and GPT models enabled.
-- GitHub Copilot MCP server access set to **Allow all** for the organization or enterprise.
+- GitHub Copilot access in VS Code, with organization policy allowing the custom agents and current models declared by the APEX Accelerator.
+- The GitHub and Azure MCP servers configured by the current APEX Accelerator.
 - One Azure subscription per team with the required access and quota in `swedencentral`.
-- A working Dev Container and a repository created from the template repo.
+- A working Dev Container and a repository created from the [APEX Accelerator](https://github.com/jonathan-vella/apex-accelerator).
 
 ## Start Here
 
@@ -56,7 +56,7 @@ Workshop Prep before starting [Challenge 1](../challenges/challenge-1-requiremen
 |---|---|
 | Confirm the container is running | [Dev Container](setup/#dev-container) |
 | Check Azure sign-in and agents | [Ready-to-Start Check](setup/#ready-to-start-check) |
-| Confirm models and MCP tools | [Participation Gate](setup/#participation-gate) |
+| Confirm agents, selected models, and MCP servers | [Participation Gate](setup/#participation-gate) |
 | Start the first challenge | [Challenge 1: Requirements](../challenges/challenge-1-requirements/) |
 
 ### During the Workshop

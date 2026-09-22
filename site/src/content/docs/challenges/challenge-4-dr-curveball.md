@@ -16,7 +16,7 @@ next:
 ---
 
 :::note[Challenge Info]
-⏱️ **45 min** · 🏆 **10 pts** · 🤖 `03-Architect`, `04-Design`, `06b-Bicep CodeGen`/`06t-Terraform CodeGen`, `07b-Bicep Deploy`/`07t-Terraform Deploy` · 📄 `agent-output/freshconnect/04-adr-ha-dr-strategy.md`, updated IaC or paper design, updated diagram
+⏱️ **45 min** · 🏆 **10 pts** · 🤖 affected workflow agents, `10-Challenger`, and the selected CodeGen/Deploy track · 📄 `agent-output/freshconnect/04-adr-ha-dr-strategy.md`, updated IaC or paper design, updated diagram
 
 :::
 
@@ -25,7 +25,7 @@ next:
 - **Do now:** Respond to the DR curveball with an ADR, updated design, and revised delivery path.
 - **Input:** C3 templates, deployment outcome, implementation plan, and architecture diagram.
 - **Output:** `agent-output/freshconnect/04-adr-ha-dr-strategy.md`, updated IaC or paper design, updated architecture diagram, and revised cost view.
-- **Required to move on:** Choose an HA/DR approach, parameterize the design, and document whether you deployed it or designed it on paper.
+- **Required to move on:** Revise affected artifacts, rerun required reviews, approve the new path, parameterize the design, and document whether you deployed it or designed it on paper.
 - **Decisions now:** Single-region HA vs multi-region DR vs active-active, what must replicate, how failover works, and what fits inside the extra budget.
 - **Next:** C5 validates the revised platform or documents the intended test target if you stayed on paper.
 
@@ -42,21 +42,19 @@ You must recommend a resilient path fast, then show how it changes the design.
 
 ## Your Tasks
 
-1. Decide which path you are on based on your Challenge 3 outcome, then state that path
-   clearly in your ADR.
-2. Write `agent-output/freshconnect/04-adr-ha-dr-strategy.md` with context, decision,
-   consequences, and rejected alternatives.
-3. Update your Bicep or Terraform IaC, or your written design on the paper path,
-  so the HA/DR choice is parameterized and the required regional changes are explicit.
-4. Update the architecture diagram and revise the cost view to show the new design.
-5. Deploy the DR change if your C3 path supports it; otherwise document the paper
-   exercise path cleanly.
+1. Record the changed business requirement and identify which approved artifacts it invalidates.
+2. Return to `02-Requirements` and `03-Architect` as needed. Update requirements, recovery targets, architecture, cost, and SKU evidence.
+3. Select `10-Challenger` for the required revised requirements, architecture, and cost reviews. Resolve blocking findings and approve the updated design.
+4. Reconcile governance, revise the IaC plan with `05-IaC Planner`, complete the plan review, and approve the revised code-generation contract.
+5. Write `agent-output/freshconnect/04-adr-ha-dr-strategy.md` with context, decision, consequences, and rejected alternatives.
+6. Update the selected IaC track or document the parameterized paper design. Validate it before any deployment request.
+7. Explicitly authorize the revised deployment scope, or state that the result remains a paper exercise. Update the diagram and cost view in both cases.
 
 | Challenge 3 outcome | What you do now |
 | --- | --- |
-| Deployment succeeded | Extend the deployed platform with the chosen HA/DR strategy and capture deployment evidence |
-| Partial deployment | Extend what works, document the gaps in the ADR, and show the intended end state |
-| Deployment failed | Complete a paper exercise: ADR + updated diagram + parameterized written design, without claiming deployment evidence |
+| Deployment succeeded | Revise affected upstream artifacts and approvals, then extend the deployed platform and capture evidence |
+| Partial deployment | Revise and validate what works, document gaps, and show the approved intended end state |
+| Deployment failed | Complete the reviewed paper path without claiming deployment evidence |
 
 ## Key Decisions
 
@@ -116,6 +114,7 @@ Alternatives -> what you rejected and why
 - The paper path can still prove your C4 design thinking, but it does not replace
   missing C3 deployment evidence. Be explicit about what you designed versus what
   actually ran.
+- Do not patch downstream code while approved requirements, architecture, or plans still describe the old recovery targets.
 - Do not pick active-active unless you can explain consistency, failover, and cost.
 - Do not update the diagram without updating the ADR, or vice versa.
 - Keep the €700 ceiling visible; the extra budget is not a license to duplicate

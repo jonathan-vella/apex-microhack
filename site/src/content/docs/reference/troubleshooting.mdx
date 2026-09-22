@@ -165,28 +165,33 @@ param location string = resourceGroup().location
 1. Sign out of GitHub in VS Code and sign back in with the correct account
 2. Reload VS Code (`Developer: Reload Window`)
 3. Verify your Copilot subscription at [github.com/settings/copilot](https://github.com/settings/copilot)
-4. Confirm the required Claude and GPT models appear in the Copilot Chat model picker
+4. Open the current Accelerator agent files and confirm their declared models are permitted by your account or organization
 
-### Required models not available
+### Agent model is not available
 
-**Symptoms**: The model picker does not show the required Claude or GPT models.
+**Symptoms**: An Accelerator agent cannot start because its declared model is unavailable.
 
 **Fixes**:
 
-1. Verify your Copilot plan is Business or Enterprise
-2. Ask your GitHub organization or enterprise owner to confirm the required models are enabled
-3. Reload VS Code after model policy changes are applied
+1. Open the affected `.github/agents/*.agent.md` file and note its current `model` value.
+2. Check your Copilot plan entitlements and organization model policy.
+3. Ask the GitHub organization or enterprise owner whether that model is permitted.
+4. Reload VS Code after policy changes.
 
+Do not replace the model declaration only to make the error disappear. Compare your repository with the current Accelerator and ask the facilitator before changing an upstream-managed agent.
 ### Agent not appearing in Chat
 
-**Symptoms**: Custom agents (e.g., `01-Orchestrator`) don't show in the agent picker.
+**Symptoms**: A main agent such as `01-Orchestrator` does not appear in the agent picker.
 
 **Fixes**:
 
-1. Verify agents are in `.github/agents/*.agent.md`
-2. Ensure `"github.copilot.chat.customAgentInSubagent.enabled": true`
-3. Reload VS Code (`Developer: Reload Window`)
+1. Confirm that you opened the template-derived repository, not this documentation repository.
+2. Confirm the repository is open in its Dev Container.
+3. Verify the expected files exist under `.github/agents/`.
+4. Reload VS Code with `Developer: Reload Window`.
+5. Compare the repository with the current APEX Accelerator if files are missing.
 
+Do not enable a legacy discovery setting as a substitute for loading the current repository configuration.
 ### Agent produces incomplete output
 
 **Symptoms**: Agent stops mid-response or skips steps.
@@ -195,21 +200,25 @@ param location string = resourceGroup().location
 
 1. Break large requests into smaller steps
 2. Provide explicit file paths when referencing artifacts
-3. Use `01-Orchestrator` for multi-step workflows — it manages context handoffs
+3. Use `01-Orchestrator` to identify the next main agent and proposed handoff; the human still selects and approves that handoff
 
-### MCP tools not working
+### MCP servers not working
 
-**Symptoms**: Azure, Azure Pricing, Draw.io, GitHub, MS Learn, or Terraform MCP tools return errors or are not available.
+**Symptoms**: A GitHub or Azure MCP server declared by the Accelerator returns an error or is unavailable.
 
 **Fixes**:
 
-1. Confirm the GitHub organization or enterprise MCP policy is set to **Allow all: No restrictions. All MCP servers can be used**
-2. Check `.vscode/mcp.json` is present and correct in the accelerator repo
-3. Run `npm run lint:mcp-config` if the accelerator repo provides that validation script
-4. Ensure you are logged in for Azure-backed tools: `az login`
-5. Restart the MCP servers by reloading VS Code: `Developer: Reload Window`
+1. Inspect `.vscode/mcp.json` in the template-derived repository and identify the failing server.
+2. Preserve the exact startup or authentication error.
+3. Confirm account and organization policy permits the declared server.
+4. For Azure-backed tools, confirm the required Azure sign-in and subscription context.
+5. Reload VS Code with `Developer: Reload Window`.
+6. Compare your MCP configuration with the current APEX Accelerator.
 
+The server list changes over time. Do not diagnose against the retired Azure Pricing, Draw.io, MS Learn, or Terraform list unless those servers are present in your current repository.
 GitHub reference: [Configure MCP server access](https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-mcp-usage/configure-mcp-server-access)
+
+APEX reference: [MCP server integration](https://apexops.pro/concepts/how-it-works/mcp-integration/)
 
 ## Validation and Linting
 

@@ -53,10 +53,10 @@ defense in Challenge 8:
 ### Templatized Agent Outputs
 
 The agents in this microhack use **templates** to generate consistent, structured documentation.
-These templates are located in `.github/skills/azure-artifacts/templates/` and include:
+These templates are located in `.github/skills/apex-azure-artifacts/templates/` and include:
 
 ```
-.github/skills/azure-artifacts/templates/
+.github/skills/apex-azure-artifacts/templates/
 ├── 01-requirements.template.md
 ├── 02-architecture-assessment.template.md
 ├── 03-des-cost-estimate.template.md
@@ -85,7 +85,7 @@ These templates are located in `.github/skills/azure-artifacts/templates/` and i
 
 ### Exploring Templates
 
-Take a moment to browse `.github/skills/azure-artifacts/templates/` to understand:
+Take a moment to browse `.github/skills/apex-azure-artifacts/templates/` to understand:
 
 - What sections each template includes
 - What information the agent needs from you to fill them in
@@ -159,11 +159,11 @@ Before asking for cost estimates, ask yourself:
    - Could dev/test environments use lower SKUs or serverless?
 
 3. **Cost Discovery**: How would you get actual pricing data?
-   - What information does the Azure Pricing MCP need?
+   - What information do the Azure Resource Manager pricing tools need?
    - How do you compare SKU costs within a service family?
    - What region affects pricing?
 
-**Example Prompt for Azure Pricing MCP:**
+**Example Prompt for Azure Resource Manager pricing tools:**
 
 ```
 "Compare costs for App Service plans in swedencentral:
@@ -504,7 +504,7 @@ Include:
 - Escalation criteria"
 ```
 
-💡 **Coaching tip**: The `04-Design` agent can generate multiple document types.
+💡 **Coaching tip**: The `08-As-Built` agent generates the as-built documentation suite from approved artifacts and observed results.
 Which documents provide the most value for FreshConnect's specific needs?
 
 **Document Types to Consider:**
@@ -650,15 +650,15 @@ Why check database DTU before App Service CPU? What's the reasoning?
 
 💡 Iterate incrementally — don't generate everything at once.
 
-### 04-Design (Challenges 5-7)
+### 08-As-Built and 09-Diagnose (Challenges 6-7)
 
-**Instead of "document everything"**, ask:
+**For `08-As-Built`, instead of "document everything"**, ask:
 
 - "Who is the audience for this documentation?"
 - "What specific problem does this document solve?"
 - "Generate [document type] for [audience] covering [scenarios]"
 
-💡 Good documentation answers questions before they're asked.
+For Challenge 7, select `09-Diagnose` and request a one-page triage card grounded in the current architecture, load-test evidence, and observed state.
 
 ## Paper Exercise Fallback
 

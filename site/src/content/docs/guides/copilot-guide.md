@@ -1,399 +1,211 @@
 ---
-title: Copilot & Agents Guide
-description: How to use GitHub Copilot and AI agents effectively during the workshop
+title: Copilot and APEX workflow guide
+description: Use Copilot agents, skills, handoffs, reviews, and MCP servers during the workshop
 sidebar:
   order: 1
 ---
 
-## VS Code Essentials
+## What APEX adds to Copilot
 
-Visual Studio Code is your development environment. Here are the key features:
+GitHub Copilot Chat is the interface. APEX adds repository-defined main agents, helper subagents, skills, instructions, workflow state, and validation tools.
 
-| Feature                 | Shortcut       | What It Does                               |
-| ----------------------- | -------------- | ------------------------------------------ |
-| **Command Palette**     | `Ctrl+Shift+P` | Run any VS Code command by name            |
-| **Integrated Terminal** | `` Ctrl+` ``   | Run Azure CLI, Bicep, k6, and Git commands |
-| **Explorer**            | `Ctrl+Shift+E` | Browse files and folders                   |
-| **Search**              | `Ctrl+Shift+F` | Search across all files in the workspace   |
-| **Copilot Chat**        | `Ctrl+Alt+I`   | Open the AI assistant panel                |
-| **Inline Chat**         | `Ctrl+I`       | Quick AI help inside a file                |
+The human remains in control:
 
-### Dev Container
+1. Select a main agent for the current workflow step.
+2. Review the proposed scope and the evidence it will use.
+3. Inspect the produced artifact and any Challenger findings.
+4. Resolve required findings.
+5. Approve the handoff to the next main agent.
 
-This workshop runs inside a **Dev Container** — a Docker-based environment with all tools
-pre-installed (Azure CLI, Bicep, k6, Node.js, Python). You don't need to install anything
-on your local machine beyond Docker and VS Code.
-
-When you open the repository, VS Code prompts you to "Reopen in Container." Accept this to
-get the fully configured environment. See [Getting Started](../../getting-started/setup/#dev-container) for details.
-
----
-
-## GitHub Copilot Overview
-
-GitHub Copilot is an AI coding assistant built into VS Code. This project uses Copilot to
-accelerate platform engineering practices — from requirements capture to IaC generation. APEX requires a
-**GitHub Copilot Business or Enterprise** license, the required Claude and GPT model access, and unrestricted
-MCP server access. Other SKUs do not include the required functionality. See [GitHub Copilot Plans](https://github.com/features/copilot/plans) and
-[pre-event setup](../../getting-started/setup/#github-copilot-business-or-enterprise).
-
-Copilot works in three main modes, each suited to different tasks:
-
-### Ask Mode
-
-**What it does**: Quick Q&A — ask questions and get answers without making changes.
-
-**When to use**: Research, exploration, understanding concepts.
-
-**Example prompts**:
-
-- "What's the difference between App Service and Container Apps?"
-- "Explain Azure SQL Database geo-replication"
-- "What WAF pillar covers backup and recovery?"
-
-### Edit Mode
-
-**What it does**: Make targeted changes to specific files. You select files and Copilot
-proposes edits you can accept or reject.
-
-**When to use**: Modifying existing files, fixing issues, small focused changes.
-
-**Example prompts**:
-
-- "Add a Key Vault module parameter to main.bicep"
-- "Fix the naming convention in this storage account resource"
-
-### Agent Mode
-
-**What it does**: Autonomous multi-step work. The agent can read files, run terminal
-commands, create files, search the codebase, and iterate until the task is complete.
-
-**When to use**: Complex tasks that span multiple files and require tool use. **This is
-the primary mode for this microhack.**
-
-**Example prompts**:
-
-- "Capture requirements for a farm-to-table delivery platform using the requirements agent"
-- "Generate Bicep templates for the FreshConnect architecture"
-- "Deploy the infrastructure to Azure and summarize the results"
-
-:::tip
-
-Use **Agent mode** for most challenges. It can invoke custom agents, read templates,
-run Azure CLI commands, and generate documentation — all in a single conversation.
-
-:::
-
----
-
-## Handling Secrets in Copilot Chat
+`01-Orchestrator` helps you identify the next step and proposes a handoff. It does not autonomously execute the main-agent sequence.
 
 :::caution
 
-AI agents may echo terminal output, including secrets. Follow these rules to avoid accidental leakage.
+Selecting an agent, completing a validation, or reaching a graph edge does not authorize deployment. The team must explicitly approve the proposed Azure changes before a Deploy agent applies them.
 
 :::
 
-| Do | Don't |
+## VS Code basics
+
+| Feature | Shortcut | Use during the workshop |
+|---|---|---|
+| Command Palette | `Ctrl+Shift+P` | Run VS Code and Dev Container commands |
+| Integrated Terminal | `` Ctrl+` `` | Run validation, Azure CLI, Bicep, Terraform, k6, and Git commands |
+| Explorer | `Ctrl+Shift+E` | Inspect agent output, IaC, and configuration |
+| Search | `Ctrl+Shift+F` | Find artifacts, identifiers, and old assumptions |
+| Copilot Chat | `Ctrl+Alt+I` | Select APEX agents and review handoffs |
+| Inline Chat | `Ctrl+I` | Make a small, local edit when a main workflow agent is not required |
+
+Open the repository created from the [APEX Accelerator](https://github.com/jonathan-vella/apex-accelerator) in its Dev Container. The container supplies the toolchain expected by the agents.
+
+## Agents, skills, and helper subagents
+
+Use these terms consistently:
+
+| Term | Meaning |
 |---|---|
-| Use placeholders: `<your-api-key>` | Paste real API keys, passwords, or tokens into chat |
-| Reference Key Vault for secret values | Hard-code connection strings in Bicep or scripts |
-| Review agent output before committing | Commit files without checking for echoed secrets |
-| Rotate any accidentally exposed secret | Assume no one saw it |
+| Main agent | A human-selected owner for a workflow step, such as `03-Architect` |
+| Skill | Task-specific instructions loaded by an agent or invoked for a declared purpose |
+| Helper subagent | A bounded worker that an owning agent may use for validation or specialist evidence |
+| Handoff | A proposal asking the human to select another main agent |
+| Approval gate | A human decision that permits the workflow to move to the next stage |
 
-If an agent generates output containing a real secret, **do not commit that file**. Replace the secret with a placeholder, rotate the credential, and continue.
+A main agent is not a skill or helper subagent. The Orchestrator cannot replace human selection of the next main agent.
 
----
+## Main workflow agents
 
-## Custom Agents
+The current Accelerator agent files are the source of truth. Do not copy a fixed count or model list into workshop notes.
 
-This workshop includes **8 purpose-built agents** that understand Azure infrastructure
-patterns, best practices, and the 7-step workflow. Each agent has a focused role.
+| Workflow step | Main agent | Result |
+|---|---|---|
+| Route the workflow | `01-Orchestrator` | Proposed next step, required evidence, and human handoff |
+| Requirements | `02-Requirements` | `01-requirements.md` and initial SKU manifest |
+| Architecture | `03-Architect` | Architecture assessment and cost evidence |
+| Design, optional | `04-Design` | Diagrams and architecture decision records |
+| Governance, Step 3.5 | `04g-Governance` | Effective policy constraints in Markdown and JSON |
+| IaC planning | `05-IaC Planner` | Implementation plan and machine-readable contracts |
+| Bicep generation | `06b-Bicep CodeGen` | Bicep code and `05-iac-handoff.json` |
+| Terraform generation | `06t-Terraform CodeGen` | Terraform code and `05-iac-handoff.json` |
+| Bicep deployment | `07b-Bicep Deploy` | Deployment and policy-precheck evidence |
+| Terraform deployment | `07t-Terraform Deploy` | Deployment and policy-precheck evidence |
+| As-built documentation | `08-As-Built` | Evidence-based documentation suite |
+| Diagnostics | `09-Diagnose` | Diagnostic analysis for the selected scope |
+| Adversarial review | `10-Challenger` | Findings for the specified artifact and review lens |
+| Context review | `11-Context Optimizer` | Context analysis for its declared maintenance task |
 
-### How Agents Work
+Model selections may change. Check the `model` field in the current `.github/agents/*.agent.md` files and confirm your account or organization permits those selections.
 
-Agents are defined as markdown files in `.github/agents/`. When you select an agent from
-the Chat dropdown, Copilot loads that agent's instructions — including what skills to read,
-what output format to use, and what quality checks to perform.
+## Challenger reviews
 
-### Selecting an Agent
+The Challenger is a human-selected main reviewer, not an automatic helper. Preserve its findings and resolve blocking issues before approval.
 
-1. Open Copilot Chat (`Ctrl+Alt+I`)
-2. Click the **agent dropdown** at the top of the chat panel
-3. Select the agent for your current challenge
-4. Type your prompt
-
-### Available Agents
-
-| Agent                  | Persona       | Step | Purpose                                             |
-| ---------------------- | ------------- | ---- | --------------------------------------------------- |
-| **01-Orchestrator**    | 🎼 Maestro    | All  | Master orchestrator for the full 7-step workflow    |
-| **02-Requirements**    | 📜 Scribe     | 1    | Capture functional and non-functional requirements  |
-| **03-Architect**       | 🏛️ Oracle     | 2    | Design WAF-aligned architecture with cost estimates |
-| **04-Design**          | 🎨 Artisan    | 3    | Generate architecture diagrams and ADRs             |
-| **04g-Governance**     | 🛡️ Guard      | 3.5  | Discover Azure Policy constraints before planning   |
-| **05-IaC Planner**     | 📐 Strategist | 4    | Create the implementation plan for Bicep or Terraform |
-| **06b-Bicep CodeGen**  | ⚒️ Forge      | 5    | Generate Bicep templates                            |
-| **06t-Terraform CodeGen** | 🪓 Builder | 5    | Generate Terraform templates                        |
-| **07b-Bicep Deploy**   | 🚀 Envoy      | 6    | Deploy Bicep infrastructure to Azure                |
-| **07t-Terraform Deploy** | 🚀 Envoy    | 6    | Deploy Terraform infrastructure to Azure            |
-| **08-As-Built**        | 🧾 Archivist  | 7    | Generate post-deployment documentation              |
-| **09-Diagnose**        | 🔍 Sentinel   | —    | Troubleshooting and diagnostic runbooks             |
-
-### Subagents
-
-Some agents delegate specialist tasks to **subagents** — smaller, focused agents that run
-inside the parent agent's workflow:
-
-| Subagent                  | Parent     | Purpose                                        |
-| ------------------------- | ---------- | ---------------------------------------------- |
-| **bicep-lint-subagent**   | 06b-Bicep CodeGen | Runs `bicep build` and `bicep lint` validation |
-| **bicep-review-subagent** | 06b-Bicep CodeGen | Reviews Bicep code for best practices          |
-| **bicep-whatif-subagent** | 07b-Bicep Deploy  | Runs `az deployment group what-if` analysis    |
-
-You don't select subagents directly — they're invoked automatically by their parent agent.
-
----
-
-## Prompting Best Practices
-
-### Be Specific
-
-Bad: "Create some infrastructure"
-
-Good: "Create a hub-spoke network in swedencentral with Application Gateway,
-two spoke VNets, and a shared Key Vault. Budget: €300/month."
-
-### Reference Artifacts
-
-Agents work best when pointed at existing context:
-
-```text
-Read 01-requirements.md and create a WAF architecture assessment
-```
-
-### One Step at a Time
-
-Use **01-Orchestrator** for multi-step workflows.
-For targeted work, invoke agents directly:
-
-```text
-@02-Requirements — Capture requirements for a static web app
-@03-Architect — Assess the requirements in 01-requirements.md
-@05-IaC Planner — Create an implementation plan from 02-architecture-assessment.md
-```
-
-### Agent-Specific Tips
-
-| Agent                        | Best Approach                                                                           |
-| ---------------------------- | --------------------------------------------------------------------------------------- |
-| **02-Requirements** (📜 Scribe) | Describe the **business problem** not the technical solution.                        |
-| **03-Architect** (🏛️ Oracle)    | Always let it read `01-requirements.md` first. Request cost estimates explicitly.    |
-| **04-Design** (🎨 Artisan)      | Request diagrams after architecture assessment exists.                               |
-| **06b-Bicep CodeGen** (⚒️ Forge) | It prefers Azure Verified Modules (AVM). Let it read `04-implementation-plan.md` first. |
-| **07b-Bicep Deploy** / **07t-Terraform Deploy** (🚀 Envoy) | Ensure `az login` is active. Review the preview before deployment. |
-
-### Use `#file` References
-
-Drag files into the chat panel or use `#file:path` to give agents explicit context.
-This is especially useful when referencing artifacts from previous steps.
-
----
-
-## Skills
-
-Skills are **reusable knowledge modules** that agents read to get domain-specific context.
-They're defined as `SKILL.md` files in `.github/skills/`.
-
-### How Skills Work
-
-When an agent starts working, it reads specific skill files to understand:
-
-- What output format to use (H2 heading templates)
-- What Azure best practices to follow
-- What naming conventions to apply
-- What tools are available (like the Azure Pricing MCP)
-
-### Available Skills
-
-| Skill                   | Purpose                                            | Used By            |
-| ----------------------- | -------------------------------------------------- | ------------------ |
-| **azure-defaults**      | Regions, tags, naming, security baselines          | All agents         |
-| **azure-artifacts**     | Output templates (H2 structures for each artifact) | All agents         |
-| **azure-diagrams**      | Python architecture diagram generation             | 04-Design          |
-| **azure-adr**           | Architecture Decision Records format               | 04-Design, 05-IaC Planner |
-| **docs-writer**         | Documentation generation standards                 | 04-Design, 08-As-Built |
-| **git-commit**          | Commit message conventions                         | All agents         |
-| **github-operations**   | Issues, PRs, GitHub CLI patterns                   | All agents         |
-| **make-skill-template** | Template for creating new skills                   | Meta               |
-
-### Skill Triggers
-
-Skills auto-load based on keyword matching in your prompt:
-
-| Keyword                               | Skill Triggered     |
-| ------------------------------------- | ------------------- |
-| "create diagram"                      | `azure-diagrams`    |
-| "create ADR", "document decision"     | `azure-adr`         |
-| "commit", "git commit"                | `git-commit`        |
-| "create issue", "create PR"           | `github-operations` |
-| "update docs", "check freshness"      | `docs-writer`       |
-| "azure defaults", "naming convention" | `azure-defaults`    |
-
-You can also explicitly invoke a skill:
-
-```text
-Read .github/skills/azure-diagrams/SKILL.md and generate an architecture diagram
-for FreshConnect.
-```
-
----
-
-## Custom Instructions
-
-Instructions are **rules that auto-load based on file type**. They ensure consistency
-without you having to remember every convention.
-
-### How Instructions Work
-
-Each instruction file has an `applyTo` pattern in its frontmatter. When you work with
-files matching that pattern, the instruction loads automatically:
-
-```yaml
----
-applyTo: "**/*.bicep"
-description: "Infrastructure as Code best practices for Azure Bicep templates"
----
-```
-
-### Key Instructions in This Workshop
-
-| Instruction                  | Applies To          | What It Does                             |
-| ---------------------------- | ------------------- | ---------------------------------------- |
-| `bicep-code-best-practices`  | `**/*.bicep`        | Bicep naming, modules, security patterns |
-| `markdown.instructions`      | `**/*.md`           | Markdown formatting standards            |
-| `cost-estimate.instructions` | Cost estimate files | Cost documentation structure             |
-| `artifact-h2-reference`      | Agent output files  | Template compliance rules                |
-
-### The Global Instruction File
-
-The file `.github/copilot-instructions.md` contains project-wide rules that apply to
-**every** Copilot interaction. It defines:
-
-- The 7-step workflow overview
-- Default region (`swedencentral`)
-- Required tags (`Environment`, `ManagedBy`, `Project`, `Owner`)
-- Security baselines (TLS 1.2, HTTPS-only, managed identity)
-- Available agents and skills
-
----
-
-## MCP Servers (Model Context Protocol)
-
-MCP servers extend Copilot's capabilities with external data sources and APIs. This MicroHack
-requires GitHub Copilot MCP access set to **Allow all: No restrictions. All MCP servers can be used.**
-If your organization or enterprise restricts MCP access to registry servers only, the workshop
-agents may not see the required tools.
-
-GitHub reference: [Configure MCP server access](https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-mcp-usage/configure-mcp-server-access)
-
-The participant workflow uses the MCP servers documented in the
-[APEX MCP Server Integration](https://jonathan-vella.github.io/azure-agentic-infraops/concepts/how-it-works/mcp-integration/):
-
-| MCP server | What agents use it for |
+| Stage | Default review expectation |
 |---|---|
-| **Azure MCP** | Azure resource, deployment, subscription, and policy context |
-| **Azure Pricing MCP** | Cost estimates, SKU discovery, and FinOps comparisons |
-| **Draw.io MCP** | Azure architecture diagrams as `.drawio` files |
-| **GitHub MCP** | Repository operations, issues, pull requests, code search, and file content |
-| **MS Learn MCP** | Official Microsoft and Azure documentation lookup |
-| **Terraform MCP** | Terraform provider, module, and registry lookup |
+| Requirements | One comprehensive review |
+| Architecture | One architecture review and a separate cost-feasibility review |
+| Optional design | No review by default; explicit opt-in |
+| Governance | One reconciliation review when effective constraints exist |
+| IaC plan | One comprehensive review |
+| Generated code | Deterministic validation; adversarial review is opt-in |
+| Deployment | No Challenger review by default; explicit authorization and current validation evidence are still required |
 
-You usually do not call these MCP servers directly. Agents use them automatically when they need
-pricing data, Azure context, diagram generation, documentation lookup, GitHub operations, or
-Terraform registry information. The `astro-docs` MCP server in this docs repo is only for
-maintaining the website and is not part of the participant toolchain.
+The workshop may compress discussion time, but it must not describe a required review as completed when the review evidence is missing or has unresolved blocking findings.
 
----
+## Approval gates during the workshop
 
-## The Complete Picture
+Pause for team approval after:
 
-Here's how all the pieces connect:
+- Requirements and their Challenger findings.
+- Architecture, cost evidence, and both required reviews.
+- Governance reconciliation when constraints exist.
+- The IaC plan and its review findings.
+- Code validation, before selecting a Deploy agent.
+- Deployment evidence, before treating the environment as verified.
 
-```text
-You (prompt)
-  └─→ Agent (e.g., 03-Architect)
-        ├─→ Reads Skills (azure-defaults, azure-artifacts)
-        ├─→ Follows Instructions (bicep-best-practices, markdown)
-        ├─→ Uses MCP Servers (Azure, GitHub, Pricing, Draw.io, MS Learn, Terraform)
-        ├─→ Reads Templates (H2 structures from azure-artifacts)
-        ├─→ May invoke Subagents (bicep-lint, bicep-review)
-        └─→ Generates Artifacts (agent-output/{project}/*.md)
-```
+Challenge 4 changes approved requirements. Return to the affected upstream steps, update the evidence, rerun the required reviews, and approve the revised path.
 
-### Workflow Through the MicroHack
+## Prompting main agents
+
+Name the current project, the approved input artifacts, the requested scope, and what the agent must not do.
 
 ```text
-Challenge 1 → 02-Requirements → 01-requirements.md
-Challenge 2 → 03-Architect    → 02-architecture-assessment.md + cost estimate
-              04-Design       → architecture diagram (Python)
-Challenge 3 → 05-IaC Planner  → 04-implementation-plan.md
-              06b-Bicep CodeGen or 06t-Terraform CodeGen → infra/{bicep|terraform}/{project}/
-              04-Design or manual authoring               → 03-des-deployment-workflow.md
-              07b-Bicep Deploy or 07t-Terraform Deploy    → 06-deployment-summary.md
-Challenge 4 → (same as 3, adapted for DR)
-Challenge 5 → 04-Design     → 05-load-test-results.md
-Challenge 6 → 08-As-Built or 04-Design → 07-ab-*.md documentation suite
-Challenge 7 → 09-Diagnose   → troubleshooting card
-Challenge 8 → (team presentation — no agent needed)
+Review the approved FreshConnect requirements in agent-output/freshconnect/01-requirements.md.
+Assess the architecture and cost feasibility for Sweden Central.
+Do not deploy resources.
+Return the architecture assessment and cost artifacts for team review.
 ```
 
----
-
-## Common Patterns
-
-### Full Workflow
+For a Challenger review, identify the artifact and lens:
 
 ```text
-@01-Orchestrator
-Build an e-commerce platform on Azure with App Service, Azure SQL,
-Redis Cache, and Application Gateway. Budget: €500/month. Region: swedencentral.
+Review agent-output/freshconnect/01-requirements.md using the comprehensive requirements lens.
+Return findings only. Do not edit the requirements artifact.
 ```
 
-### Diagnose an Existing Resource
+For deployment, authorization must be explicit and scoped:
 
 ```text
-@09-Diagnose
-Check the health of my App Service named "myapp-prod" in resource group "rg-prod"
+Use the approved Bicep handoff and current validation evidence for FreshConnect.
+Show the what-if result and stop for approval before applying changes.
 ```
 
-### Generate Documentation Only
+## Skills and instructions
 
-```text
-@04-Design
-Generate an architecture diagram for the infrastructure defined in
-02-architecture-assessment.md
-```
+Skills live under `.github/skills/`. Current APEX repository skills use one `apex-` prefix. Representative examples include:
 
----
+| Skill | Purpose |
+|---|---|
+| `apex-workflow-engine` | Workflow entry, dependencies, handoffs, state, and recovery |
+| `apex-azure-defaults` | Azure naming, security, tags, regions, and AVM guidance |
+| `apex-azure-artifacts` | Required artifact structures |
+| `apex-azure-adr` | Architecture decision records |
+| `apex-python-diagrams` | Python-based architecture diagrams |
+| `apex-github-operations` | GitHub branches, commits, pull requests, and Actions |
+| `apex-unslop` | Manual prose cleanup that preserves technical contracts |
 
-## Quick Reference
+Instructions under `.github/instructions/` apply repository rules to matching files. Skills and instructions do not grant deployment permission or bypass the owning agent's workflow contract.
 
-| Concept       | Location                                    | Purpose                      |
-| ------------- | ------------------------------------------- | ---------------------------- |
-| Agents        | `.github/agents/*.agent.md`                 | Specialized AI assistants    |
-| Skills        | `.github/skills/*/SKILL.md`                 | Reusable knowledge modules   |
-| Instructions  | `.github/instructions/*.instructions.md`    | Auto-loading file-type rules |
-| Global config | `.github/copilot-instructions.md`           | Project-wide defaults        |
-| Templates     | `.github/skills/azure-artifacts/templates/` | Output structure definitions |
-| MCP servers   | `.vscode/mcp.json`                          | External data sources        |
-| Agent output  | `agent-output/{project}/`                   | Generated artifacts          |
+## MCP servers
 
----
+Use the MCP configuration in the current template-derived repository. The reviewed Accelerator revision declares:
 
-## See Also
+| Server | Workshop use |
+|---|---|
+| GitHub MCP | Repository content and GitHub operations |
+| Azure Resource Manager MCP | Cost Management and Pricing tools |
+| Azure MCP | Azure resources, subscriptions, deployments, and policy context |
 
-- [Getting Started](../../getting-started/setup/) — Setup, dev container, quotas, and first run
-- [Quick Reference Card](../quick-reference-card/) — Printable one-page reference
-- [Hints & Tips](../hints-and-tips/) — Challenge-specific guidance
-- [Troubleshooting](../../reference/troubleshooting/) — Common issues and agent fixes
+The exact server list can change. Check `.vscode/mcp.json`, preserve authentication errors, and compare your repository with the current Accelerator when a server is missing.
+
+## Secrets and sensitive output
+
+- Never paste credentials, access keys, connection strings, or tokens into chat.
+- Use placeholders and managed identities where the workflow supports them.
+- Review generated files and terminal output before committing.
+- Rotate a credential immediately if it appears in chat, output, or Git history.
+- A model response is not evidence that a secret was protected or that a deployment succeeded.
+
+## Workshop workflow mapping
+
+| MicroHack challenge | APEX workflow use |
+|---|---|
+| 1. Requirements | Requirements artifact, Challenger review, and approval |
+| 2. Architecture | Architecture and cost evidence, separate reviews, and approval |
+| 3. Implementation | Optional design, governance, plan review, code generation, validation, deployment authorization, and deployment |
+| 4. DR curveball | Controlled change to affected requirements, architecture, governance, plan, code, reviews, and approvals |
+| 5. Load testing | Workshop validation evidence for the deployed workload |
+| 6. Documentation | As-built documentation from approved artifacts and observed state |
+| 7. Diagnostics | Standalone diagnosis from current evidence |
+| 8. Team showcase | Decisions, findings, approvals, evidence, results, and unresolved risks |
+
+Challenges 5, 7, and 8 are workshop stages rather than numbered APEX workflow steps.
+
+## If an agent or handoff fails
+
+1. Preserve the error and current artifacts.
+2. Confirm that the correct template-derived repository is open in the Dev Container.
+3. Check the selected main agent, required inputs, and unresolved review findings.
+4. Check the current agent model and MCP authentication.
+5. Use the APEX session recovery guidance instead of editing workflow state by hand.
+6. Ask the facilitator before bypassing a review or changing deployment scope.
+
+## Quick reference
+
+| Item | Location |
+|---|---|
+| Main agents | `.github/agents/*.agent.md` |
+| Skills | `.github/skills/*/SKILL.md` |
+| Instructions | `.github/instructions/*.instructions.md` |
+| Repository-wide Copilot rules | `.github/copilot-instructions.md` |
+| MCP configuration | `.vscode/mcp.json` |
+| Workflow artifacts | `agent-output/{project}/` |
+| Bicep projects | `infra/bicep/{project}/` |
+| Terraform projects | `infra/terraform/{project}/` |
+
+## See also
+
+- [Setup Guide](../../getting-started/setup/)
+- [Quick Reference Card](../quick-reference-card/)
+- [Hints and Tips](../hints-and-tips/)
+- [Troubleshooting](../../reference/troubleshooting/)
+- [Current APEX workflow](https://apexops.pro/concepts/workflow/)

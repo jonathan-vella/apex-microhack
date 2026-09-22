@@ -19,7 +19,7 @@ sidebar:
 
 :::caution
 
-Your working repository must be created from the [azure-agentic-infraops-accelerator template](https://github.com/jonathan-vella/azure-agentic-infraops-accelerator), not from this documentation repository. If you cloned this repo directly, you have the wrong starting point.
+Your working repository must be created from the [APEX Accelerator template](https://github.com/jonathan-vella/apex-accelerator), not from this documentation repository. If you cloned this repo directly, you have the wrong starting point.
 
 :::
 
@@ -29,9 +29,9 @@ Your working repository must be created from the [azure-agentic-infraops-acceler
 
 If any item below fails, your team is not ready to participate:
 
-- No GitHub Copilot Business or Enterprise license.
-- Required Copilot models are unavailable in the model picker.
-- GitHub MCP server access is restricted instead of set to **Allow all**.
+- Copilot Chat or the Accelerator custom agents are unavailable in VS Code.
+- The current models declared by the Accelerator agents are blocked by account or organization policy.
+- The MCP servers declared in the Accelerator do not load or cannot authenticate.
 - No Azure subscription with the required access.
 - More than one team trying to share the same subscription.
 - Not enough quota in `swedencentral`.
@@ -43,80 +43,42 @@ Resolve blockers before event day. Do not treat them as day-of issues.
 
 ## Prerequisites
 
-### GitHub Copilot Business or Enterprise
+### GitHub Copilot access and model policy
 
 :::caution
 
-APEX requires a **GitHub Copilot Business or Enterprise** license. Other SKUs do not include the required functionality. Required model access and unrestricted MCP server access are also mandatory. See [GitHub Copilot Plans](https://github.com/features/copilot/plans).
+APEX requires working GitHub Copilot Chat access in VS Code and permission to use the custom agents and models declared by the current Accelerator. Copilot plans and organization policies change, so do not assume that only Business or Enterprise plans are compatible. Check the current [GitHub Copilot plan entitlements](https://docs.github.com/en/copilot/get-started/plans) and your organization's model policy.
 
 :::
 
-| Plan | Custom agents | Compatible |
-|---|---|---|
-| Copilot Free | No | No |
-| Copilot Pro | No | No |
-| **Copilot Business** | **Yes** | **Yes** |
-| Copilot Pro+ | No | No |
-| **Copilot Enterprise** | **Yes** | **Yes** |
+Before the event:
 
-Compare plans: [GitHub Copilot Plans](https://github.com/features/copilot/plans)
+1. Sign in to GitHub in VS Code with the account you will use during the workshop.
+2. Confirm Copilot Chat opens and responds.
+3. Create or open a repository from the current APEX Accelerator and confirm its custom agents appear.
+4. Check that your account or organization permits the models declared in `.github/agents/*.agent.md`.
 
-:::tip
-
-GitHub Copilot can be billed directly through your Azure subscription.
-See [GitHub Copilot billing](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-copilot) for setup instructions.
-:::
-
-1. Go to [github.com/settings/copilot](https://github.com/settings/copilot)
-2. Confirm your subscription shows **Business** or **Enterprise**.
-3. Ensure "Copilot Chat in the IDE" is enabled.
-4. Confirm the required models are available in the VS Code Copilot Chat model picker.
-
-Setup guide: [VS Code Copilot Setup](https://code.visualstudio.com/docs/copilot/setup)
-
-#### Required model access
-
-The workshop agents expect access to the following model families and versions:
-
-| Model family | Required access |
-|---|---|
-| Claude Haiku | Claude Haiku 4.5 or newer |
-| Claude Sonnet | Claude Sonnet 4.6 or newer |
-| Claude Opus | Claude Opus 4.6 or newer |
-| GPT Codex | GPT Codex 5.3 |
-| GPT | GPT 5.4 and GPT 5.5 |
-
-If your GitHub organization or enterprise restricts model availability, ask an owner to confirm these models are enabled before the event.
+Do not copy a hard-coded model list from this page. The Accelerator agent frontmatter is the current source for model selection, and organization policy determines whether those models are available to you.
 
 ### MCP server access
 
 :::caution
 
-This MicroHack requires GitHub Copilot MCP server access with **Allow all: No restrictions. All MCP servers can be used.** Restricted MCP access blocks the agent workflow.
+The workshop uses the MCP configuration in the current APEX Accelerator. Confirm that your GitHub and Azure policies allow those declared servers and that each server can authenticate. Do not rely on an old fixed server list or assume that an organization-wide **Allow all** policy is the only valid configuration.
 
 :::
 
-Organization or enterprise owners should verify the GitHub MCP policy before participants arrive:
-
-1. Open the GitHub Copilot MCP policy settings for the organization or enterprise.
-2. Ensure **MCP servers in Copilot** is enabled.
-3. Set **Restrict MCP access to registry servers** to **Allow all: No restrictions. All MCP servers can be used.**
-
-GitHub reference: [Configure MCP server access](https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-mcp-usage/configure-mcp-server-access)
-
-This MicroHack uses the MCP servers documented in the
-[APEX MCP Server Integration](https://jonathan-vella.github.io/azure-agentic-infraops/concepts/how-it-works/mcp-integration/):
+The reviewed Accelerator revision configures:
 
 | MCP server | Purpose |
 |---|---|
-| Azure MCP | RBAC-aware Azure resource, deployment, and policy context |
-| Azure Pricing MCP | Cost estimates, SKU discovery, and FinOps data |
-| Draw.io MCP | Azure architecture diagrams as `.drawio` files |
-| GitHub MCP | Repository operations, issues, pull requests, and code search |
-| MS Learn MCP | Official Microsoft and Azure documentation lookup |
-| Terraform MCP | Terraform provider and registry lookup for the Terraform track |
+| GitHub MCP | Repository operations, issues, pull requests, code search, and file content |
+| Azure Resource Manager MCP | Azure Cost Management and Pricing toolsets |
+| Azure MCP | Azure resource, subscription, deployment, and policy context |
 
-The `astro-docs` MCP server configured in this docs repo is only for maintaining this website. Participant work uses the MCP configuration in the accelerator template repo.
+Open `.vscode/mcp.json` in your template-derived repository for the current configuration. The `astro-docs` MCP server in this documentation repository is only for maintaining the site and is not part of the participant toolchain.
+
+Current APEX reference: [MCP server integration](https://apexops.pro/concepts/how-it-works/mcp-integration/).
 
 ### Azure subscription and access
 
@@ -222,7 +184,7 @@ Ensure your network allows outbound HTTPS to the following services:
 | GitHub Copilot and GitHub MCP | `copilot.github.com`, `api.githubcopilot.com`, `*.githubusercontent.com` |
 | Azure | `*.azure.com`, `*.microsoft.com`, `login.microsoftonline.com` |
 | Microsoft Learn MCP | `learn.microsoft.com` |
-| Azure Pricing MCP | `prices.azure.com` |
+| Azure Resource Manager pricing tools | Azure management and pricing endpoints permitted by your organization |
 | Terraform MCP | `registry.terraform.io` |
 | Docker | `docker.io`, `registry-1.docker.io` |
 
@@ -238,9 +200,9 @@ Run this gate before the event starts. Every item below is a true blocker.
 
 | # | Check | How to verify | Why it blocks |
 |---|---|---|---|
-| 1 | **GitHub Copilot Business or Enterprise license** | [github.com/settings/copilot](https://github.com/settings/copilot) shows Business or Enterprise | Custom agents require a GitHub Copilot Business or Enterprise license; other SKUs do not include the required functionality ([plans](https://github.com/features/copilot/plans)) |
-| 2 | **Required model access** | VS Code Copilot Chat model picker includes the required Claude and GPT models | Agent prompts depend on the approved model set |
-| 3 | **GitHub MCP access set to Allow all** | GitHub Copilot MCP policy allows all MCP servers, and MCP tools appear in agent chat | The MicroHack workflow relies on MCP tools for Azure, GitHub, docs, diagrams, pricing, and Terraform context |
+| 1 | **Copilot Chat access** | Copilot Chat opens in VS Code with the participant account | The workshop depends on Copilot Chat and custom agents |
+| 2 | **Accelerator agents and selected models** | The agents from `.github/agents/` appear and their declared models are permitted by account or organization policy | A blocked agent or model stops the corresponding workflow step |
+| 3 | **Configured MCP servers** | The GitHub and Azure servers in `.vscode/mcp.json` load and can authenticate | Workflow steps need repository and Azure context |
 | 4 | **Azure subscription with required access** | `az login && az account show` works | You cannot deploy or validate infrastructure without it |
 | 5 | **One subscription per team** | Confirm with your facilitator or team lead | Shared subscriptions are not supported |
 | 6 | **Quota in `swedencentral`** | `az vm list-usage -l swedencentral -o table` | Insufficient quota blocks deployment |
@@ -271,7 +233,7 @@ Complete all steps below before event day. Steps 1-3 create, build, and initiali
 
 :::
 
-1. Go to the [azure-agentic-infraops-accelerator template](https://github.com/jonathan-vella/azure-agentic-infraops-accelerator)
+1. Go to the [APEX Accelerator template](https://github.com/jonathan-vella/apex-accelerator)
 2. Click **Use this template** -> **Create a new repository**
 3. Choose an owner, give the repository a name, select **Private**, and click **Create repository**
 4. Clone your new repository and open it in VS Code:
@@ -328,7 +290,7 @@ npm run sync:workflows
 
 :::note
 
-Python dependencies for diagrams, Azure Pricing MCP, and related tools are installed automatically by the Dev Container post-create script. No manual `pip install` is needed.
+Dependencies declared by the current Accelerator are installed by its Dev Container setup. Do not install packages from an older MCP configuration unless the checked-out template requires them.
 
 :::
 
@@ -352,16 +314,18 @@ Use `git --no-pager diff` to avoid the `less` pager. If you see a `:` prompt, pr
 <details>
 <summary>4. Set up Azure automation</summary>
 
-Run the setup wizard to configure Azure OIDC authentication, RBAC roles, and GitHub secrets and variables:
+Review the [Azure Setup documentation](https://apexops.pro/getting-started/azure-setup/) before running this command. The setup workflow can create an Entra ID application, federated credentials, role assignments, GitHub secrets, and repository variables. Confirm the target tenant, subscription, management group, repository, and required permissions first.
+
+When your team and facilitator have approved those changes, run:
 
 ```bash
 az login
 npm run setup
 ```
 
-The wizard creates an Entra ID app registration, OIDC federated credentials for `main`, `dev`, `staging`, and `prod`, assigns Reader at the management group and Contributor at the subscription, and configures the GitHub secrets and variables. It is idempotent and safe to rerun.
+The workflow reports the cloud and repository configuration it creates. Review its output and resulting repository changes. Idempotent behavior does not make the command a harmless prerequisite check.
 
-See the [Azure Setup documentation](https://jonathan-vella.github.io/azure-agentic-infraops/getting-started/azure-setup/) for headless mode, manual setup steps, and troubleshooting.
+Use the same Azure Setup page for headless mode, manual setup steps, and troubleshooting.
 
 </details>
 
@@ -412,7 +376,7 @@ Each run may open a pull request when it detects drift (new AVM module versions,
 </details>
 
 <details>
-<summary>6. Sign in to Azure for workshop deployments</summary>
+<summary>7. Sign in to Azure for workshop deployments</summary>
 
 ```bash
 az login
@@ -423,42 +387,29 @@ az account show --query "{Name:name, SubscriptionId:id, TenantId:tenantId}" -o t
 </details>
 
 <details>
-<summary>7. Enable custom agents</summary>
+<summary>8. Confirm custom agents</summary>
 
-Open VS Code Settings (`Ctrl+,`) and add:
+The current Accelerator includes the custom agent files and workspace configuration. In VS Code Copilot Chat:
 
-```json
-{
-  "github.copilot.chat": {
-    "customAgentInSubagent": {
-      "enabled": true
-    }
-  }
-}
-```
+1. Confirm agents such as `01-Orchestrator`, `02-Requirements`, and `10-Challenger` appear in the agent picker.
+2. If they are missing, confirm that you opened the template-derived repository in its Dev Container and reload the window.
+3. Do not enable legacy discovery settings as a substitute for loading the current repository configuration.
 
 </details>
 
 <details>
-<summary>8. Verify model and MCP access</summary>
+<summary>9. Verify model and MCP access</summary>
 
-In VS Code Copilot Chat:
+1. Open the Accelerator agent files and confirm the models they currently declare are permitted by your account or organization.
+2. Select `01-Orchestrator`, but do not ask it to deploy anything. Confirm the agent loads and can propose a human handoff.
+3. Check that the GitHub and Azure MCP servers declared in `.vscode/mcp.json` start without configuration or authentication errors.
+4. Use any validation command provided by the current Accelerator revision rather than relying on a command copied from older guidance.
 
-1. Open the model picker and confirm the required Claude and GPT models are available.
-2. Open any workshop agent, such as `01-Orchestrator`.
-3. Confirm the agent tool list includes MCP tools from the accelerator template.
-4. If the accelerator repo provides MCP validation, run it from the repo root:
-
-```bash
-npm run lint:mcp-config
-```
-
-If MCP tools are missing, confirm the GitHub MCP policy is set to **Allow all**, reload VS Code, and check the accelerator repo's `.vscode/mcp.json`.
+If a model or MCP server is unavailable, preserve the error, check account and organization policy, reload VS Code, and compare your repository with the current Accelerator configuration.
 
 </details>
-
 <details>
-<summary>9. Verify your toolchain</summary>
+<summary>10. Verify your toolchain</summary>
 
 Verify the core tools manually:
 
@@ -473,7 +424,7 @@ gh --version
 </details>
 
 <details>
-<summary>10. Start the workflow</summary>
+<summary>11. Start the workflow</summary>
 
 Open Copilot Chat (`Ctrl+Alt+I`) and choose the entry point that matches your
 working repo:
@@ -488,20 +439,18 @@ To start with the orchestrator, select **01-Orchestrator** and prompt it with:
 Describe the Azure infrastructure project you want to build.
 ```
 
-The accelerator workflow uses 7 steps with approval gates:
+The current APEX workflow uses human-selected main agents. The Orchestrator identifies the next step and proposes a handoff; it does not autonomously execute the main-agent sequence. You select the next main agent, review its scope and output, resolve required Challenger findings, and approve each transition.
 
-1. **Requirements** — capture what you need
-2. **Architecture** — WAF assessment and cost estimate
-3. **Design** — diagrams and ADRs (optional)
-4. **Planning** — Bicep implementation plan with governance
-5. **Code** — AVM-first Bicep templates
-6. **Deploy** — Azure provisioning with what-if preview
-7. **Documentation** — as-built suite
+1. **Requirements** — `02-Requirements` creates requirements and the initial SKU manifest. `10-Challenger` reviews the requirements before approval.
+2. **Architecture** — `03-Architect` creates architecture and cost evidence. Architecture and cost feasibility receive separate reviews before approval.
+3. **Design (optional)** — `04-Design` creates diagrams or decision records when they help explain the architecture.
+4. **Governance (Step 3.5)** — `04g-Governance` discovers effective policy constraints and reconciles them before planning.
+5. **IaC planning** — `05-IaC Planner` creates the implementation plan and machine-readable contracts. Challenger findings must be resolved before approval.
+6. **Code generation** — choose `06b-Bicep CodeGen` or `06t-Terraform CodeGen` according to the approved requirements, then review deterministic validation evidence.
+7. **Deployment** — explicitly authorize `07b-Bicep Deploy` or `07t-Terraform Deploy` for the reviewed scope.
+8. **As-built documentation** — `08-As-Built` records observed results, verification limits, and unresolved issues.
 
-The microhack scores that same work as 8 challenges. Challenge 4 is the DR
-curveball that revisits the delivery path midway through the event, so always
-follow the agent and artifact guidance on the active challenge page.
-
+The MicroHack scores this work as eight workshop challenges. Challenges 5, 7, and 8 are workshop stages rather than numbered APEX workflow steps, and Challenge 4 deliberately sends the team back through affected decisions and approvals.
 Explore complete sample artifacts in the `agent-output/_sample/` directory (created during the workshop).
 
 </details>
@@ -512,15 +461,15 @@ Explore complete sample artifacts in the `agent-output/_sample/` directory (crea
 
 Use this quick check after you finish setup steps:
 
-- [ ] My repository was created from the template repo, not from the docs repo.
+- [ ] My repository was created from the current APEX Accelerator, not from the docs repo.
 - [ ] The Dev Container opens and the terminal tools load correctly.
 - [ ] Repository initialization commands (`npm install`, `npm run init`, `npm run sync:workflows`) have been completed.
-- [ ] Azure automation setup (`npm run setup`) has been completed.
+- [ ] The team reviewed the side effects of `npm run setup` and completed only the authorized Azure and GitHub configuration.
 - [ ] The **Weekly Maintenance** and **Governance Policy Baseline** workflows have been triggered at least once and completed successfully.
 - [ ] `az account show` works inside the container.
 - [ ] The agent dropdown appears in Copilot Chat.
-- [ ] The required Claude and GPT models appear in the Copilot Chat model picker.
-- [ ] GitHub MCP access is set to **Allow all**, and MCP tools appear for workshop agents.
+- [ ] The models declared by the current Accelerator agents are permitted and load successfully.
+- [ ] The GitHub and Azure MCP servers declared in `.vscode/mcp.json` load and authenticate successfully.
 - [ ] My team has exactly one Azure subscription assigned.
 - [ ] My team knows who will own cleanup at the end of the event.
 

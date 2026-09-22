@@ -3,6 +3,7 @@ title: Quick Reference Card
 description: At-a-glance reference card for challenges, scoring, agents, and key commands
 sidebar:
   order: 3
+
 ---
 
 > **Print this page** (Ctrl+P → Save as PDF or print double-sided). Optimized for A4 paper and narrow screens.
@@ -12,8 +13,8 @@ sidebar:
 ## Key Actions at a Glance
 
 1. **Before the event** → Run the [Participation Gate](../../getting-started/setup/#participation-gate)
-2. **First 10 minutes** → Open Dev Container, `az login`, verify models, MCP tools, and agents
-3. **Each challenge** → Check inputs, produce outputs, hand off to next challenge
+2. **First 10 minutes** → Open the Dev Container, sign in only where needed, and verify current agents, models, and MCP servers
+3. **Each challenge** → Check inputs, use the owning main agent, resolve required reviews, approve the handoff, and preserve evidence
 4. **End of day** → Team lead deletes resources and confirms cleanup
 
 ---
@@ -66,24 +67,27 @@ sidebar:
 
 ## Custom Agents
 
-Select from the **agent dropdown** in Chat view:
+Select main agents from the agent dropdown. The human selects and approves each main-agent handoff.
 
-| Agent            | Purpose                           | Challenges |
-| ---------------- | --------------------------------- | ---------- |
-| **01-Orchestrator** | Master orchestrator for the full 7-step workflow | All (optional entry point) |
-| **02-Requirements** | Capture requirements              | 1          |
-| **03-Architect**    | Design architecture and DR trade-offs | 2, 4   |
-| **04-Design**       | Generate diagrams, reports, and docs | 2, 4, 5, 6, 7 (optional) |
-| **04g-Governance**  | Discover Azure Policy constraints | 3 (before planning) |
-| **05-IaC Planner**  | Create the implementation plan    | 3          |
-| **06b-Bicep CodeGen** | Generate Bicep templates        | 3, 4       |
-| **06t-Terraform CodeGen** | Generate Terraform templates | 3, 4       |
-| **07b-Bicep Deploy** | Deploy Bicep infrastructure      | 3, 4       |
-| **07t-Terraform Deploy** | Deploy Terraform infrastructure | 3, 4    |
-| **08-As-Built**     | Generate post-deployment documentation | 6, 7   |
-| **09-Diagnose**     | Troubleshooting runbooks          | 7          |
+| Agent | Purpose | Challenges |
+| --- | --- | --- |
+| **01-Orchestrator** | Identify the next step and propose a human handoff | All, optional entry point |
+| **02-Requirements** | Capture requirements and initial SKU evidence | 1, 4 revision |
+| **03-Architect** | Assess architecture and cost feasibility | 2, 4 revision |
+| **04-Design** | Create optional diagrams and ADRs | 2, 4 |
+| **04g-Governance** | Discover and reconcile effective Azure Policy constraints | 3, 4 revision |
+| **05-IaC Planner** | Create the implementation plan and contracts | 3, 4 revision |
+| **06b-Bicep CodeGen** | Generate the approved Bicep track | 3, 4 |
+| **06t-Terraform CodeGen** | Generate the approved Terraform track | 3, 4 |
+| **07b-Bicep Deploy** | Deploy the authorized Bicep scope | 3, 4 |
+| **07t-Terraform Deploy** | Deploy the authorized Terraform scope | 3, 4 |
+| **08-As-Built** | Generate evidence-based as-built documentation | 6 |
+| **09-Diagnose** | Diagnose the selected scope from current evidence | 7 |
+| **10-Challenger** | Review requirements, architecture, cost, governance, and plan artifacts | 1-4 |
 
-**How to use**: `Ctrl+Alt+I` → Click agent dropdown → Select agent → Type prompt
+Check the current `.github/agents/*.agent.md` files for model selections. Do not rely on a copied fixed model list.
+
+**How to use**: `Ctrl+Alt+I` → select the owning agent → provide current artifacts and scope → review output → resolve findings → approve the next handoff.
 
 ---
 
@@ -116,7 +120,7 @@ bicep lint main.bicep
 # What-If deployment
 az deployment group what-if -g rg-freshconnect-dev-swc -f main.bicep
 
-# Deploy
+# Deploy only after the team reviews the preview and explicitly authorizes this scope
 az deployment group create -g rg-freshconnect-dev-swc -f main.bicep
 
 # Cleanup (END OF DAY — team lead is responsible!)
@@ -143,25 +147,25 @@ Ask your facilitator to remove governance policies from the team subscription.
 
 ## Expected Outputs
 
-| Challenge | Input Artifact | Output File/Artifact | Next Action |
-| --------- | -------------- | --------------------------------------------------- | ----------- |
-| 1         | Scenario brief | `agent-output/freshconnect/01-requirements.md` | C2: Architecture |
-| 2         | `01-requirements.md` | `agent-output/freshconnect/02-architecture-assessment.md`, `agent-output/freshconnect/03-des-architecture-diagram.md` | C3: Implementation |
-| 3         | C2 assessment + diagram | `agent-output/freshconnect/04-implementation-plan.md`, `agent-output/freshconnect/03-des-deployment-workflow.md`, `agent-output/freshconnect/06-deployment-summary.md`, `infra/bicep/freshconnect/` or `infra/terraform/freshconnect/` | C4: DR Curveball |
-| 4         | C3 IaC + deployment outcome | `agent-output/freshconnect/04-adr-ha-dr-strategy.md`, updated diagram, updated IaC or paper design | C5: Load Test |
-| 5         | Deployed endpoint or fallback plan | `agent-output/freshconnect/05-load-test-results.md` | C6: Documentation |
-| 6         | All prior artifacts | `agent-output/freshconnect/07-ab-operations-guide.md` + 1 additional doc | C7: Diagnostics |
-| 7         | Platform knowledge + docs | `agent-output/freshconnect/07-diagnostics-quick-card.md` | C8: Showcase |
-| 8         | All prior artifacts | Live presentation and Q&A | Wrap-up |
+| Challenge | Input evidence | Output evidence | Next action |
+| --- | --- | --- | --- |
+| 1 | Scenario brief | Requirements, SKU manifest, requirements review findings, approval | C2: Architecture |
+| 2 | Approved C1 evidence | Architecture, cost evidence, separate reviews, approval, optional design artifacts | C3: Implementation |
+| 3 | Approved C1-C2 evidence | Governance constraints, approved plan and contracts, IaC handoff, validation, deployment summary, workflow diagram | C4: DR curveball |
+| 4 | C3 evidence and changed requirement | Revised affected artifacts, reviews and approvals, ADR, updated IaC or paper design, updated cost and diagram | C5: Load test |
+| 5 | Deployed endpoint or fallback plan | `agent-output/freshconnect/05-load-test-results.md` | C6: Documentation |
+| 6 | All prior artifacts and observed state | `agent-output/freshconnect/07-operations-runbook.md` plus one additional as-built document | C7: Diagnostics |
+| 7 | Platform evidence and docs | `agent-output/freshconnect/07-diagnostics-quick-card.md` | C8: Showcase |
+| 8 | All prior artifacts, reviews, approvals, and evidence | Live presentation and Q&A | Wrap-up |
 
 ## Artifact Handoff Contract
 
-Every challenge uses the same handoff rule:
-
-- Check the required input artifact before you start.
-- Save the new artifact at the expected path.
-- Name assumptions and gaps clearly if you could not complete a deploy step.
-- Make the next challenge easier, not harder, by leaving usable evidence behind.
+- Check the required input and current review evidence before selecting the owning main agent.
+- Save each artifact at the expected path and keep machine-readable sidecars with their Markdown artifact.
+- Resolve required Challenger findings before recording approval.
+- Keep validation evidence separate from deployment authorization.
+- Name assumptions, failures, and verification limits clearly.
+- Leave the next challenge usable evidence, not only a successful-looking chat response.
 
 ## Prompt Recipe
 
