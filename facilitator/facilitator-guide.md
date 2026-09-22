@@ -290,7 +290,7 @@ Stand up, get everyone's attention:
 >
 > _You have 45 minutes to propose, plan, and DEPLOY the solution!_
 >
-> _Document your DR strategy in an ADR! GO GO GO!_ 🚀"
+> _Document your DR strategy in an ADR! Move quickly!_ 🚀"
 
 **Coaching Tips:**
 

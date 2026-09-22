@@ -73,7 +73,7 @@ The reviewed Accelerator revision configures:
 | MCP server | Purpose |
 |---|---|
 | GitHub MCP | Repository operations, issues, pull requests, code search, and file content |
-| Azure Resource Manager MCP | Azure Cost Management and Pricing toolsets |
+| Azure Resource Manager MCP | Azure Cost Management and Pricing tools |
 | Azure MCP | Azure resource, subscription, deployment, and policy context |
 
 Open `.vscode/mcp.json` in your template-derived repository for the current configuration. The `astro-docs` MCP server in this documentation repository is only for maintaining the site and is not part of the participant toolchain.

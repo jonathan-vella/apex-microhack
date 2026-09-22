@@ -163,7 +163,7 @@ like zone redundancy and private endpoints.
 Leaderboard App. Submissions enter a `Pending` state and must be approved
 by an admin before they affect the published leaderboard.
 
-**Subagent** — A bounded helper used by an owning agent for a permitted task such as validation or preview. Main agents such as `10-Challenger` are human-selected and are not helper subagents.
+**Subagent** — A bounded helper used by an owning agent for a permitted task such as validation or preview. Main agents such as `10-Challenger` are human-selected and are not helper agents.
 
 ## V
 
