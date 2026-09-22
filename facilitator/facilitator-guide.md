@@ -68,6 +68,13 @@ Complete this checklist before the event, on the morning of, and at wrap-up.
 - [ ] **Scoring materials ready**: Scoring rubric printed or accessible, facilitator worksheet prepared
 - [ ] **Network tested**: Venue Wi-Fi can reach `github.com`, `api.githubcopilot.com`, `learn.microsoft.com`, `prices.azure.com`, `registry.terraform.io`, `mcr.microsoft.com`, and `portal.azure.com`
 
+> **Setup ownership:** Teams share one Accelerator-derived repository and one Azure
+> subscription. Assign one named participant as the setup owner at a time. Other team
+> members should observe, verify the target, and record evidence. Never run
+> `npm run setup` concurrently: it can overwrite GitHub secrets and OIDC values such as
+> `AZURE_CLIENT_ID`. Stop and escalate if authorization, tenant, subscription, or
+> management-group prerequisites are unclear.
+
 ### Day-of Go/No-Go (09:00)
 
 - [ ] **Docker/Codespaces working**: At least one team member per team can open the Dev Container
@@ -98,6 +105,12 @@ Complete this checklist before the event, on the morning of, and at wrap-up.
 > **One Azure subscription per team is the only supported model.** Shared subscriptions are not supported. Sharing causes naming collisions, RBAC conflicts, and accidental cross-team interference. Verify that every team has a dedicated subscription before the event begins.
 
 Each team needs **Owner** access on their subscription (required for Azure Policy deployment). If Owner is restricted, the minimum alternative is **Contributor** plus **Resource Policy Contributor**.
+
+These are fixed MicroHack event constraints. They are separate from generic APEX
+prerequisites documented at [apexops.pro](https://apexops.pro/getting-started/).
+
+`11-Context Optimizer` is a facilitator/reference capability, not a participant
+challenge-path step. Keep it out of participant handoff instructions.
 
 ### Governance Policies (Optional but Recommended)
 
@@ -226,6 +239,7 @@ Check the Azure Resource Manager pricing tools in the current MCP configuration.
 - Confirm `04g-Governance` evidence and reconciliation before planning
 - Confirm the IaC plan review is approved before CodeGen
 - Treat validation and deployment authorization as separate checkpoints
+- Participants deploy only through the approved `07b-Bicep Deploy` or `07t-Terraform Deploy` agent after explicit team authorization. Use direct Azure CLI commands only for facilitator diagnostics or evidence collection.
 - Ask: "What module structure would make this maintainable?"
 - Prompt: "How does your naming convention ensure uniqueness?"
 - Encourage Mermaid flowchart for deployment workflow visualization
@@ -276,7 +290,7 @@ Stand up, get everyone's attention:
 >
 > _You have 45 minutes to propose, plan, and DEPLOY the solution!_
 >
-> _Document your DR strategy in an ADR! GO GO GO!_ 🚀"
+> _Document your DR strategy in an ADR! Move quickly!_ 🚀"
 
 **Coaching Tips:**
 
@@ -468,7 +482,7 @@ Use this table when a team hits a blocking issue. Identify the failure class, ta
 | **Deployment failure (naming)** | `NameNotAvailable`, `StorageAccountAlreadyTaken` | Use `uniqueString(resourceGroup().id)` suffix pattern. Check resource name constraints. | If persistent, create a fresh resource group with a different name. |
 | **Deployment failure (auth)** | `AuthorizationFailed`, `AADSTS50076` | Re-run `az login --use-device-code`. Verify subscription access: `az account show`. | If subscription lacks Owner role, check if Contributor + Resource Policy Contributor suffices. |
 | **Deployment failure (Bicep/Terraform)** | `BCP035`, `BCP037`, template validation errors, `terraform validate` failures | Read the error message — it usually names the exact property. Use `bicep build` or `terraform validate` to check before deploying. | If team is stuck >5 min, intervene directly with the specific fix. |
-| **MCP servers not responding** | A GitHub or Azure server declared in `.vscode/mcp.json` fails to start or authenticate | Preserve the error, inspect the current server config, confirm policy and authentication, and reload VS Code. | Use an equivalent portal, CLI, or web path only when the challenge permits fallback evidence; do not claim the MCP check passed. |
+| **MCP servers not responding** | A GitHub or Azure server declared in `.vscode/mcp.json` fails to start or authenticate | Preserve the error, inspect the current server configuration, confirm policy and authentication, and reload VS Code. | Use an equivalent portal, CLI, or web path only when the challenge permits fallback evidence; do not claim the MCP check passed. |
 | **Timing compression** | Team is behind schedule by >15 min | Compress: combine remaining work, reduce scope. At >30 min behind, skip non-essential challenges (C5, C6, C7 can be abbreviated). | Ensure C1–C4 and C8 are completed — these carry the most learning value and points. |
 | **Dev Container failure** | Container fails to build, image pull timeout | Check Docker Desktop is running (4 GB RAM). Run `Dev Containers: Rebuild Without Cache`. Check network. | If container cannot build, fall back to GitHub Codespaces. |
 

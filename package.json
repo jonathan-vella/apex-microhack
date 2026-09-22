@@ -6,6 +6,7 @@
   },
   "scripts": {
     "prepare": "lefthook install",
+    "test": "node --test test/*.test.mjs",
     "format": "prettier --write \"site/**/*.{astro,js,mjs,ts}\"",
     "format:check": "prettier --check \"site/**/*.{astro,js,mjs,ts}\"",
     "lint:md": "markdownlint-cli2"

@@ -106,6 +106,11 @@ Check the current `.github/agents/*.agent.md` files for model selections. Do not
 
 ## Essential CLI Commands
 
+Participant deployment is agent-owned. Use only the approved `07b-Bicep Deploy` or
+`07t-Terraform Deploy` agent after the team reviews current validation and explicitly
+authorizes the proposed scope. Do not run Azure deployment commands directly as a
+participant. The CLI examples below are facilitator diagnostic/evidence examples only.
+
 ```bash
 az account show --query name -o tsv
 bicep --version
@@ -117,10 +122,10 @@ az group create -n rg-freshconnect-dev-swc -l swedencentral
 bicep build main.bicep
 bicep lint main.bicep
 
-# What-If deployment
+# Facilitator diagnostic example: What-If
 az deployment group what-if -g rg-freshconnect-dev-swc -f main.bicep
 
-# Deploy only after the team reviews the preview and explicitly authorizes this scope
+# Facilitator diagnostic example: direct deployment evidence
 az deployment group create -g rg-freshconnect-dev-swc -f main.bicep
 
 # Cleanup (END OF DAY — team lead is responsible!)

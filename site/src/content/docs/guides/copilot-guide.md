@@ -71,7 +71,6 @@ The current Accelerator agent files are the source of truth. Do not copy a fixed
 | As-built documentation | `08-As-Built` | Evidence-based documentation suite |
 | Diagnostics | `09-Diagnose` | Diagnostic analysis for the selected scope |
 | Adversarial review | `10-Challenger` | Findings for the specified artifact and review lens |
-| Context review | `11-Context Optimizer` | Context analysis for its declared maintenance task |
 
 Model selections may change. Check the `model` field in the current `.github/agents/*.agent.md` files and confirm your account or organization permits those selections.
 

@@ -92,17 +92,9 @@ body:has(.landing-hero)::after {
 
 body:has(.landing-hero)::before {
   background-image:
-    linear-gradient(rgba(98, 117, 146, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(98, 117, 146, 0.08) 1px, transparent 1px),
     radial-gradient(rgba(255, 255, 255, 0.08) 0.7px, transparent 0.7px);
-  background-size:
-    120px 120px,
-    120px 120px,
-    24px 24px;
-  background-position:
-    center top,
-    center top,
-    0 0;
+  background-size: 24px 24px;
+  background-position: 0 0;
   opacity: 0.24;
 }
 
@@ -166,7 +158,7 @@ body:has(.landing-hero) footer {
 }
 
 .landing-hero
-  :where(.landing-hero__copy, .landing-hero__actions, .landing-hero__demo-frame)
+  :where(.landing-hero__copy, .landing-hero__actions)
   > *,
 .scenario-frame
   :where(
@@ -203,9 +195,8 @@ body:has(.landing-hero) footer {
 .landing-hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(24rem, 1.08fr);
-  gap: clamp(2rem, 4vw, 4.5rem);
   align-items: start;
+  justify-items: start;
   max-width: 74rem;
   margin: 0 auto;
   padding: 4.5rem 1rem 2rem;
@@ -224,8 +215,7 @@ body:has(.landing-hero) footer {
   pointer-events: none;
 }
 
-.landing-hero__copy,
-.landing-hero__demo {
+.landing-hero__copy {
   position: relative;
   z-index: 1;
 }
@@ -376,105 +366,6 @@ body:has(.landing-hero) footer {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-
-.landing-hero__demo {
-  display: flex;
-  justify-content: center;
-  padding-top: 0.5rem;
-}
-
-.landing-hero__demo::before,
-.landing-hero__demo::after {
-  content: "";
-  position: absolute;
-  width: 18rem;
-  height: 18rem;
-  border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.22;
-  pointer-events: none;
-}
-
-.landing-hero__demo::before {
-  left: 0;
-  top: 2rem;
-  background: rgba(255, 168, 108, 0.48);
-}
-
-.landing-hero__demo::after {
-  right: 0;
-  top: 1rem;
-  background: rgba(95, 183, 255, 0.52);
-}
-
-.landing-hero__demo-frame {
-  width: 100%;
-}
-
-.landing-hero__demo .agent-chat {
-  max-width: 520px;
-}
-
-.landing-hero__demo .agent-features {
-  display: none;
-}
-
-.landing-hero__demo .chat-titlebar {
-  padding: 0.62rem 0.9rem;
-}
-
-.landing-hero__demo .titlebar-text {
-  font-size: 0.72rem;
-}
-
-.landing-hero__demo .chat-body {
-  gap: 1rem;
-  padding: 1.15rem;
-}
-
-.landing-hero__demo .user-message p {
-  font-size: 0.75rem;
-  line-height: 1.6;
-}
-
-.landing-hero__demo .message-label,
-.landing-hero__demo .streaming-line {
-  font-size: 0.64rem;
-}
-
-.landing-hero__demo .agent-item {
-  gap: 0.65rem;
-  font-size: 0.72rem;
-}
-
-.landing-hero__demo .agent-check {
-  width: 16px;
-  height: 16px;
-}
-
-.landing-hero__demo .agent-list {
-  gap: 0.72rem;
-}
-
-.landing-hero__demo .agent-status {
-  font-size: 0.72rem;
-}
-
-.demo-window {
-  width: 100%;
-  max-width: 43rem;
-  padding: 0.9rem;
-  background:
-    linear-gradient(180deg, rgba(21, 26, 38, 0.88), rgba(12, 16, 24, 0.92)),
-    rgba(12, 16, 24, 0.92);
-  border-radius: 1.5rem;
-  border: 1px solid rgba(124, 135, 160, 0.22);
-  box-shadow:
-    0 34px 90px rgba(0, 0, 0, 0.42),
-    0 0 0 1px rgba(255, 255, 255, 0.03),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  margin: 0 auto 2rem;
 }
 
 .section-heading {
@@ -654,7 +545,6 @@ body:not(:has(.landing-hero))
 }
 
 .landing-hero__copy,
-.landing-hero__demo,
 .scenario-frame,
 .explore-section {
   animation: rise-fade 0.8s ease both;
@@ -662,10 +552,6 @@ body:not(:has(.landing-hero))
 
 .landing-hero__copy {
   animation-delay: 0.05s;
-}
-
-.landing-hero__demo {
-  animation-delay: 0.16s;
 }
 
 .scenario-frame {
@@ -739,7 +625,7 @@ tr:last-child td {
 
 .starlight-aside {
   border-radius: 0.5rem;
-  border-left-width: 3px;
+  border-left-width: 1px;
 }
 
 details {
@@ -798,10 +684,6 @@ a {
 }
 
 @media (max-width: 1023px) {
-  .landing-hero {
-    grid-template-columns: 1fr;
-  }
-
   .landing-hero__copy {
     max-width: none;
   }
@@ -831,7 +713,6 @@ a {
     max-width: none;
   }
 
-  .demo-window,
   .scenario-frame__head,
   .scenario-frame__body {
     padding: 1rem;

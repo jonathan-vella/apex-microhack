@@ -122,7 +122,6 @@ configurations. Discovered during Governance Step 3.5 and saved to
 
 **Handoff** — A proposal that tells the human which main agent should own the next step, what evidence it needs, and what scope it will receive. The human selects and approves the target agent.
 
-
 ## I
 
 **Instruction File** — A `.instructions.md` file in `.github/instructions/` that
@@ -164,8 +163,7 @@ like zone redundancy and private endpoints.
 Leaderboard App. Submissions enter a `Pending` state and must be approved
 by an admin before they affect the published leaderboard.
 
-**Subagent** — A bounded helper used by an owning agent for a permitted task such as validation or preview. Main agents such as `10-Challenger` are human-selected and are not helper subagents.
-
+**Subagent** — A bounded helper used by an owning agent for a permitted task such as validation or preview. Main agents such as `10-Challenger` are human-selected and are not helper agents.
 
 ## V
 
@@ -182,4 +180,5 @@ and Operational Excellence.
 
 **What-if** — An Azure deployment preview that shows what resources would be
 created, modified, or deleted without actually making changes.
-Run via `az deployment group what-if`.
+Participants receive this evidence from the selected Deploy agent; facilitators
+may run `az deployment group what-if` as a diagnostic.

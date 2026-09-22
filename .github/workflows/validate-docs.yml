@@ -6,6 +6,9 @@ on:
       - "site/**"
       - "facilitator/**"
       - "scripts/check-content-invariants.mjs"
+      - "scripts/check-internal-links.mjs"
+      - "test/**"
+      - "package.json"
       - "README.md"
       - "AGENTS.md"
       - ".github/ISSUE_TEMPLATE/**"
@@ -30,6 +33,9 @@ jobs:
       - name: Check stable content invariants
         run: node scripts/check-content-invariants.mjs
 
+      - name: Run repository tests
+        run: npm test
+
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
@@ -44,6 +50,9 @@ jobs:
       - name: Build Astro site
         run: npm run build
         working-directory: site
+
+      - name: Check built internal links
+        run: node scripts/check-internal-links.mjs
 
       - name: Lint Markdown
         run: npx markdownlint-cli2
