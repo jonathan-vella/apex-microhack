@@ -68,6 +68,13 @@ Complete this checklist before the event, on the morning of, and at wrap-up.
 - [ ] **Scoring materials ready**: Scoring rubric printed or accessible, facilitator worksheet prepared
 - [ ] **Network tested**: Venue Wi-Fi can reach `github.com`, `api.githubcopilot.com`, `learn.microsoft.com`, `prices.azure.com`, `registry.terraform.io`, `mcr.microsoft.com`, and `portal.azure.com`
 
+> **Setup ownership:** Teams share one Accelerator-derived repository and one Azure
+> subscription. Assign one named participant as the setup owner at a time. Other team
+> members should observe, verify the target, and record evidence. Never run
+> `npm run setup` concurrently: it can overwrite GitHub secrets and OIDC values such as
+> `AZURE_CLIENT_ID`. Stop and escalate if authorization, tenant, subscription, or
+> management-group prerequisites are unclear.
+
 ### Day-of Go/No-Go (09:00)
 
 - [ ] **Docker/Codespaces working**: At least one team member per team can open the Dev Container
@@ -98,6 +105,12 @@ Complete this checklist before the event, on the morning of, and at wrap-up.
 > **One Azure subscription per team is the only supported model.** Shared subscriptions are not supported. Sharing causes naming collisions, RBAC conflicts, and accidental cross-team interference. Verify that every team has a dedicated subscription before the event begins.
 
 Each team needs **Owner** access on their subscription (required for Azure Policy deployment). If Owner is restricted, the minimum alternative is **Contributor** plus **Resource Policy Contributor**.
+
+These are fixed MicroHack event constraints. They are separate from generic APEX
+prerequisites documented at [apexops.pro](https://apexops.pro/getting-started/).
+
+`11-Context Optimizer` is a facilitator/reference capability, not a participant
+challenge-path step. Keep it out of participant handoff instructions.
 
 ### Governance Policies (Optional but Recommended)
 
@@ -226,6 +239,7 @@ Check the Azure Resource Manager pricing tools in the current MCP configuration.
 - Confirm `04g-Governance` evidence and reconciliation before planning
 - Confirm the IaC plan review is approved before CodeGen
 - Treat validation and deployment authorization as separate checkpoints
+- Participants deploy only through the approved `07b-Bicep Deploy` or `07t-Terraform Deploy` agent after explicit team authorization. Use direct Azure CLI commands only for facilitator diagnostics or evidence collection.
 - Ask: "What module structure would make this maintainable?"
 - Prompt: "How does your naming convention ensure uniqueness?"
 - Encourage Mermaid flowchart for deployment workflow visualization

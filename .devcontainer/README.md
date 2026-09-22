@@ -6,7 +6,7 @@ This devcontainer provides the complete environment for both running the MicroHa
 
 | Tool | Source | Purpose |
 |---|---|---|
-| Node.js + npm | 22.x | Astro Starlight site + markdownlint-cli2 |
+| Node.js + npm | 24.x | Astro Starlight site + markdownlint-cli2 |
 | Azure CLI (az) | Latest | Azure resource management |
 | Bicep CLI | Latest | Infrastructure as Code |
 | GitHub CLI (gh) | Latest | Repository and PR management |

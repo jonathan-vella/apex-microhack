@@ -316,18 +316,38 @@ Use `git --no-pager diff` to avoid the `less` pager. If you see a `:` prompt, pr
 
 Review the [Azure Setup documentation](https://apexops.pro/getting-started/azure-setup/) before running this command. The setup workflow can create an Entra ID application, federated credentials, role assignments, GitHub secrets, and repository variables. Confirm the target tenant, subscription, management group, repository, and required permissions first.
 
-When your team and facilitator have approved those changes, run:
+Everyone on the team participates in setup, but mutations must be serialized. From the
+exact repository created from the APEX Accelerator template and its working directory,
+name one participant as the current setup owner. Teammates observe the run, verify the
+target tenant, subscription, management group, repository, and permissions, and record
+the output before another participant takes ownership.
+
+`npm run setup` can overwrite GitHub secrets and OIDC-related values, including
+`AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, and `AZURE_SUBSCRIPTION_ID`. Do not run it
+concurrently from multiple clones or accounts. If the target or permissions are unclear,
+stop and escalate to the facilitator.
+
+When your team and facilitator have authorized those changes, run:
 
 ```bash
 az login
 npm run setup
 ```
 
-The workflow reports the cloud and repository configuration it creates. Review its output and resulting repository changes. Idempotent behavior does not make the command a harmless prerequisite check.
+The workflow reports the cloud and repository configuration it creates. Review its output and resulting repository changes. Idempotent behavior does not make the command a harmless prerequisite check. Preserve
+the command output and resulting repository changes as evidence.
 
 Use the same Azure Setup page for headless mode, manual setup steps, and troubleshooting.
 
 </details>
+
+:::caution
+
+The event-specific subscription model and governance policies below are MicroHack
+constraints, not generic APEX prerequisites. Participants use one Azure subscription
+per team, with Sweden Central quota and facilitator-managed policy assignments.
+
+:::
 
 <details>
 <summary>5. Allow GitHub Actions to create pull requests</summary>

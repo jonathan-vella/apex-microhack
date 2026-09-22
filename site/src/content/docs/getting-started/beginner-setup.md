@@ -142,9 +142,9 @@ Your code is now cloned into WSL and open in VS Code. From here, follow the [Set
 
 - Pull and build the Dev Container
 - Initialize your repository with `npm install`, `npm run init`, and `npm run sync:workflows`
-- Optionally set up Azure automation with `az login` and `npm run setup`
+- Run `npm run setup` from the exact Accelerator-derived repository and working directory with your team. One named participant owns each setup mutation while teammates observe and verify. Before running it, confirm authorization and prerequisites; the command can overwrite GitHub secrets such as `AZURE_CLIENT_ID` and OIDC credentials.
 - Sign in to Azure for workshop deployments
-- Enable custom agents
+- Confirm the current custom agents
 - Verify model access, MCP tools, and your toolchain
 
 :::tip
