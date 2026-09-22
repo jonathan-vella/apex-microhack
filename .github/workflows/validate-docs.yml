@@ -50,7 +50,7 @@ jobs:
         working-directory: site
 
       - name: Install Vale
-        uses: errata-ai/vale-action@reviewdog
+        uses: errata-ai/vale-action@v3
         with:
           files: '["site/src/content", "facilitator", "README.md", "AGENTS.md"]'
           fail_on_error: true

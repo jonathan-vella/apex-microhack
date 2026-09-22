@@ -17,6 +17,6 @@
     "prettier-plugin-astro": "^1.0.0"
   },
   "overrides": {
-    "smol-toml": "^1.6.1"
+    "smol-toml": "^1.8.0"
   }
 }
