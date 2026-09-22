@@ -11,10 +11,10 @@ See [.github/agents/challenge-guide-stylist.agent.md](.github/agents/challenge-g
 
 ### Astro Docs
 
-Provides real-time access to current Astro and Starlight documentation via MCP.
+Provides real-time access to current Astro and Starlight documentation through MCP.
 Configured in [.vscode/mcp.json](.vscode/mcp.json).
 
-Use when making changes to the Astro site (`site/`) to verify APIs, configuration options, and component usage are up to date.
+Use it when changing the Astro site (`site/`) to verify that APIs, configuration options, and component usage are up to date.
 
 ## Skills Reference
 

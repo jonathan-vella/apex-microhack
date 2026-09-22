@@ -6,7 +6,7 @@ sidebar:
   hidden: true
 ---
 
-Event logistics, scheduling, and meta-information for the MicroHack.
+Event logistics, scheduling, and supporting information for the MicroHack.
 
 **In this section:**
 

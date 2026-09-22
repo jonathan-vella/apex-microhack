@@ -1,9 +1,9 @@
-# Microhack Governance Scripts
+# MicroHack Governance Scripts
 
 > [!NOTE]
 > These scripts are **for facilitators only**. Participants do not need to run them.
 
-Three PowerShell scripts manage the Azure Policy lifecycle for the microhack event.
+Three PowerShell scripts manage the Azure Policy lifecycle for the MicroHack event.
 All require the **Azure CLI** (`az`) and **PowerShell 7+** (`pwsh`), both pre-installed in the dev container.
 
 ---
@@ -23,7 +23,7 @@ az account set --subscription "<subscription-id>"
 az account show --query "{Name:name, Id:id}" -o table
 ```
 
-You need **Owner** or **Resource Policy Contributor** role on the subscription to create and delete policy assignments.
+You need the **Owner** or **Resource Policy Contributor** role on the subscription to create and delete policy assignments.
 
 ---
 
@@ -51,7 +51,7 @@ pwsh -File ./Setup-GovernancePolicies.ps1 -Subscription "<subscription-name-or-i
 **When to use:** Before the event starts, to deploy governance constraints that teams must work around.
 
 Deploys eight `Deny`-effect policy assignments at the subscription scope. Assignments use the `microhack-` prefix
-and are idempotent — existing assignments are skipped automatically.
+and are idempotent; existing assignments are skipped automatically.
 
 #### Parameters
 
@@ -120,7 +120,7 @@ Lists policy assignments on the subscription and reports compliance counts from 
 | Parameter       | Required | Description                              |
 | --------------- | -------- | ---------------------------------------- |
 | `-Subscription` | Yes      | Azure subscription name or ID            |
-| `-MicrohackOnly`| No       | Filter to `microhack-*` assignments only |
+| `-MicrohackOnly` | No       | Filter to `microhack-*` assignments only |
 | `-Verbose`      | No       | Show detailed progress                   |
 
 #### Usage
@@ -155,7 +155,7 @@ microhack-re... Microhack: Require Environment tag Default         NonCompliant 
 
 **When to use:** After the event ends, to restore the subscription to its pre-event state.
 
-Finds and deletes all policy assignments with the `microhack-` prefix. Supports `-WhatIf` to preview removals before committing.
+Finds and deletes all policy assignments with the `microhack-` prefix. Supports `-WhatIf` to preview removals before deletion.
 
 #### Parameters
 
@@ -213,9 +213,9 @@ pwsh -File scripts/Remove-GovernancePolicies.ps1 -Subscription $SUB
 
 | Symptom                            | Cause                               | Solution                                                     |
 | ---------------------------------- | ----------------------------------- | ------------------------------------------------------------ |
-| `command not found: pwsh`          | PowerShell not installed            | Run `which pwsh`; it should be pre-installed in devcontainer |
+| `command not found: pwsh`          | PowerShell not installed            | Run `which pwsh`; it should be pre-installed in the dev container |
 | `az: command not found`            | Azure CLI not installed             | Azure CLI is pre-installed; try `az login`                   |
-| `AuthorizationFailed`              | Insufficient role                   | Ensure Owner or Resource Policy Contributor on sub           |
+| `AuthorizationFailed`              | Insufficient role                   | Ensure Owner or Resource Policy Contributor on the subscription |
 | Assignment creation fails silently | Policy definition ID changed        | Check definition IDs via `az policy definition list`         |
 | Policy not blocking deployments    | Propagation delay                   | Wait 5–15 minutes after `Setup-GovernancePolicies.ps1`       |
 | `State: Unknown` in status output  | Compliance data not yet collected   | Wait a few minutes and re-run `Get-GovernanceStatus.ps1`     |

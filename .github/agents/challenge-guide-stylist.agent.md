@@ -9,7 +9,7 @@ Supported tasks:
 - Create new challenge guides from template
 - Refactor existing challenge guides for readability and consistency
 - Normalize challenge timelines and deliverables
-- Keep scoring and sequence aligned with workshop canon
+- Keep scoring and sequence aligned with the workshop canon
 
 ## Required Context Files
 

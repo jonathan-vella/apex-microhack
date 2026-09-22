@@ -165,18 +165,14 @@ const hasColumnWidths = columnWidths.length === headers.length;
 
 <style>
   .expandable-data-table {
-    --expandable-surface: linear-gradient(180deg, rgba(20, 26, 37, 0.96), rgba(12, 16, 24, 0.96));
-    --expandable-surface-strong: linear-gradient(
-      180deg,
-      rgba(18, 23, 33, 0.98),
-      rgba(13, 17, 24, 0.98)
-    );
-    --expandable-border: rgba(124, 135, 160, 0.28);
-    --expandable-text: #f0f6fc;
-    --expandable-muted: #d7e0ea;
-    --expandable-heading: #8fcfff;
-    --expandable-code-surface: rgba(240, 246, 252, 0.08);
-    --expandable-code-border: rgba(143, 207, 255, 0.18);
+    --expandable-surface: var(--sl-color-gray-6);
+    --expandable-surface-strong: var(--sl-color-black);
+    --expandable-border: var(--sl-color-gray-4);
+    --expandable-text: var(--sl-color-white);
+    --expandable-muted: var(--sl-color-gray-1);
+    --expandable-heading: var(--sl-color-accent-high);
+    --expandable-code-surface: var(--sl-color-gray-6);
+    --expandable-code-border: var(--sl-color-gray-5);
     margin-block: 1rem;
   }
 
@@ -206,7 +202,7 @@ const hasColumnWidths = columnWidths.length === headers.length;
   .expandable-data-table__trigger:hover,
   .expandable-data-table__close:hover {
     transform: translateY(-1px);
-    border-color: rgba(124, 232, 255, 0.38);
+    border-color: var(--sl-color-accent);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
   }
 
@@ -240,7 +236,7 @@ const hasColumnWidths = columnWidths.length === headers.length;
     max-width: none;
     max-height: 88vh;
     padding: 0;
-    border: 1px solid rgba(124, 135, 160, 0.18);
+    border: 1px solid var(--expandable-border);
     border-radius: 1rem;
     color: var(--expandable-text);
     background: var(--expandable-surface-strong);
@@ -264,7 +260,7 @@ const hasColumnWidths = columnWidths.length === headers.length;
     gap: 1rem;
     align-items: start;
     padding: 1.25rem 1.25rem 0.75rem;
-    border-bottom: 1px solid rgba(124, 135, 160, 0.16);
+    border-bottom: 1px solid var(--expandable-border);
   }
 
   .expandable-data-table__dialog-header h2 {
@@ -293,7 +289,7 @@ const hasColumnWidths = columnWidths.length === headers.length;
 
   .expandable-data-table__dialog th {
     color: var(--expandable-text);
-    background: rgba(240, 246, 252, 0.1);
+    background: var(--expandable-code-surface);
   }
 
   .expandable-data-table__dialog td {

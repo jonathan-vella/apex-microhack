@@ -38,7 +38,7 @@ Nordic Fresh Foods needs cloud infrastructure for FreshConnect, a Stockholm-base
 farm-to-table delivery platform serving 500+ restaurant partners and 10,000
 consumers. Peak seasons can hit 3x normal load, the MVP budget is about €500 per
 month, launch is in 3 months, GDPR keeps customer data in the EU, and the small team
-needs managed services they can actually operate.
+needs managed services they can operate in practice.
 
 :::caution[Out of Scope]
 API Management (APIM) is out of scope for this POC due to time constraints.
@@ -85,7 +85,7 @@ API Management (APIM) is out of scope for this POC due to time constraints.
 ## Watch Out
 
 - Do not let the agent fill the page with generic requirements that are not tied to FreshConnect.
-- Do not skip budget or operational assumptions just because the business brief feels incomplete.
+- Do not skip budget or operational assumptions because the business brief feels incomplete.
 - Do not turn unresolved questions into fake certainty; mark them as assumptions if needed.
 - Do not optimize for technical preference over business need.
 - Do not continue to Architecture with missing review evidence or unresolved blocking findings.

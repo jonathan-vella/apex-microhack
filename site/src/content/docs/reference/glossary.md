@@ -91,6 +91,8 @@ deployment, documentation, diagnostics, and a final showcase.
 
 **Conductor** — Historical persona label for `01-Orchestrator`. Current guidance uses **Orchestrator** and does not imply autonomous execution of other main agents.
 
+**Context Optimizer** — `11-Context Optimizer`, a reference capability that audits Copilot context use and recommends improvements. It does not edit agents or own a participant challenge-path handoff.
+
 **Conventional Commits** — A commit message format (`type: description`) used
 for automated versioning. Enforced by commitlint and lefthook.
 
@@ -179,6 +181,6 @@ pillars: Security, Reliability, Performance Efficiency, Cost Optimization,
 and Operational Excellence.
 
 **What-if** — An Azure deployment preview that shows what resources would be
-created, modified, or deleted without actually making changes.
+created, modified, or deleted without making changes.
 Participants receive this evidence from the selected Deploy agent; facilitators
 may run `az deployment group what-if` as a diagnostic.

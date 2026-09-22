@@ -5,7 +5,7 @@ sidebar:
   order: 5
 ---
 
-A curated collection of guides to help you get up to speed with the key tools used in this workshop.
+A curated collection of guides to help you prepare for the key tools used in this workshop.
 
 ## VS Code
 

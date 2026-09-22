@@ -84,8 +84,9 @@ Select main agents from the agent dropdown. The human selects and approves each 
 | **08-As-Built** | Generate evidence-based as-built documentation | 6 |
 | **09-Diagnose** | Diagnose the selected scope from current evidence | 7 |
 | **10-Challenger** | Review requirements, architecture, cost, governance, and plan artifacts | 1-4 |
+| **11-Context Optimizer** | Audit Copilot context usage and recommend improvements; reference-only | — |
 
-Check the current `.github/agents/*.agent.md` files for model selections. Do not rely on a copied fixed model list.
+Check the current `.github/agents/*.agent.md` files for model selections. Do not rely on a copied fixed model list. The Context Optimizer is reference-only and does not replace an owning agent or a human approval gate.
 
 **How to use**: `Ctrl+Alt+I` → select the owning agent → provide current artifacts and scope → review output → resolve findings → approve the next handoff.
 
@@ -170,7 +171,7 @@ Ask your facilitator to remove governance policies from the team subscription.
 - Resolve required Challenger findings before recording approval.
 - Keep validation evidence separate from deployment authorization.
 - Name assumptions, failures, and verification limits clearly.
-- Leave the next challenge usable evidence, not only a successful-looking chat response.
+- Leave usable evidence for the next challenge, not a successful-looking chat response alone.
 
 ## Prompt Recipe
 

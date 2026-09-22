@@ -3,8 +3,8 @@
 > [!IMPORTANT]
 > This file is the **single source of truth** for all scoring values.
 > Challenge files, facilitator tooling, and all other docs MUST derive their
-> point values and grading rules from this rubric. If a conflict exists
-> elsewhere, this file wins.
+> point values and grading rules from this rubric. If another file conflicts
+> with this rubric, this file wins.
 
 > **105-point base + 25 bonus** | WAF-aligned | Scored by facilitators using the rubric
 
@@ -15,10 +15,10 @@
 > [!TIP]
 > All scoring is manual. Score directly from this rubric by reviewing team artifacts and verifying deployments.
 > If your event package includes HackerBoard or other facilitator tooling, enter the same rubric-based totals
-> there after review. The tooling records scores — it does not calculate them.
+> there after review. The tooling records scores; it does not calculate them.
 
 1. Review each team's deliverables under `agent-output/{team}/` and `infra/bicep/{team}/` or `infra/terraform/{team}/`.
-2. Validate deployment and bonus criteria using the Azure portal or CLI where needed.
+2. Validate deployment and bonus criteria in the Azure portal or CLI where needed.
 3. Record the Team Showcase score during the presentation.
 4. Keep the final totals in your chosen leaderboard tool or facilitator worksheet.
 
@@ -41,7 +41,7 @@
 | **Max Total**           | **130** |               |
 
 > [!NOTE]
-> All scoring is performed manually by facilitators using this rubric. If your event package includes optional tooling (e.g., HackerBoard), use it to _record_ rubric-based totals — it does not calculate scores automatically.
+> Facilitators score manually using this rubric. If your event package includes optional tooling (e.g., HackerBoard), use it to _record_ rubric-based totals; it does not calculate scores automatically.
 
 ---
 
@@ -133,7 +133,7 @@ or `agent-output/{team}/07-ab-diagnostics-runbook.md` (bonus depth)
 
 ### 8. Team Showcase (10 pts)
 
-**Scoring method**: Scored by facilitators using the rubric on a 0-10 scale
+**Scoring method**: Facilitators score this criterion using the rubric on a 0-10 scale
 
 | Criterion               | Points |
 | ----------------------- | ------ |

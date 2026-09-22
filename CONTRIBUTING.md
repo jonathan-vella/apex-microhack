@@ -4,8 +4,8 @@ Thanks for improving the APEX MicroHack documentation and facilitator materials.
 
 ## Scope
 
-This repository holds the **workshop docs site**, **facilitator guides**, and **governance scripts**.
-Participant work happens in the [APEX Accelerator](https://github.com/jonathan-vella/apex-accelerator) template repo — changes to agents, skills, dev container, or Bicep/Terraform scaffolds belong there, not here.
+This repository contains the **workshop docs site**, **facilitator guides**, and **governance scripts**.
+Participant work happens in the [APEX Accelerator](https://github.com/jonathan-vella/apex-accelerator) template repo. Changes to agents, skills, the dev container, or Bicep/Terraform scaffolds belong there, not here.
 
 ## Local development
 

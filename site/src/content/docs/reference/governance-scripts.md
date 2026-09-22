@@ -7,7 +7,7 @@ sidebar:
 
 
 Three PowerShell scripts manage the Azure Policy lifecycle for the microhack event.
-All require the **Azure CLI** (`az`) and **PowerShell 7+** (`pwsh`), both pre-installed in the dev container.
+All require the **Azure CLI** (`az`) and **PowerShell 7+** (`pwsh`), both pre-installed in the Dev Container.
 
 :::note
 
@@ -142,7 +142,7 @@ using `Get-GovernanceStatus.ps1 -Subscription "<subscription-name-or-id>" -Micro
 
 [View source on GitHub](https://github.com/jonathan-vella/apex-microhack/blob/main/scripts/Get-GovernanceStatus.ps1)
 
-**When to use:** Anytime — before, during, or after the event — to verify which policies are active
+**When to use:** Any time — before, during, or after the event — to verify which policies are active
 and their compliance state.
 
 Lists policy assignments on the subscription and reports compliance counts from Azure Policy state.
@@ -152,7 +152,7 @@ Lists policy assignments on the subscription and reports compliance counts from 
 | Parameter       | Required | Description                              |
 | --------------- | -------- | ---------------------------------------- |
 | `-Subscription` | Yes      | Azure subscription name or ID            |
-| `-MicrohackOnly`| No       | Filter to `microhack-*` assignments only |
+| `-MicrohackOnly` | No       | Filter to `microhack-*` assignments only |
 | `-Verbose`      | No       | Show detailed progress                   |
 
 #### Status Usage
@@ -250,9 +250,9 @@ pwsh -File scripts/Remove-GovernancePolicies.ps1 -Subscription $SUB
 
 | Symptom                            | Cause                               | Solution                                                     |
 | ---------------------------------- | ----------------------------------- | ------------------------------------------------------------ |
-| `command not found: pwsh`          | PowerShell not installed            | Run `which pwsh`; it should be pre-installed in devcontainer |
+| `command not found: pwsh`          | PowerShell not installed            | Run `which pwsh`; it should be pre-installed in the Dev Container |
 | `az: command not found`            | Azure CLI not installed             | Azure CLI is pre-installed; try `az login`                   |
-| `AuthorizationFailed`              | Insufficient role                   | Ensure Owner or Resource Policy Contributor on sub           |
+| `AuthorizationFailed`              | Insufficient role                   | Ensure Owner or Resource Policy Contributor on the subscription |
 | Assignment creation fails silently | Policy definition ID changed        | Check definition IDs via `az policy definition list`         |
 | Policy not blocking deployments    | Propagation delay                   | Wait 5–15 minutes after `Setup-GovernancePolicies.ps1`       |
 | `State: Unknown` in status output  | Compliance data not yet collected   | Wait a few minutes and re-run `Get-GovernanceStatus.ps1`     |

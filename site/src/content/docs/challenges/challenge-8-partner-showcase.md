@@ -32,8 +32,8 @@ solution would operate in the real world.
 
 ## The Business Challenge
 
-You are presenting to a stakeholder panel that wants confidence, not just technical
-detail. They need to understand why your solution fits FreshConnect, how you handled
+You are presenting to a stakeholder panel that wants confidence, not technical
+detail alone. They need to understand why your solution fits FreshConnect, how you handled
 cost, security, reliability, and the DR curveball, and whether your team can answer
 hard questions without hiding trade-offs.
 
@@ -58,7 +58,7 @@ hard questions without hiding trade-offs.
 ## Key Decisions
 
 - Which artifacts best prove the chain from approved requirements through reviewed design to deployment evidence?
-- Which trade-offs must you defend clearly: cost, security, reliability, or delivery risk?
+- Which trade-offs must you defend: cost, security, reliability, or delivery risk?
 - What unfinished work should you acknowledge openly rather than trying to gloss over?
 - How will you connect technical choices back to FreshConnect's business goals?
 

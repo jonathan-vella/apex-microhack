@@ -29,7 +29,7 @@ next:
 - **Decisions now:** What to check in the first 60 seconds, what failures are most likely, and when to wake up someone else.
 - **Next:** C8 uses this card as evidence that your solution is operable under pressure.
 
-The goal is not a full runbook. It is a fast triage aid that works at 2 AM when the
+The goal is not a full runbook. It is a quick triage aid that works at 2 AM when the
 reader has no spare attention.
 
 ## The Business Challenge

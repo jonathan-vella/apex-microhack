@@ -1,6 +1,6 @@
 ---
 title: 'C6: Workload Documentation'
-description: Use the documentation-focused agents to generate professional operational documentation
+description: Use the documentation-focused agents to generate clear operational documentation
   for the FreshConnect platform.
 sidebar:
   order: 6
@@ -29,8 +29,8 @@ next:
 - **Decisions now:** Audience, document type, level of detail, and which evidence matters enough to include inline.
 - **Next:** C7 compresses this broader documentation into a one-page diagnostics card.
 
-This challenge is high-leverage because it turns workshop output into something another
-person could actually use after the event.
+This challenge is important because it turns workshop output into something another
+person could use after the event.
 
 ## The Business Challenge
 
@@ -68,7 +68,7 @@ workshop story.
 - `agent-output/freshconnect/07-operations-runbook.md`
 - At least one additional document covering architecture, cost, DR, deployment, or
   security.
-- Each document states its audience and purpose clearly.
+- Each document states its audience and purpose.
 - Each document includes concrete steps, evidence, or diagrams rather than only
   narrative summary.
 
@@ -108,8 +108,8 @@ ideas, and keep the output tight enough that another team could use it without c
 - Two documents for the same audience usually means you skipped a more valuable gap.
 - Do not let `08-As-Built` generate generic Azure background that does not help
   FreshConnect.
-- The required operations guide still needs concrete steps, not just architecture prose.
-- Keep the docs grounded in the artifacts you actually produced, especially if some
+- The required operations guide still needs concrete steps, not architecture prose alone.
+- Keep the docs grounded in the artifacts you produced, especially if some
   earlier work remained on paper.
 
 ## Artifact Handoff

@@ -1,23 +1,23 @@
 # Facilitator Materials
 
-> **For microhack coaches and facilitators only.**
+> **For MicroHack coaches and facilitators only.**
 
 | File                                           | Purpose                                              |
 | ---------------------------------------------- | ---------------------------------------------------- |
 | [facilitator-guide.md](facilitator-guide.md)   | Detailed schedule, curveball script, troubleshooting |
-| [scoring-rubric.md](scoring-rubric.md)         | WAF-aligned scoring criteria (105+25 pts)            |
+| [scoring-rubric.md](scoring-rubric.md)         | WAF-aligned scoring criteria (105 + 25 pts)          |
 | [solution-reference.md](solution-reference.md) | Expected outputs, Bicep patterns, commands           |
 
 ## Quick Reference
 
 ### Scoring Workflow
 
-Use [scoring-rubric.md](scoring-rubric.md) as the source of truth for all points and grading decisions.
+Use [scoring-rubric.md](scoring-rubric.md) as the source of truth for every point value and grading decision.
 
 1. Review each team's artifacts in `agent-output/{team}/` and `infra/bicep/{team}/`.
 2. Record the base and bonus scores using the rubric criteria.
-3. Add the Team Showcase score using the rubric during Challenge 8.
-4. If your event package includes HackerBoard, you can enter the same rubric-based scores there for live leaderboard display.
+3. Add the Team Showcase score from Challenge 8 using the rubric.
+4. If your event package includes HackerBoard, enter the same rubric-based scores there for the live leaderboard.
 
 ### Curveball Timing
 
@@ -27,6 +27,6 @@ Use [scoring-rubric.md](scoring-rubric.md) as the source of truth for all points
 
 | Issue        | Action                                       |
 | ------------ | -------------------------------------------- |
-| Copilot down | Use template files, extend time              |
+| Copilot down | Use template files; extend time              |
 | Azure issues | Check status.azure.com, try secondary region |
-| Team stuck   | Direct help, skip design artifacts if needed |
+| Team stuck   | Provide direct help; skip design artifacts if needed |
