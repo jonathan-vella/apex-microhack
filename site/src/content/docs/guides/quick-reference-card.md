@@ -86,9 +86,7 @@ Select main agents from the agent dropdown. The human selects and approves each 
 | **10-Challenger** | Review requirements, architecture, cost, governance, and plan artifacts | 1-4 |
 | **11-Context Optimizer** | Audit Copilot context usage and recommend improvements; reference-only | — |
 
-Check the current `.github/agents/*.agent.md` files for model selections. Do not rely on a copied fixed model list.
-
-`11-Context Optimizer` is not a participant challenge-path step and does not replace an owning agent or a human approval gate.
+Check the current `.github/agents/*.agent.md` files for model selections. Do not rely on a copied fixed model list. The Context Optimizer is reference-only and does not replace an owning agent or a human approval gate.
 
 **How to use**: `Ctrl+Alt+I` → select the owning agent → provide current artifacts and scope → review output → resolve findings → approve the next handoff.
 
