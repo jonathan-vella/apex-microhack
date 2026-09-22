@@ -52,9 +52,9 @@ Use these terms consistently:
 
 A main agent is not a skill or helper subagent. The Orchestrator cannot replace human selection of the next main agent.
 
-## Main workflow agents
+## APEX agent inventory
 
-The current Accelerator agent files are the source of truth. Do not copy a fixed count or model list into workshop notes.
+The current Accelerator agent files are the source of truth. Do not copy a fixed count or model list into workshop notes. The Context Optimizer is a reference capability, not a participant challenge-path step.
 
 | Workflow step | Main agent | Result |
 |---|---|---|
@@ -71,6 +71,7 @@ The current Accelerator agent files are the source of truth. Do not copy a fixed
 | As-built documentation | `08-As-Built` | Evidence-based documentation suite |
 | Diagnostics | `09-Diagnose` | Diagnostic analysis for the selected scope |
 | Adversarial review | `10-Challenger` | Findings for the specified artifact and review lens |
+| Context audit, reference-only | `11-Context Optimizer` | Context-window optimization recommendations; does not change agents or own a challenge handoff |
 
 Model selections may change. Check the `model` field in the current `.github/agents/*.agent.md` files and confirm your account or organization permits those selections.
 

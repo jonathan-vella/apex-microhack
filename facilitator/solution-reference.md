@@ -11,10 +11,10 @@ agent-output/freshconnect/
 ├── sku-manifest.json and sku-manifest.md
 ├── challenge-findings-requirements.json
 ├── 03-des-cost-estimate.md
-├── architecture and cost review findings
-├── 03-des-architecture-diagram.md (optional)
+├── challenge-findings-architecture.json and challenge-findings-cost-estimate.json
+├── 03-des-diagram.py with .png/.svg renders (optional, 04-Design)
 ├── 03-des-deployment-workflow.md (Challenge 3 Mermaid workflow)
-├── 04-adr-ha-dr-strategy.md (Challenge 4)
+├── 03-des-adr-NNNN-ha-dr-strategy.md (Challenge 4)
 ├── 04-governance-constraints.md and .json
 ├── governance reconciliation findings when required
 ├── 04-implementation-plan.md and machine-readable contracts
@@ -60,7 +60,7 @@ infra/terraform/freshconnect/
 
 Teams that fail Challenge 3 deployment pivot to a paper exercise for Challenge 4:
 
-- **Required output**: `agent-output/freshconnect/04-adr-ha-dr-strategy.md` (same ADR as deployed teams)
+- **Required output**: `agent-output/freshconnect/03-des-adr-NNNN-ha-dr-strategy.md` (same ADR as deployed teams)
 - **Required output**: Updated architecture diagram showing primary + secondary region
 - **No deployment required**: Teams describe what they _would_ deploy and why
 - **Scoring**: ADR quality and architectural reasoning are scored; deployment points are not available for paper-exercise teams. Implementation quality can still be scored only against any IaC artifacts the team actually produced before pivoting.

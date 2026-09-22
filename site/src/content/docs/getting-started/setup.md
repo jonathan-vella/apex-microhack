@@ -183,9 +183,9 @@ Ensure your network allows outbound HTTPS to the following services:
 | GitHub | `github.com`, `api.github.com` |
 | GitHub Copilot and GitHub MCP | `copilot.github.com`, `api.githubcopilot.com`, `*.githubusercontent.com` |
 | Azure | `*.azure.com`, `*.microsoft.com`, `login.microsoftonline.com` |
-| Microsoft Learn MCP | `learn.microsoft.com` |
+| Microsoft Learn documentation | `learn.microsoft.com` |
 | Azure Resource Manager pricing tools | Azure management and pricing endpoints permitted by your organization |
-| Terraform MCP | `registry.terraform.io` |
+| Terraform registry | `registry.terraform.io` |
 | Docker | `docker.io`, `registry-1.docker.io` |
 
 ---
@@ -381,7 +381,7 @@ gh workflow run "Governance Policy Baseline"
 
 | Workflow | Purpose | Schedule |
 |---|---|---|
-| **Weekly Maintenance** | Refreshes the AVM module index, tracks Azure service deprecations, runs the quarterly docs/orphan audit, validates Draw.io tooling, and link-checks docs. | Mondays 06:00 UTC |
+| **Weekly Maintenance** | Checks the pinned Azure MCP release, refreshes the AVM module index, and tracks Azure service deprecations. | Mondays 06:00 UTC |
 | **Governance Policy Baseline** | Collects effective Azure Policy assignments (including management-group inheritance) from your subscription so the IaC planner consumes real governance constraints. Requires step 4 to be complete. | Mondays 05:00 UTC |
 
 Verify both runs succeeded:
@@ -471,7 +471,7 @@ The current APEX workflow uses human-selected main agents. The Orchestrator iden
 8. **As-built documentation** — `08-As-Built` records observed results, verification limits, and unresolved issues.
 
 The MicroHack scores this work as eight workshop challenges. Challenges 5, 7, and 8 are workshop stages rather than numbered APEX workflow steps, and Challenge 4 deliberately sends the team back through affected decisions and approvals.
-Explore complete sample artifacts in the `agent-output/_sample/` directory (created during the workshop).
+Workflow artifacts are written to `agent-output/{project}/` as you complete each step.
 
 </details>
 

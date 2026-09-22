@@ -16,7 +16,7 @@ next:
 ---
 
 :::note[Challenge Info]
-⏱️ **45 min** · 🏆 **10 pts** · 🤖 affected workflow agents, `10-Challenger`, and the selected CodeGen/Deploy track · 📄 `agent-output/freshconnect/04-adr-ha-dr-strategy.md`, updated IaC or paper design, updated diagram
+⏱️ **45 min** · 🏆 **10 pts** · 🤖 affected workflow agents, `10-Challenger`, and the selected CodeGen/Deploy track · 📄 `agent-output/freshconnect/03-des-adr-NNNN-ha-dr-strategy.md`, updated IaC or paper design, updated diagram
 
 :::
 
@@ -24,7 +24,7 @@ next:
 
 - **Do now:** Respond to the DR curveball with an ADR, updated design, and revised delivery path.
 - **Input:** C3 templates, deployment outcome, implementation plan, and architecture diagram.
-- **Output:** `agent-output/freshconnect/04-adr-ha-dr-strategy.md`, updated IaC or paper design, updated architecture diagram, and revised cost view.
+- **Output:** `agent-output/freshconnect/03-des-adr-NNNN-ha-dr-strategy.md`, updated IaC or paper design, updated architecture diagram, and revised cost view.
 - **Required to move on:** Revise affected artifacts, rerun required reviews, approve the new path, parameterize the design, and document whether you deployed it or designed it on paper.
 - **Decisions now:** Single-region HA vs multi-region DR vs active-active, what must replicate, how failover works, and what fits inside the extra budget.
 - **Next:** C5 validates the revised platform or documents the intended test target if you stayed on paper.
@@ -46,7 +46,7 @@ You must recommend a resilient path fast, then show how it changes the design.
 2. Return to `02-Requirements` and `03-Architect` as needed. Update requirements, recovery targets, architecture, cost, and SKU evidence.
 3. Select `10-Challenger` for the required revised requirements, architecture, and cost reviews. Resolve blocking findings and approve the updated design.
 4. Reconcile governance, revise the IaC plan with `05-IaC Planner`, complete the plan review, and approve the revised code-generation contract.
-5. Write `agent-output/freshconnect/04-adr-ha-dr-strategy.md` with context, decision, consequences, and rejected alternatives.
+5. Select `04-Design` to write the ADR as `agent-output/freshconnect/03-des-adr-NNNN-ha-dr-strategy.md` (next ADR number) with context, decision, consequences, and rejected alternatives.
 6. Update the selected IaC track or document the parameterized paper design. Validate it before any deployment request.
 7. Explicitly authorize the revised deployment scope, or state that the result remains a paper exercise. Update the diagram and cost view in both cases.
 
@@ -69,7 +69,7 @@ You must recommend a resilient path fast, then show how it changes the design.
 
 ## Deliverables
 
-- `agent-output/freshconnect/04-adr-ha-dr-strategy.md`
+- `agent-output/freshconnect/03-des-adr-NNNN-ha-dr-strategy.md`
 - Updated IaC with HA/DR parameters, or a written parameterized design if you are on
   the paper path.
 - Updated architecture diagram showing regions, replication paths, and failover flow.
@@ -125,7 +125,7 @@ Alternatives -> what you rejected and why
 | Item | Value |
 | --- | --- |
 | **Input from** | C3 templates, deployment outcome, implementation plan, architecture diagram |
-| **Your output** | `agent-output/freshconnect/04-adr-ha-dr-strategy.md`, updated IaC or paper design, updated diagram |
+| **Your output** | `agent-output/freshconnect/03-des-adr-NNNN-ha-dr-strategy.md`, updated IaC or paper design, updated diagram |
 | **Next challenge uses** | C5 validates the revised platform if you have an endpoint, or uses your documented target state to define the intended test plan |
 
 ## Next Step

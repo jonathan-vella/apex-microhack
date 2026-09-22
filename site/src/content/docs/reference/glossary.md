@@ -91,6 +91,8 @@ deployment, documentation, diagnostics, and a final showcase.
 
 **Conductor** — Historical persona label for `01-Orchestrator`. Current guidance uses **Orchestrator** and does not imply autonomous execution of other main agents.
 
+**Context Optimizer** — `11-Context Optimizer`, a reference capability that audits Copilot context use and recommends improvements. It does not edit agents or own a participant challenge-path handoff.
+
 **Conventional Commits** — A commit message format (`type: description`) used
 for automated versioning. Enforced by commitlint and lefthook.
 
