@@ -6,7 +6,7 @@ sidebar:
 ---
 
 > **Coaching approach**: These hints use questions to guide your thinking.
-> The best solutions come from understanding _why_, not just copying _what_.
+> Useful workshop solutions come from understanding _why_, not copying _what_.
 
 ## Something Broken?
 
@@ -74,7 +74,7 @@ These templates are located in `.github/skills/apex-azure-artifacts/templates/` 
 2. **Quality Assurance**: Templates ensure all critical sections are covered — the agent
    won't forget important aspects like security considerations or cost breakdowns.
 
-3. **Professional Standards**: The output follows industry best practices for documentation
+3. **Documentation Standards**: The output follows consistent documentation
    format and content organization.
 
 ### What This Means for You
@@ -85,13 +85,13 @@ These templates are located in `.github/skills/apex-azure-artifacts/templates/` 
 
 ### Exploring Templates
 
-Take a moment to browse `.github/skills/apex-azure-artifacts/templates/` to understand:
+Browse `.github/skills/apex-azure-artifacts/templates/` to understand:
 
 - What sections each template includes
 - What information the agent needs from you to fill them in
 - How your prompts influence the content (not the structure)
 
-💡 **Key insight**: GenAI with templates is more predictable than "pure" generation.
+💡 **Key insight**: GenAI with templates is more predictable than open-ended generation.
 This is intentional — infrastructure documentation needs consistency!
 
 </details>
@@ -154,7 +154,7 @@ Before asking for cost estimates, ask yourself:
    - Could you use serverless for intermittent workloads?
 
 2. **Right-Sizing**: How do you match SKU to requirements?
-   - What SLA do you actually need? (99.9% vs. 99.95% cost difference?)
+   - What SLA do you need? (99.9% vs. 99.95% cost difference?)
    - What's the minimum tier for zone redundancy?
    - Could dev/test environments use lower SKUs or serverless?
 
@@ -669,7 +669,7 @@ same artifact contract and make the design evidence explicit.
 - Capture the exact blocker.
 - Show what you would change next.
 - Update the ADR or diagram to reflect the intended end state.
-- Avoid language that implies the change was actually deployed when it was not.
+- Avoid language that implies the change was deployed when it was not.
 
 ---
 
@@ -677,7 +677,7 @@ same artifact contract and make the design evidence explicit.
 
 Ask yourself: "What question would help me discover the answer?"
 
-If still blocked, raise your hand — facilitators are here to coach, not solve! 🙋
+If you are still blocked, raise your hand. Facilitators are there to coach, not solve.
 
-**Remember**: This microhack has 8 challenges total, not all will be completed by all teams.
-Focus on learning the workflow and prompt engineering skills!
+This microhack has 8 challenges total; not every team will complete all of them.
+Focus on learning the workflow and prompt-engineering skills.

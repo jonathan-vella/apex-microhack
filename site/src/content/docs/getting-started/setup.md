@@ -32,8 +32,8 @@ If any item below fails, your team is not ready to participate:
 - Copilot Chat or the Accelerator custom agents are unavailable in VS Code.
 - The current models declared by the Accelerator agents are blocked by account or organization policy.
 - The MCP servers declared in the Accelerator do not load or cannot authenticate.
-- No Azure subscription with the required access.
-- More than one team trying to share the same subscription.
+- No Azure subscription with the required access is assigned.
+- More than one team is trying to share the same subscription.
 - Not enough quota in `swedencentral`.
 - A Dev Container that does not open successfully.
 

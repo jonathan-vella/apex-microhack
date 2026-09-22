@@ -173,7 +173,7 @@ Ask your facilitator to remove governance policies from the team subscription.
 - Resolve required Challenger findings before recording approval.
 - Keep validation evidence separate from deployment authorization.
 - Name assumptions, failures, and verification limits clearly.
-- Leave the next challenge usable evidence, not only a successful-looking chat response.
+- Leave usable evidence for the next challenge, not a successful-looking chat response alone.
 
 ## Prompt Recipe
 

@@ -1,6 +1,6 @@
-# DevContainer — APEX MicroHack
+# Dev Container — APEX MicroHack
 
-This devcontainer provides the complete environment for both running the MicroHack workshop and building the documentation site.
+This dev container provides the complete environment for running the MicroHack workshop and building the documentation site.
 
 ## What's Included
 
@@ -18,7 +18,7 @@ VS Code extensions — Azure Bicep, Azure CLI Tools, PowerShell, Azure Resource 
 
 ## Getting Started
 
-### 1. Open in DevContainer
+### 1. Open in Dev Container
 
 In VS Code: `Ctrl+Shift+P` → **Dev Containers: Reopen in Container**
 
@@ -32,7 +32,7 @@ npm run dev
 
 ### 3. Preview the Site
 
-Open <http://localhost:4321/> in your browser (port 4321 is auto-forwarded).
+Open <http://localhost:4321/> in your browser. Port 4321 is auto-forwarded.
 
 ## Useful Commands
 

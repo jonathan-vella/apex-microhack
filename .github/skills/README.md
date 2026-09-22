@@ -4,7 +4,7 @@ This repository uses a workshop-first skill set.
 
 ## Workshop Domain Skills
 
-- `docs-writer`: keeps workshop documentation consistent and fresh
+- `docs-writer`: keeps workshop documentation consistent and current
 - `azure-diagrams`: creates infrastructure diagrams for workshop materials
 - `challenge-guide-styler`: applies challenge template and visual style standards
 

@@ -1,6 +1,6 @@
 # Facilitator Guide
 
-> **For microhack coaches and facilitators only.**
+> **For MicroHack coaches and facilitators only.**
 
 ## Event Overview
 
@@ -14,9 +14,9 @@
 
 ## Your Role
 
-1. **Guide, don't solve** — Help teams find answers, don't write their code
-2. **Monitor progress** — Check in with each team every 15-20 minutes
-3. **Unblock non-learning issues fast** — Don't let teams stall >5 minutes on environment or tooling problems
+1. **Guide, don't solve** — Help teams find answers; do not write their code
+2. **Monitor progress** — Check in with each team every 15–20 minutes
+3. **Unblock non-learning issues fast** — Do not let teams stall for more than 5 minutes on environment or tooling problems
 4. **Encourage experimentation** — There's no single "correct" architecture
 5. **Celebrate learning** — The goal is understanding, not perfection
 
@@ -35,7 +35,7 @@ to provide direct solutions.
 | Team asks for solution       | "What have you tried so far?"                   |
 | Team stuck on agent prompt   | "How would you prompt the agent to solve this?" |
 | Team unsure about decision   | "What business requirement drives this?"        |
-| Team asks "Should we use X?" | "What would you try? What are the tradeoffs?"   |
+| Team asks "Should we use X?" | "What would you try? What are the trade-offs?"  |
 
 ### When to Provide Direct Help
 
@@ -52,7 +52,7 @@ solutions.
 
 ## Facilitator Readiness Checklist
 
-Complete this checklist before the event, on the morning of, and at wrap-up.
+Complete this checklist before the event, on the morning of the event, and during wrap-up.
 
 ### Pre-Event (1–2 Days Before)
 
@@ -90,10 +90,10 @@ Complete this checklist before the event, on the morning of, and at wrap-up.
 ### Wrap-Up Checklist
 
 - [ ] **Scores finalized**: All teams scored against rubric
-- [ ] **Cleanup confirmed**: Every team's resource groups deleted (verified via `az group list`)
+- [ ] **Cleanup confirmed**: Every team's resource groups are deleted (verified via `az group list`)
 - [ ] **Policies removed**: `Remove-GovernancePolicies.ps1` run on every subscription
 - [ ] **Feedback collected**: Participant feedback form distributed
-- [ ] **Retrospective completed**: Each team shared one highlight
+- [ ] **Retrospective completed**: Each team has shared one highlight
 
 ---
 
@@ -114,7 +114,7 @@ challenge-path step. Keep it out of participant handoff instructions.
 
 ### Governance Policies (Optional but Recommended)
 
-Deploy Azure Policies to create realistic governance constraints. Teams will encounter real policy errors!
+Deploy Azure Policies to create realistic governance constraints. Teams will encounter real policy errors.
 
 ```powershell
 # Check current governance status
@@ -141,7 +141,7 @@ Deploy Azure Policies to create realistic governance constraints. Teams will enc
 | App Service HTTPS       | Deny   | `httpsOnly: true`                          |
 
 > [!WARNING]
-> Policies take 5-15 minutes to become effective after deployment.
+> Policies take 5–15 minutes to become effective after deployment.
 > **Deploy policies at least 30 minutes before the first team reaches Challenge 3.**
 > Verify activation using the status script below before the event begins.
 
@@ -223,7 +223,7 @@ echo "✅ Ready!"
 
 **Common Issues:**
 
-Check the Azure Resource Manager pricing tools in the current MCP configuration. Do not diagnose against the retired standalone Pricing MCP server.
+Check the Azure Resource Manager pricing tools in the current MCP configuration. Do not diagnose against the retired stand-alone Pricing MCP server.
 
 ### 🍽️ Lunch Break (12:00 - 12:45)
 
@@ -340,7 +340,7 @@ Use this short buffer to confirm teams are ready for load testing, unblock deplo
 
 | Issue                    | Solution                         |
 | ------------------------ | -------------------------------- |
-| `08-As-Built` output too verbose | Prompt: "Keep observed evidence, verification limits, and actionable steps; remove generic Azure background" |
+| `08-As-Built` output too verbose | Prompt: "Keep observed evidence, verification limits, and actionable steps; remove generic Azure background." |
 | Missing monitoring       | Use Application Insights logs    |
 
 ---
@@ -349,7 +349,7 @@ Use this short buffer to confirm teams are ready for load testing, unblock deplo
 
 **Facilitator Actions:**
 
-- Remind teams that each showcase slot is about 14 minutes total: 4-min pitch, 2-min Q&A, stakeholder questions, facilitator feedback, and transition
+- Remind teams that each showcase slot is about 14 minutes total: a 4-minute pitch, 2-minute Q&A, stakeholder questions, facilitator feedback, and transition
 - Share the [What to Present guide](../site/src/content/docs/challenges/challenge-8-partner-showcase.md#what-to-present)
 - Assign team pairings for the default 4-team rotation (see below)
 - Set up presentation area (projector, timer)
@@ -377,7 +377,7 @@ Pair teams for the default 4-team cohort:
 >
 > _When you're not presenting, you'll play the **Stakeholder** role — asking tough but fair questions!_
 >
-> _Format: 4 min pitch + 2 min Q&A + 30 sec transition._
+> _Format: 4-minute pitch + 2-minute Q&A + 30-second transition._
 >
 > _Team 1, you're up first!"_
 
@@ -394,7 +394,7 @@ After each presentation, briefly comment on:
 | **WAF Alignment**   | Reliability, security, cost, operations covered? |
 | **Professionalism** | How would this land with a real customer?        |
 
-### Wrap-up (16:50 - 17:00)
+### Wrap-Up (16:50 - 17:00)
 
 Finalize scores using [scoring-rubric.md](scoring-rubric.md), then announce the leaderboard from your facilitator worksheet or HackerBoard instance if your event package includes it.
 
@@ -424,8 +424,8 @@ Ask each team to spend 3 minutes discussing, then share one highlight with the r
 | -------------------------------------- | ----- |
 | **What went well?**                    |       |
 | **What was hardest?**                  |       |
-| **One thing I'd do differently**       |       |
-| **One thing I'll use in my real work** |       |
+| **One thing I would do differently**     |       |
+| **One thing I will use in my real work** |       |
 
 ---
 
@@ -476,15 +476,15 @@ Use this table when a team hits a blocking issue. Identify the failure class, ta
 
 | Failure Class | Symptoms | Immediate Action | Escalation |
 |---|---|---|---|
-| **Policy not active** | Deployment succeeds but should have been denied; `Get-GovernanceStatus` shows `Unknown` | Wait 10 min, re-run status script. Tell team to add tags/security settings anyway. | If still inactive after 30 min, re-run `Setup-GovernancePolicies.ps1`. |
+| **Policy not active** | Deployment succeeds but should have been denied; `Get-GovernanceStatus` shows `Unknown` | Wait 10 minutes, re-run the status script, and tell the team to add tags and security settings anyway. | If still inactive after 30 minutes, re-run `Setup-GovernancePolicies.ps1`. |
 | **Copilot access issue** | Agent picker is empty; Copilot is unavailable; a declared model is blocked | Confirm the template-derived repo is open in its Dev Container. Check current plan entitlements, organization model policy, and the affected agent frontmatter. Reload VS Code. | If access cannot be restored, pair the participant with a team member whose environment passes the gate. |
-| **Azure quota exceeded** | `QuotaExceeded` error on deployment | Check quota: `az vm list-usage -l swedencentral -o table`. Try a different SKU or region. | If no quota available, reduce scope (fewer resources) or share deployment output with team for learning. |
+| **Azure quota exceeded** | `QuotaExceeded` error on deployment | Check quota: `az vm list-usage -l swedencentral -o table`. Try a different SKU or region. | If no quota is available, reduce scope with fewer resources or share deployment output with the team for learning. |
 | **Deployment failure (naming)** | `NameNotAvailable`, `StorageAccountAlreadyTaken` | Use `uniqueString(resourceGroup().id)` suffix pattern. Check resource name constraints. | If persistent, create a fresh resource group with a different name. |
 | **Deployment failure (auth)** | `AuthorizationFailed`, `AADSTS50076` | Re-run `az login --use-device-code`. Verify subscription access: `az account show`. | If subscription lacks Owner role, check if Contributor + Resource Policy Contributor suffices. |
 | **Deployment failure (Bicep/Terraform)** | `BCP035`, `BCP037`, template validation errors, `terraform validate` failures | Read the error message — it usually names the exact property. Use `bicep build` or `terraform validate` to check before deploying. | If team is stuck >5 min, intervene directly with the specific fix. |
 | **MCP servers not responding** | A GitHub or Azure server declared in `.vscode/mcp.json` fails to start or authenticate | Preserve the error, inspect the current server configuration, confirm policy and authentication, and reload VS Code. | Use an equivalent portal, CLI, or web path only when the challenge permits fallback evidence; do not claim the MCP check passed. |
 | **Timing compression** | Team is behind schedule by >15 min | Compress: combine remaining work, reduce scope. At >30 min behind, skip non-essential challenges (C5, C6, C7 can be abbreviated). | Ensure C1–C4 and C8 are completed — these carry the most learning value and points. |
-| **Dev Container failure** | Container fails to build, image pull timeout | Check Docker Desktop is running (4 GB RAM). Run `Dev Containers: Rebuild Without Cache`. Check network. | If container cannot build, fall back to GitHub Codespaces. |
+| **Dev Container failure** | Container fails to build, image pull timeout | Check Docker Desktop is running (4 GB RAM). Run `Dev Containers: Rebuild Without Cache`. Check the network. | If container cannot build, fall back to GitHub Codespaces. |
 
 ### Decision Framework
 
@@ -492,7 +492,7 @@ When a team is blocked, follow this order:
 
 1. **Can you unblock in <2 minutes?** → Fix it directly (auth, reload, typo fix)
 2. **Is it a learning moment?** → Guide the team to the fix (Bicep errors, naming)
-3. **Is it infrastructure/tooling?** → Fix it directly, don't let teams waste time
+3. **Is it infrastructure/tooling?** → Fix it directly; do not let teams waste time
 4. **Is it >5 minutes with no progress?** → Compress scope or activate fallback path
 5. **Is the team >30 minutes behind?** → Skip to the next critical challenge
 
@@ -575,7 +575,7 @@ If challenges run long, use this priority guide for what to compress or skip:
 ### Copilot Down
 
 1. Announce to all teams
-2. Use template files in `.github/skills/azure-artifacts/templates/`
+2. Use template files from `.github/skills/apex-azure-artifacts/templates/`
 3. Extend time if needed
 
 ### Azure Issues
@@ -600,4 +600,4 @@ Remind teams:
 az group delete --name rg-freshconnect-dev-swc --yes --no-wait
 ```
 
-Collect feedback on what worked and what didn't.
+Collect feedback on what worked and what did not.

@@ -1,11 +1,11 @@
 name: Bug report
-description: Report a problem in the docs site, facilitator guide, or governance scripts.
+description: Report a problem with the docs site, facilitator guide, or governance scripts.
 labels: [bug]
 body:
   - type: markdown
     attributes:
       value: |
-        Participants working inside the template repo should file bugs against
+        Participants working in the template repo should file bugs against
         [apex-accelerator](https://github.com/jonathan-vella/apex-accelerator) instead.
   - type: input
     id: location
@@ -19,7 +19,7 @@ body:
     id: problem
     attributes:
       label: What is wrong?
-      description: Describe the issue. Include screenshots or copy-pasted text where useful.
+      description: Describe the issue. Include screenshots or copied text where useful.
     validations:
       required: true
   - type: textarea
@@ -32,6 +32,6 @@ body:
     id: context
     attributes:
       label: Additional context
-      description: Browser, facilitator vs. participant, event date, etc.
+      description: Browser, facilitator versus participant, event date, etc.
     validations:
       required: false

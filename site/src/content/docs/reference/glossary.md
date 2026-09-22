@@ -181,6 +181,6 @@ pillars: Security, Reliability, Performance Efficiency, Cost Optimization,
 and Operational Excellence.
 
 **What-if** — An Azure deployment preview that shows what resources would be
-created, modified, or deleted without actually making changes.
+created, modified, or deleted without making changes.
 Participants receive this evidence from the selected Deploy agent; facilitators
 may run `az deployment group what-if` as a diagnostic.

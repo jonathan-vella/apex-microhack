@@ -127,7 +127,7 @@ Design and deploy the Azure infrastructure for the **FreshConnect MVP** (Minimum
 5. **Load Testing** — Validate performance under stress
 6. **Documentation** — Create evidence-based as-built guides and runbooks
 7. **Diagnostics** — Build troubleshooting procedures
-8. **Team Showcase** — Present your solution professionally
+8. **Team Showcase** — Present your solution to stakeholders
 
 Not all teams will complete all challenges — the goal is mastering the platform engineering workflow.
 
@@ -151,7 +151,7 @@ Not all teams will complete all challenges — the goal is mastering the platfor
 
 ### 🚗 Driver
 
-**Primary Responsibility**: Hands on keyboard
+**Primary Responsibility**: Hands on the keyboard
 
 **You Will:**
 
@@ -162,7 +162,7 @@ Not all teams will complete all challenges — the goal is mastering the platfor
 
 **Tips:**
 
-- Share your screen so team can follow
+- Share your screen so the team can follow
 - Verbalize what you're doing: "I'm about to invoke the Architect agent..."
 - Pause before executing — wait for team consensus
 - Ask "Should I run this?" before deployments
@@ -191,11 +191,11 @@ Not all teams will complete all challenges — the goal is mastering the platfor
 - Have the challenge doc open on your device
 - Call out the next step before Driver finishes the current one
 - Track time per challenge — 8 challenges in one day means the pace stays tight
-- In **Challenge 4** (DR Curveball): Help team pivot quickly
+- In **Challenge 4** (DR Curveball): Help the team pivot quickly
 
 **Coaching Mindset:**
 
-- When team is stuck, ask questions: "What are we trying to achieve?"
+- When the team is stuck, ask questions: "What are we trying to achieve?"
 - Guide exploration: "Have we considered...?"
 
 ---

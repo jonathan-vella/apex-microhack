@@ -29,7 +29,7 @@ Guide GitHub issue, pull request, and release operations for this repository.
 ### Releases
 
 - Tag releases with semantic versioning: `v1.0.0`
-- Include changelog summarising content and structural changes
+- Include changelog entries summarizing content and structural changes
 - Coordinate with facilitator guide updates
 
 ## Constraints

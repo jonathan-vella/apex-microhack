@@ -1,6 +1,6 @@
 # APEX MicroHack
 
-> **1-Day Hackathon**: Master IaC-driven Azure infrastructure delivery using platform engineering practices — accelerated by GitHub Copilot.
+> **1-day hackathon**: Master IaC-driven Azure infrastructure delivery using platform engineering practices — accelerated by GitHub Copilot.
 
 ## Overview
 
@@ -13,7 +13,7 @@
 
 APEX stands for **Agentic Platform Engineering eXperience for Azure**. Teams use GitHub Copilot to move from requirements through Azure platform design, implementation planning, and delivery.
 
-Participants should create their own repository from the [APEX Accelerator template](https://github.com/jonathan-vella/apex-accelerator) rather than cloning this repository directly. Participant guidance is published at [microhack.apexops.pro](https://microhack.apexops.pro/).
+Participants should create their own repository from the [APEX Accelerator template](https://github.com/jonathan-vella/apex-accelerator) instead of cloning this repository directly. Participant guidance is published at [microhack.apexops.pro](https://microhack.apexops.pro/).
 
 ## Participant Path
 

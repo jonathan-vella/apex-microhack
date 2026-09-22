@@ -59,7 +59,7 @@ Checkbox items (☐) are for pen-and-paper or digital-form use.
 | --------------------------- | -------------- | -------- |
 | 1: Requirements (plan)      | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
 | 2: Architecture (architect) | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
-| 3: Implementation (bicep)   | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
+| 3: Implementation (Bicep)   | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
 | 4: DR Curveball             | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
 | 5: Load Testing             | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
 | 6: Documentation            | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
@@ -75,7 +75,7 @@ Checkbox items (☐) are for pen-and-paper or digital-form use.
 ☐ Cost estimation with Azure Resource Manager pricing tools
 ☐ Multi-region DR patterns
 ☐ Load testing basics
-☐ Other: ******\_\_\_******
+☐ Other: __________________
 
 ### 6. Which learning was most valuable?
 
@@ -94,7 +94,7 @@ Checkbox items (☐) are for pen-and-paper or digital-form use.
 | Dev Container              | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
 | GitHub Copilot             | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
 | Custom Agents (plan, etc.) | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
-| Azure Resource Manager pricing tools          | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
+| Azure Resource Manager pricing tools | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
 | Scoring Scripts            | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
 
 ### 8. Did you encounter any technical issues?
@@ -180,4 +180,4 @@ If yes, describe:
 
 ---
 
-**Thank you for your feedback! 🙏**
+**Thank you for your feedback.**

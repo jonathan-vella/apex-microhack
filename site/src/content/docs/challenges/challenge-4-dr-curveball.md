@@ -38,7 +38,7 @@ pressure.
 Midway through the workshop, Nordic Fresh Foods signs a major Danish contract and the
 board raises the budget ceiling to about €700 per month. The platform now needs a
 secondary region in `germanywestcentral`, an RTO of 1 hour, and an RPO of 15 minutes.
-You must recommend a resilient path fast, then show how it changes the design.
+You must recommend a resilient path quickly, then show how it changes the design.
 
 ## Your Tasks
 
@@ -74,7 +74,7 @@ You must recommend a resilient path fast, then show how it changes the design.
   the paper path.
 - Updated architecture diagram showing regions, replication paths, and failover flow.
 - Revised cost estimate or cost assumptions for the chosen approach.
-- Deployment evidence if you actually applied the DR change.
+- Deployment evidence if you applied the DR change.
 
 ## Success Criteria
 
@@ -83,7 +83,7 @@ You must recommend a resilient path fast, then show how it changes the design.
 | Decision quality | The team chooses an HA/DR path with clear business reasoning | ADR states the trigger, chosen option, trade-offs, and rejected alternatives |
 | DR design clarity | The resilience design is concrete instead of hand-wavy | Parameters, regional changes, and failover behavior are explicit |
 | Delivery path | The team is honest about what was deployed versus designed | Deployment evidence exists, or the paper path is documented cleanly |
-| Architecture communication | Others can understand the updated design fast | Updated diagram and ADR tell the same before/after story |
+| Architecture communication | Others can understand the updated design quickly | Updated diagram and ADR tell the same before/after story |
 
 ## Tips / Hints
 
@@ -109,11 +109,11 @@ Alternatives -> what you rejected and why
 
 ## Watch Out
 
-- A paper exercise can still score well, but only if you clearly separate design
+- A paper exercise can still score well, but only if you separate design
   intent from actual deployment evidence.
 - The paper path can still prove your C4 design thinking, but it does not replace
   missing C3 deployment evidence. Be explicit about what you designed versus what
-  actually ran.
+  ran.
 - Do not patch downstream code while approved requirements, architecture, or plans still describe the old recovery targets.
 - Do not pick active-active unless you can explain consistency, failover, and cost.
 - Do not update the diagram without updating the ADR, or vice versa.
@@ -132,4 +132,4 @@ Alternatives -> what you rejected and why
 
 Challenge 5 treats this DR-aware platform as the system under test. If you deployed the
 change, you will validate it under load; if you stayed on paper, you will document the
-test plan and expected thresholds against the design you just proposed.
+test plan and expected thresholds against the design you proposed in C4.

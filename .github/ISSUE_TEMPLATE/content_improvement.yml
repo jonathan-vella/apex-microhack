@@ -1,5 +1,5 @@
 name: Content improvement
-description: Suggest a clarification, new section, or fix in the workshop content.
+description: Suggest a clarification, new section, or correction in the workshop content.
 labels: [content]
 body:
   - type: input

@@ -36,5 +36,5 @@ Create a new directory under `.github/skills/<skill-name>/` with a `SKILL.md` fi
 ## After Creating
 
 1. Add the skill to `.github/skills/README.md`
-2. If the skill is referenced by an agent, update the agent file in `.github/agents/`
+2. If an agent references the skill, update the agent file in `.github/agents/`
 3. Update `AGENTS.md` if the skills catalog section needs refreshing

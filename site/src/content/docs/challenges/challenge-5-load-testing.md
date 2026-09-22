@@ -29,7 +29,7 @@ next:
 - **Decisions now:** Which endpoint matters most, how to ramp to 500 users, what counts as pass or fail, and what to change next if results miss target.
 - **Next:** C6 uses the results to create audience-specific operational documents.
 
-This challenge is about decision-quality, not just running a tool. The report should
+This challenge is about decision quality, not only tool execution. The report should
 tell the next reader what you tested, what happened, and what it means for launch risk.
 
 ## The Business Challenge
@@ -102,7 +102,7 @@ Keep the report focused on signal, not raw terminal output. Use
 - A health endpoint alone is usually too shallow to represent customer experience.
 - A failing test without interpretation is not useful evidence.
 - Do not paste pages of raw output into the report without summarizing it.
-- If no deployment exists, clearly label the fallback as an intended test plan rather
+- If no deployment exists, label the fallback as an intended test plan rather
   than a completed execution.
 
 ## Artifact Handoff

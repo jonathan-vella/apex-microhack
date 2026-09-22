@@ -2,4 +2,4 @@ blank_issues_enabled: false
 contact_links:
   - name: Participant template repo
     url: https://github.com/jonathan-vella/apex-accelerator/issues
-    about: Issues with agents, skills, dev container, or the Bicep/Terraform scaffolds belong in the template repo.
+    about: Issues with agents, skills, the dev container, or Bicep/Terraform scaffolds belong in the template repo.

@@ -9,7 +9,7 @@ sidebar:
 
 import ExpandableTable from "../../../components/ExpandableTable.astro";
 
-export const quickDiagnosisHeaders = ["Symptom", "Likely category", "Go to"];
+export const quickDiagnosisHeaders = ["Symptom", "Go to", "Likely category"];
 
 export const quickDiagnosisRows = [
   [
@@ -59,7 +59,7 @@ export const quickDiagnosisRows = [
   ],
 ];
 
-Common issues and fixes for APEX.
+Use this page to diagnose setup, Azure deployment, validation, and Accelerator agent issues during the MicroHack.
 
 ## Quick Diagnosis
 
@@ -99,9 +99,9 @@ Common issues and fixes for APEX.
 
 **Fixes**:
 
-1. Ensure Docker Desktop is running and has at least 4 GB RAM allocated
+1. Ensure Docker Desktop is running and has at least 4 GB of RAM allocated
 2. Run `Dev Containers: Rebuild Container Without Cache` from the Command Palette
-3. Check your network — the build pulls images from `mcr.microsoft.com`
+3. Check your network; the build pulls images from `mcr.microsoft.com`
 
 ### Extensions not loading
 
@@ -179,6 +179,7 @@ param location string = resourceGroup().location
 4. Reload VS Code after policy changes.
 
 Do not replace the model declaration only to make the error disappear. Compare your repository with the current Accelerator and ask the facilitator before changing an upstream-managed agent.
+
 ### Agent not appearing in Chat
 
 **Symptoms**: A main agent such as `01-Orchestrator` does not appear in the agent picker.
@@ -192,6 +193,7 @@ Do not replace the model declaration only to make the error disappear. Compare y
 5. Compare the repository with the current APEX Accelerator if files are missing.
 
 Do not enable a legacy discovery setting as a substitute for loading the current repository configuration.
+
 ### Agent produces incomplete output
 
 **Symptoms**: Agent stops mid-response or skips steps.
@@ -216,6 +218,7 @@ Do not enable a legacy discovery setting as a substitute for loading the current
 6. Compare your MCP configuration with the current APEX Accelerator.
 
 The server list changes over time. Do not diagnose against the retired Azure Pricing, Draw.io, MS Learn, or Terraform list unless those servers are present in your current repository.
+
 GitHub reference: [Configure MCP server access](https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-mcp-usage/configure-mcp-server-access)
 
 APEX reference: [MCP server integration](https://apexops.pro/concepts/how-it-works/mcp-integration/)
@@ -255,7 +258,7 @@ For remaining issues, check `.markdownlint-cli2.jsonc` for the rule that fired.
 
 **Fixes**:
 
-1. **Rotate the credential immediately** — regenerate the key or password in the Azure Portal or CLI
+1. **Rotate the credential immediately** — regenerate the key or password in the Azure portal or CLI
 2. Replace the secret with a placeholder (`<your-connection-string>`) in the file
 3. If already committed, remove from Git history or notify your facilitator
 4. Use Key Vault references or environment variables going forward
@@ -278,7 +281,7 @@ For remaining issues, check `.markdownlint-cli2.jsonc` for the rule that fired.
 **Diagnosis**:
 
 1. Read the error message — it names the policy that denied the operation
-2. Common microhack policies: required tags (`Environment`, `Project`), HTTPS-only, TLS 1.2, allowed locations
+2. Common MicroHack policies: required tags (`Environment`, `Project`), HTTPS-only, TLS 1.2, allowed locations
 
 **Fixes by policy type**:
 
@@ -355,7 +358,7 @@ If you cannot resolve a policy error after checking the table above, ask your fa
 
 **Fixes**:
 
-1. Check the deployment status in the Azure Portal (Resource group → Deployments)
+1. Check the deployment status in the Azure portal (Resource group → Deployments)
 2. Look for the specific resource that failed and its error message
 3. Preserve the exact error and escalate to the facilitator or the selected
    `07b-Bicep Deploy` or `07t-Terraform Deploy` agent. Participants must not

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Keep workshop documentation consistent, accurate, and fresh.
+Keep workshop documentation consistent, accurate, and current.
 
 ## When to Use
 
