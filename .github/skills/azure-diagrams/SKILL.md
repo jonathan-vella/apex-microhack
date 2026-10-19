@@ -1,3 +1,8 @@
+---
+name: azure-diagrams
+description: "Create and maintain Mermaid infrastructure diagrams for workshop materials, such as architectures, data flows, and DR topologies."
+---
+
 # Azure Diagrams Skill
 
 ## Purpose

@@ -1,3 +1,8 @@
+---
+name: challenge-guide-styler
+description: "Apply the canonical challenge template and visual style standards when creating, refactoring, or reviewing workshop challenge guides."
+---
+
 # Challenge Guide Styler Skill
 
 ## Purpose

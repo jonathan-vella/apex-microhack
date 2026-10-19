@@ -1,3 +1,8 @@
+---
+name: docs-writer
+description: "Keep workshop documentation consistent, accurate, and current when writing or editing challenge guides, setup instructions, and reference pages."
+---
+
 # Docs Writer Skill
 
 ## Purpose
