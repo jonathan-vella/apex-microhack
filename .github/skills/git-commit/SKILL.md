@@ -1,3 +1,8 @@
+---
+name: git-commit
+description: "Format conventional commit messages when writing or reviewing commits in this repository."
+---
+
 # Git Commit Skill
 
 ## Purpose

@@ -1,3 +1,8 @@
+---
+name: make-skill-template
+description: "Scaffold a new domain skill under `.github/skills/` with a SKILL.md template."
+---
+
 # Make Skill Template
 
 ## Purpose

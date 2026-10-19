@@ -1,3 +1,8 @@
+---
+name: github-operations
+description: "Guide GitHub issue, pull request, and release operations for this repository, including triage, PRs, releases, and milestones."
+---
+
 # GitHub Operations Skill
 
 ## Purpose

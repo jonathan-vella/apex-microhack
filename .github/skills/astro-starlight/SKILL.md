@@ -1,3 +1,8 @@
+---
+name: astro-starlight
+description: "Guide changes to the Astro Starlight documentation site in `site/`: docs pages, astro.config.mjs, components, and custom CSS."
+---
+
 # Astro Starlight Skill
 
 ## Purpose
