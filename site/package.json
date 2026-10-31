@@ -16,13 +16,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/markdown-remark": "^7.3.3",
-    "@astrojs/starlight": "^0.42.6",
+    "@astrojs/markdown-remark": "^7.3.4",
+    "@astrojs/starlight": "^0.42.7",
     "@fontsource-variable/inter": "^5.3.0",
     "@fontsource/ibm-plex-mono": "^5.3.0",
     "@fontsource/manrope": "^5.3.0",
     "@fontsource/space-grotesk": "^5.3.0",
-    "astro": "^7.4.1",
+    "astro": "^7.4.2",
     "mermaid": "^12.2.0",
     "rehype-mermaid-lite": "^1.1.0",
     "sharp": "^0.35.5"
@@ -34,8 +34,8 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^3.2.1",
     "globals": "^17.13.0",
-    "markdownlint-cli2": "^0.23.3",
-    "typescript-eslint": "^8.72.0"
+    "markdownlint-cli2": "^0.24.0",
+    "typescript-eslint": "^8.72.1"
   },
   "overrides": {
     "brace-expansion": "^5.0.12",
