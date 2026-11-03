@@ -48,16 +48,16 @@ export const implementationCommandHeaders = [
 export const implementationCommandRows = [
   [
     "Bicep",
-    "Bicep validation and preview evidence from the selected Deploy agent",
+    "Bicep validation and preview evidence from 07b-Bicep Deploy",
   ],
   [
     "Terraform",
-    "Terraform validation and preview evidence from the selected Deploy agent",
+    "Terraform validation and preview evidence from 07t-Terraform Deploy",
   ],
 ];
 
 :::note[Challenge Info]
-⏱️ **45 min** · 🏆 **25 pts** · 🤖 `04g-Governance`, `05-IaC Planner`, `10-Challenger`, track-specific CodeGen and Deploy agents
+⏱️ **45 min** · 🏆 **25 pts** · 🤖 `01-Orchestrator` or domain owners, shared reviewer, track-specific CodeGen and Deploy agents (optional `10-Challenger`)
 📄 governance constraints, approved plan and contracts, IaC handoff, deployment evidence, and workflow diagram
 
 :::
@@ -65,9 +65,9 @@ export const implementationCommandRows = [
 ## Objective
 
 - **Do now:** Choose one IaC path, generate templates, validate them, and attempt deployment.
-- **Input:** Approved requirements, architecture and cost evidence, SKU manifest, and current review findings.
-- **Output:** Governance constraints, approved IaC plan and contracts, one IaC track, validation evidence, deployment summary, and workflow diagram.
-- **Required to move on:** Governance reconciliation, approved plan review, one validated IaC path, explicit deployment authorization, a recorded deployment attempt, and the workflow explanation.
+- **Input:** Approved requirements, architecture and cost evidence, preliminary policy feasibility when applicable, SKU manifest, and current review findings.
+- **Output:** Governance constraints, approved IaC plan and contracts, one IaC track, validation evidence, deployment summary or actual blocker, and workflow diagram.
+- **Required to move on:** Governance reconciliation and approval, approved plan review, one validated IaC path, explicit scoped deployment authorization before any attempt, a recorded deployment attempt or blocker, and the workflow explanation.
 - **Decisions now:** Bicep vs Terraform, module boundaries, governance handling, and what evidence to keep.
 - **Next:** C4 branches from your actual deployment outcome and extends the same platform for HA/DR.
 
@@ -83,12 +83,19 @@ deployed is not enough.
 
 ## Your Tasks
 
-1. **Discover governance (~5 min).** Select `04g-Governance` to capture effective policy constraints in `04-governance-constraints.md` and `.json`. If constraints exist, complete the required reconciliation review and approval.
-2. **Plan the implementation (~8 min).** Select `05-IaC Planner` to create `04-implementation-plan.md` and the machine-readable contracts. Select `10-Challenger`, resolve blocking plan findings, and approve the plan.
-3. **Generate one IaC track (~10 min).** Select `06b-Bicep CodeGen` or `06t-Terraform CodeGen` according to the approved requirements. Keep the approved plan read-only and retain `05-iac-handoff.json`.
-4. **Validate and preview (~7 min).** Run the deterministic checks and Bicep what-if or Terraform plan. Validation success does not authorize deployment.
-5. **Authorize and deploy (~10 min).** Review the proposed scope and current evidence as a team. Explicitly authorize the matching Deploy agent, then capture the result in `06-deployment-summary.md`. If deployment fails, preserve the exact blocker.
-6. **Explain the compressed workshop path (~5 min).** Create `03-des-deployment-workflow.md` showing human handoffs, reviews, approval gates, validation, deployment, and return paths.
+In the VS Code Copilot harness, use `01-Orchestrator` to delegate these bounded
+owner tasks, or select the needed domain owners directly. Owners invoke the shared
+independent `challenger-review-subagent` where required and the authorized parent
+records the actual result. If a delegated owner cannot launch the reviewer,
+Orchestrator can relay the same review as an independent sibling. `10-Challenger` is
+an optional manual wrapper, not a required handoff.
+
+1. **Discover governance (~5 min).** Have `04g-Governance` reuse current authorized preliminary evidence or discover effective subscription and inherited policy constraints in `04-governance-constraints.md` and `.json`. Complete any required independent reconciliation review and the Governance approval. Only complete discovery can establish that no constraints apply.
+2. **Plan the implementation (~8 min).** Have `05-IaC Planner` create `04-implementation-plan.md` and its machine-readable contracts. The Planner invokes the independent comprehensive review; resolve blocking findings, verify the recorded review is current, and approve the plan and contracts.
+3. **Generate one IaC track (~10 min).** Have `06b-Bicep CodeGen` or `06t-Terraform CodeGen` implement the approved track. Keep the plan and contracts read-only and retain `05-iac-handoff.json`. Code review is optional; deterministic validation is not.
+4. **Validate and preview (~7 min).** Run the selected track's deterministic checks and Bicep what-if or Terraform plan. Review and accept the exact current preview, then obtain the matching policy precheck. Validation and preview acceptance do not authorize deployment.
+5. **Authorize and deploy (~10 min).** Review the current preview, policy precheck, tenant, subscription, environment, operation, phase, budget, and matching code and parameters. If the checks permit apply, separately authorize the exact scope as a team before `07b-Bicep Deploy` or `07t-Terraform Deploy` changes Azure. Record the actual result in `06-deployment-summary.md`; if a gate blocks or deployment fails, preserve the exact blocker instead of claiming success.
+6. **Explain the compressed workshop path (~5 min).** Create `03-des-deployment-workflow.md` showing bounded Orchestrator delegation and results or missing-input requests returning to it, or direct-owner entry. Include independent reviews and human stage gates, CodeGen and the IaC handoff, validation, the exact preview and policy precheck, separate human deployment authorization, actual results, and repair paths back to the owner of each blocker.
 
 <ExpandableTable
   title="IaC Agent Routes"
@@ -124,24 +131,24 @@ deployed is not enough.
 ## Deliverables
 
 - `agent-output/freshconnect/04-governance-constraints.md` and `.json`
-- Governance reconciliation evidence when effective constraints exist.
-- `agent-output/freshconnect/04-implementation-plan.md` and its machine-readable contracts.
+- Governance reconciliation evidence when required by the current constraints and workflow.
+- `agent-output/freshconnect/04-implementation-plan.md` and its machine-readable `04-iac-contract.json`, `04-policy-property-map.json`, and `04-environment-manifest.json`.
 - Current plan review evidence with no unresolved blocking findings.
 - IaC folder at `infra/bicep/freshconnect/` or `infra/terraform/freshconnect/`.
 - `agent-output/freshconnect/05-iac-handoff.json`.
 - Validation and preview evidence for the selected track.
-- `agent-output/freshconnect/06-deployment-summary.md` and policy-precheck evidence.
-- `agent-output/freshconnect/03-des-deployment-workflow.md` showing the real human-approved path.
+- `agent-output/freshconnect/06-deployment-summary.md` and `06-policy-precheck.json` when reached, or the exact blocker if they could not be produced.
+- `agent-output/freshconnect/03-des-deployment-workflow.md` showing the real delegated or direct-owner path and its human approvals.
 
 ## Success Criteria
 
 | Focus | What good looks like | Evidence |
 | --- | --- | --- |
-| Governance closure | Effective policy constraints are known before planning | Governance artifacts and reconciliation evidence are present or the no-constraints condition is recorded |
-| Approved implementation strategy | The plan connects approved architecture, cost, SKU, and governance evidence to code generation | Plan contracts and current Challenger evidence are complete |
+| Governance closure | Effective policy constraints are known before planning | Current complete discovery and required reconciliation evidence are present, including evidence for any no-constraints condition |
+| Approved implementation strategy | The plan connects approved architecture, cost, SKU, and governance evidence to code generation | Plan contracts and recorded independent review evidence are current |
 | Maintainable IaC | One selected track is structured for readability and reuse | The IaC folder follows the approved plan and includes the handoff artifact |
-| Validation and authorization | The team separates deterministic validation from permission to deploy | Preview evidence exists and deployment authorization is explicit |
-| Delivery understanding | The team can explain what happened and why | Deployment evidence and workflow diagram show handoffs, gates, failures, and return paths |
+| Validation and authorization | The team separates deterministic validation from permission to deploy | The exact preview and policy precheck are current, and apply authorization is separately scoped |
+| Delivery understanding | The team can explain what happened and why | Actual deployment evidence and the workflow diagram show delegation, gates, failures, and return paths |
 
 ## Tips / Hints
 
@@ -165,10 +172,11 @@ If you hit a deployment blocker, record three things before you ask the agent to
 ## Watch Out
 
 - Governance discovery is not optional because the challenge is time-boxed.
-- A missing or failed Azure policy query does not prove that no constraints exist.
+- A missing, partial, stale, or failed Azure policy query does not prove that no constraints exist.
 - `05-IaC Planner` owns plan corrections. CodeGen must not silently rewrite the approved plan.
-- Validation success is not deployment success and does not grant deployment permission.
+- A missing or failed review or validation is not success, and a policy precheck `BLOCK` cannot be approved away. Generic approval, preview acceptance, and automatically answered forms do not grant human permission to apply.
 - Preserve the exact preview, policy, deployment, and application-health limits in the summary.
+- If an affected gate cannot pass, record the blocker and keep any C4 paper path distinct from completed work.
 - Do not skip artifact names; later challenges and facilitator review depend on them.
 
 ## Artifact Handoff

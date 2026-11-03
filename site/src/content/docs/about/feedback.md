@@ -72,7 +72,7 @@ Checkbox items (☐) are for pen-and-paper or digital-form use.
 ☐ GitHub Copilot custom agents
 ☐ Bicep / Infrastructure as Code
 ☐ Azure Well-Architected Framework
-☐ Cost estimation with Azure Resource Manager pricing tools
+☐ Cost estimation with Azure MCP pricing tools
 ☐ Multi-region DR patterns
 ☐ Load testing basics
 ☐ Other: __________________
@@ -94,8 +94,8 @@ Checkbox items (☐) are for pen-and-paper or digital-form use.
 | Dev Container              | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
 | GitHub Copilot             | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
 | Custom Agents (plan, etc.) | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
-| Azure Resource Manager pricing tools | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
-| Scoring Scripts            | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
+| Azure MCP pricing tools    | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
+| Rubric / leaderboard tools | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
 
 ### 8. Did you encounter any technical issues?
 

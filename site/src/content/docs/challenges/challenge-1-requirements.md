@@ -16,7 +16,7 @@ next:
 ---
 
 :::note[Challenge Info]
-⏱️ **30 min** · 🏆 **20 pts** · 🤖 `02-Requirements`, `10-Challenger` · 📄 requirements, SKU manifest, and review findings
+⏱️ **30 min** · 🏆 **20 pts** · 🤖 `01-Orchestrator` or `02-Requirements`, shared reviewer (optional `10-Challenger`) · 📄 requirements, SKU manifest, and review findings
 
 :::
 
@@ -25,7 +25,7 @@ next:
 - **Do now:** Turn the FreshConnect scenario into an Azure-ready requirements document.
 - **Input:** Scenario brief from [Workshop Prep](../../getting-started/workshop-prep/).
 - **Output:** `agent-output/freshconnect/01-requirements.md`, the initial SKU manifest, and requirements review findings.
-- **Required to move on:** Scope, NFRs, compliance needs, budget constraints, resolved Challenger findings, and team approval.
+- **Required to move on:** Scope, NFRs, compliance needs, budget constraints, current independent review evidence, resolved blocking findings, and team approval.
 - **Decisions now:** SLA target, RTO/RPO, authentication model, EU data handling.
 - **Next:** C2 uses this file to choose services and justify architecture trade-offs.
 
@@ -47,11 +47,11 @@ API Management (APIM) is out of scope for this POC due to time constraints.
 ## Your Tasks
 
 1. Review the scenario and write down the business constraints you cannot ignore: scale, budget, timeline, compliance, and team capacity.
-2. Prompt `02-Requirements` with that context and let it surface gaps, trade-offs, and open questions.
+2. In the VS Code Copilot harness, start with `01-Orchestrator` to delegate a bounded Requirements task, or select `02-Requirements` directly. Provide the `freshconnect` project, scenario, and your current answers; let Requirements surface gaps, trade-offs, and open questions.
 3. Refine the output until it separates functional requirements, non-functional requirements, operational expectations, and compliance needs.
-4. Save the requirements and confirm the initial `sku-manifest.json` and `sku-manifest.md` exist.
-5. Select `10-Challenger` for the comprehensive requirements review. Resolve every blocking finding.
-6. Review the approved artifact as a team and explicitly approve the handoff to Architecture.
+4. Confirm the requirements and initial `sku-manifest.json` and `sku-manifest.md` are saved, with your answers and SKU preferences preserved.
+5. Requirements automatically invokes the shared independent `challenger-review-subagent`; the authorized parent records its actual result. If a delegated owner cannot launch the reviewer, Orchestrator can relay the same review as an independent sibling task. `10-Challenger` is an optional manual wrapper, not a required step.
+6. Resolve blocking findings in the owned artifact, verify the recorded review is current, and explicitly approve Requirements as a team before Architecture. This stage approval does not authorize deployment.
 
 ## Key Decisions
 
@@ -80,7 +80,7 @@ API Management (APIM) is out of scope for this POC due to time constraints.
 | Functional scope | The MVP capabilities are concrete enough for architecture decisions | Required capabilities are listed without mixing in phase-2 ideas |
 | Operational targets | Reliability and recovery expectations are explicit | SLA, RTO, RPO, and support expectations are documented |
 | Compliance and cost | Non-negotiable boundaries are visible early | EU residency, GDPR impact, and budget guardrails appear in the final doc |
-| Review and approval | The team resolves required findings before architecture | Challenger evidence is current and the team records approval of the handoff |
+| Review and approval | The team resolves required findings before architecture | Recorded independent review evidence is current and the team approves Requirements |
 
 ## Watch Out
 
@@ -88,7 +88,7 @@ API Management (APIM) is out of scope for this POC due to time constraints.
 - Do not skip budget or operational assumptions because the business brief feels incomplete.
 - Do not turn unresolved questions into fake certainty; mark them as assumptions if needed.
 - Do not optimize for technical preference over business need.
-- Do not continue to Architecture with missing review evidence or unresolved blocking findings.
+- Do not continue to Architecture with missing, failed, or stale review evidence or unresolved blocking findings. Report the actual blocker; do not use the optional manual wrapper to bypass a missing required result.
 
 ## Artifact Handoff
 
@@ -96,7 +96,7 @@ API Management (APIM) is out of scope for this POC due to time constraints.
 | --- | --- |
 | **Input from** | Scenario brief ([Workshop Prep](../../getting-started/workshop-prep/)) |
 | **Your output** | Requirements, SKU manifest, and approved requirements review evidence |
-| **Next challenge uses** | C2 reads this file to choose services, assess trade-offs, and build the architecture diagram |
+| **Next challenge uses** | C2 reads this file to choose services, assess trade-offs, and build cost evidence |
 
 ## Next Step
 

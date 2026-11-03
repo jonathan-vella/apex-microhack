@@ -25,8 +25,8 @@ npm run lint:prose  # Vale (requires `vale` on PATH; run `vale sync` once)
 
 1. Verify product claims against the reviewed APEX, APEX Docs, and Accelerator sources.
 2. Preserve the workshop scenario, challenge timings, points, scoring, and participant/facilitator boundaries.
-3. Apply the manually invoked `.github/skills/microhack-unslop/SKILL.md` only after technical review.
-4. Re-run the relevant documentation, link, and build checks after the editorial pass.
+3. If the user explicitly requests prose review or cleanup, manually invoke `.github/skills/microhack-unslop/SKILL.md` after technical review.
+4. Run the relevant documentation, link, and build checks after content changes and any authorized editorial pass.
 
 ## Pull request checklist
 

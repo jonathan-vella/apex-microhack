@@ -7,21 +7,20 @@ sidebar:
 
 ## What APEX adds to Copilot
 
-GitHub Copilot Chat is the interface. APEX adds repository-defined main agents, helper subagents, skills, instructions, workflow state, and validation tools.
+GitHub Copilot Chat is the interface. APEX adds repository-defined agents, skills, workflow state, and validation tools. In VS Code, choose the **Copilot** session target and an organization-permitted model. The session target is the harness; selecting a model does not change it.
 
-The human remains in control:
+Start with `01-Orchestrator` to coordinate FreshConnect, or directly select a domain owner for a bounded task. The Orchestrator can delegate authorized work to named owners through native tasks, collect missing decisions, and continue to the next approved stage.
 
-1. Select a main agent for the current workflow step.
-2. Review the proposed scope and the evidence it will use.
-3. Inspect the produced artifact and any Challenger findings.
-4. Resolve required findings.
-5. Approve the handoff to the next main agent.
+The team remains in control:
 
-`01-Orchestrator` helps you identify the next step and proposes a handoff. It does not autonomously execute the main-agent sequence.
+1. Provide the project, current evidence, and authorized scope.
+2. Inspect the artifacts and recorded independent review findings.
+3. Resolve blocking findings and decide whether to approve the stage.
+4. Separately approve the current deployment preview and exact Azure scope before any deployment.
 
 :::caution
 
-Selecting an agent, completing a validation, or reaching a graph edge does not authorize deployment. The team must explicitly approve the proposed Azure changes before a Deploy agent applies them.
+Selecting an agent, passing a preflight or validation, or reaching a workflow edge does not authorize deployment. Approval must cover the actual tenant, subscription, target, operation, and current preview before a Deploy agent applies changes.
 
 :::
 
@@ -33,7 +32,7 @@ Selecting an agent, completing a validation, or reaching a graph edge does not a
 | Integrated Terminal | `` Ctrl+` `` | Run validation, Azure CLI, Bicep, Terraform, k6, and Git commands |
 | Explorer | `Ctrl+Shift+E` | Inspect agent output, IaC, and configuration |
 | Search | `Ctrl+Shift+F` | Find artifacts, identifiers, and old assumptions |
-| Copilot Chat | `Ctrl+Alt+I` | Select APEX agents and review handoffs |
+| Copilot Chat | `Ctrl+Alt+I` | Select the Copilot session target and APEX agents, and review results |
 | Inline Chat | `Ctrl+I` | Make a small, local edit when a main workflow agent is not required |
 
 Open the repository created from the [APEX Accelerator](https://github.com/jonathan-vella/apex-accelerator) in its Dev Container. The container supplies the toolchain expected by the agents.
@@ -44,21 +43,22 @@ Use these terms consistently:
 
 | Term | Meaning |
 |---|---|
-| Main agent | A human-selected owner for a workflow step, such as `03-Architect` |
+| Main agent or owner | A workflow role, such as `03-Architect`, selected directly or delegated by the Orchestrator |
 | Skill | Task-specific instructions loaded by an agent or invoked for a declared purpose |
-| Helper subagent | A bounded worker that an owning agent may use for validation or specialist evidence |
-| Handoff | A proposal asking the human to select another main agent |
-| Approval gate | A human decision that permits the workflow to move to the next stage |
+| Native delegated task | A bounded assignment with named inputs, permitted outputs, and scope |
+| Helper subagent | A bounded worker an owner may invoke for validation, independent review, or specialist evidence |
+| Recovery summary | `00-handoff.md`, which records current evidence, decisions, and blockers |
+| Approval gate | A human decision on the current stage and proposed next scope |
 
-A main agent is not a skill or helper subagent. The Orchestrator cannot replace human selection of the next main agent.
+A main agent is not a skill or helper subagent. UI handoff buttons are no longer required, but the CodeGen-to-Deploy contract `05-iac-handoff.json` remains a required artifact. Neither it nor `00-handoff.md` is an approval token.
 
 ## APEX agent inventory
 
 The current Accelerator agent files are the source of truth. Do not copy a fixed count or model list into workshop notes. The Context Optimizer is a reference capability, not a participant challenge-path step.
 
-| Workflow step | Main agent | Result |
+| Workflow step | Main agent | Responsibility |
 |---|---|---|
-| Route the workflow | `01-Orchestrator` | Proposed next step, required evidence, and human handoff |
+| Coordinate the workflow | `01-Orchestrator` | Bounded owner delegation, decisions, gates, and recovery |
 | Requirements | `02-Requirements` | `01-requirements.md` and initial SKU manifest |
 | Architecture | `03-Architect` | Architecture assessment and cost evidence |
 | Design, optional | `04-Design` | Diagrams and architecture decision records |
@@ -68,41 +68,55 @@ The current Accelerator agent files are the source of truth. Do not copy a fixed
 | Terraform generation | `06t-Terraform CodeGen` | Terraform code and `05-iac-handoff.json` |
 | Bicep deployment | `07b-Bicep Deploy` | Deployment and policy-precheck evidence |
 | Terraform deployment | `07t-Terraform Deploy` | Deployment and policy-precheck evidence |
-| As-built documentation | `08-As-Built` | Evidence-based documentation suite |
-| Diagnostics | `09-Diagnose` | Diagnostic analysis for the selected scope |
-| Adversarial review | `10-Challenger` | Findings for the specified artifact and review lens |
-| Context audit, reference-only | `11-Context Optimizer` | Context-window optimization recommendations; does not change agents or own a challenge handoff |
+| As-built documentation | `08-As-Built` | Requested documents grounded in observed state |
+| Diagnostics, optional in C7 | `09-Diagnose` | Scoped diagnostic analysis and authorized health report |
+| Interactive adversarial review, optional | `10-Challenger` | Coordinates an explicitly requested review and any separately authorized fixes |
+| Context audit, reference-only | `11-Context Optimizer` | Context-window recommendations; does not change agents or own a challenge step |
 
-Model selections may change. Check the `model` field in the current `.github/agents/*.agent.md` files and confirm your account or organization permits those selections.
+The reviewed agent definitions do not pin models. Confirm the selected runtime can use an organization-permitted model and access the declared agents and tools. A model label or configuration entry alone does not prove that a task, review, or permission will work.
 
 ## Challenger reviews
 
-The Challenger is a human-selected main reviewer, not an automatic helper. Preserve its findings and resolve blocking issues before approval.
+Workflow owners request the shared, independent `challenger-review-subagent` through native tasks. The authorized parent records the actual attributed result and checks its schema, provenance, and freshness. If an owner reports `REVIEW_REQUIRED` because nested tasks are unavailable, the Orchestrator relays the same reviewer as an independent sibling task; an unavailable or failed reviewer remains a blocker.
+
+`10-Challenger` is an optional interactive wrapper for an explicitly requested review or authorized fixes; selecting it is not the normal prerequisite for each stage. A preflight is not a review result. Missing, invalid, unrecorded, or stale findings block the affected gate; report the actual failure rather than substituting a self-review.
 
 | Stage | Default review expectation |
 |---|---|
 | Requirements | One comprehensive review |
 | Architecture | One architecture review and a separate cost-feasibility review |
 | Optional design | No review by default; explicit opt-in |
-| Governance | One reconciliation review when effective constraints exist |
+| Governance | Reconciliation review when required by the current constraints and workflow |
 | IaC plan | One comprehensive review |
 | Generated code | Deterministic validation; adversarial review is opt-in |
 | Deployment | No Challenger review by default; explicit authorization and current validation evidence are still required |
 
-The workshop may compress discussion time, but it must not describe a required review as completed when the review evidence is missing or has unresolved blocking findings.
+Preserve actual review attempts and findings, resolve blocking issues, and verify any required fresh review before approval. The architecture and cost lenses remain separate even when their tasks run concurrently.
 
 ## Approval gates during the workshop
 
 Pause for team approval after:
 
-- Requirements and their Challenger findings.
-- Architecture, cost evidence, and both required reviews.
-- Governance reconciliation when constraints exist.
+- Requirements and their recorded independent findings.
+- Architecture, current cost evidence, and both required reviews.
+- Governance reconciliation when required.
 - The IaC plan and its review findings.
-- Code validation, before selecting a Deploy agent.
+- Code validation and the current preview, before separately authorizing deployment.
 - Deployment evidence, before treating the environment as verified.
 
-Challenge 4 changes approved requirements. Return to the affected upstream steps, update the evidence, rerun the required reviews, and approve the revised path.
+At a stage gate, **approve and continue** completes the step and dispatches the next named owner in the same chat. **Approve and pause** completes the step, transitions, updates the recovery summary, and stops with a resume command. Neither choice grants deployment permission.
+
+New projects default to `practical-v1`, which batches routine work within the approved scope while retaining independent reviews and human gates. Each required artifact and lens has one initial review and, if needed, one ordinary closure review within its allowed scope. Existing projects remain on their legacy workflow until explicitly adopted with owner approval; do not edit state by hand or reset review history.
+
+For `practical-v1`, Governance may collect preliminary policy feasibility after approved requirements and within an authorized read scope, before final Architecture approval. This does not complete formal Governance or authorize Azure changes. Missing policy evidence leaves compatibility unverified.
+
+Challenge 4 changes material requirements. Reopen affected owners, invalidate stale dependent evidence, preserve review history, and obtain the required fresh reviews and approvals.
+
+## Pricing evidence
+
+The Architect uses the pricing worker's Azure MCP `pricing_get` retail evidence. The worker targets `02-cost-estimate.json` initially; a current registered, validated `COMPLETE` versioned estimate is also valid without an unversioned alias. Keep that JSON alongside `03-des-cost-estimate.md` and the separate cost review.
+
+Check source, currency, usage, and any conversion assumptions when comparing the estimate with the EUR budget. A documented, labeled Retail Prices API fallback is available to the worker in eligible cases; failed or missing prices are not guessed or treated as zero. Actual historical spend and forecasts use authenticated Azure Cost Management REST APIs, not retail estimates.
 
 ## Prompting main agents
 
@@ -115,11 +129,12 @@ Do not deploy resources.
 Return the architecture assessment and cost artifacts for team review.
 ```
 
-For a Challenger review, identify the artifact and lens:
+To check the required review, name the artifact and lens:
 
 ```text
-Review agent-output/freshconnect/01-requirements.md using the comprehensive requirements lens.
-Return findings only. Do not edit the requirements artifact.
+Show the recorded independent comprehensive requirements review for
+agent-output/freshconnect/01-requirements.md.
+Identify stale evidence or blockers, and preserve the existing review attempts.
 ```
 
 For deployment, authorization must be explicit and scoped:
@@ -147,15 +162,14 @@ Instructions under `.github/instructions/` apply repository rules to matching fi
 
 ## MCP servers
 
-Use the MCP configuration in the current template-derived repository. The reviewed Accelerator revision declares:
+Use the root `.mcp.json` in your Accelerator-derived repository. The [reviewed Accelerator configuration](https://github.com/jonathan-vella/apex-accelerator/blob/68c15fc006b960f0266c28f6fda9f676b9aebbbe/.mcp.json) declares:
 
 | Server | Workshop use |
 |---|---|
-| GitHub MCP | Repository content and GitHub operations |
-| Azure Resource Manager MCP | Cost Management and Pricing tools |
-| Azure MCP | Azure resources, subscriptions, deployments, and policy context |
+| `github` | Repository context and permitted GitHub tools |
+| `azure-mcp` | Azure tools, including retail pricing and policy context |
 
-The exact server list can change. Check `.vscode/mcp.json`, preserve authentication errors, and compare your repository with the current Accelerator when a server is missing.
+The portable file uses a top-level `mcpServers` object. Check the configuration and authentication in your actual workspace; the server list may change. This docs repository's Astro-only `.vscode/mcp.json` is separate from the participant configuration.
 
 ## Secrets and sensitive output
 
@@ -174,20 +188,27 @@ The exact server list can change. Check `.vscode/mcp.json`, preserve authenticat
 | 3. Implementation | Optional design, governance, plan review, code generation, validation, deployment authorization, and deployment |
 | 4. DR curveball | Controlled change to affected requirements, architecture, governance, plan, code, reviews, and approvals |
 | 5. Load testing | Workshop validation evidence for the deployed workload |
-| 6. Documentation | As-built documentation from approved artifacts and observed state |
-| 7. Diagnostics | Standalone diagnosis from current evidence |
+| 6. Documentation | Two requested documents from observed state, or planned-only drafts if deployment is missing, failed, or unaccepted |
+| 7. Diagnostics | Workshop quick card from current evidence; optional scoped `09-Diagnose` health report |
 | 8. Team showcase | Decisions, findings, approvals, evidence, results, and unresolved risks |
 
 Challenges 5, 7, and 8 are workshop stages rather than numbered APEX workflow steps.
 
-## If an agent or handoff fails
+## Recovery and blockers
 
 1. Preserve the error and current artifacts.
 2. Confirm that the correct template-derived repository is open in the Dev Container.
-3. Check the selected main agent, required inputs, and unresolved review findings.
-4. Check the current agent model and MCP authentication.
-5. Use the APEX session recovery guidance instead of editing workflow state by hand.
-6. Ask the facilitator before bypassing a review or changing deployment scope.
+3. Check the Copilot session target, permitted model, owner, required inputs, task capability, and MCP authentication.
+4. Inspect the actual review result and recording error; do not treat an unrecorded response as a receipt.
+5. Recover current state and evidence rather than reinitializing the project or editing state JSON:
+
+   ```text
+   /apex-workflow-start resume freshconnect
+   ```
+
+   The read-only `apex-recall handoff freshconnect --json` and `apex-recall show freshconnect --json` commands can help inspect the recovery context. `00-handoff.md` summarizes evidence and blockers, not permission.
+
+6. Ask the facilitator when a required tool, review, approval, or deployment scope remains blocked.
 
 ## Quick reference
 
@@ -197,7 +218,7 @@ Challenges 5, 7, and 8 are workshop stages rather than numbered APEX workflow st
 | Skills | `.github/skills/*/SKILL.md` |
 | Instructions | `.github/instructions/*.instructions.md` |
 | Repository-wide Copilot rules | `.github/copilot-instructions.md` |
-| MCP configuration | `.vscode/mcp.json` |
+| Participant MCP configuration | `.mcp.json` |
 | Workflow artifacts | `agent-output/{project}/` |
 | Bicep projects | `infra/bicep/{project}/` |
 | Terraform projects | `infra/terraform/{project}/` |

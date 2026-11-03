@@ -48,6 +48,21 @@ export const quickDiagnosisRows = [
     "Agent / tooling issue",
   ],
   [
+    "Native task or independent review fails",
+    '<a href="#native-task-or-independent-review-fails">Native tasks and review</a>',
+    "Delegation / review evidence",
+  ],
+  [
+    "Pricing evidence missing or incomplete",
+    '<a href="#pricing-evidence-is-missing-or-incomplete">Pricing</a>',
+    "Cost estimate / MCP issue",
+  ],
+  [
+    "Workflow paused or interrupted",
+    '<a href="#resume-a-paused-or-interrupted-workflow">Resume</a>',
+    "Recovery / session state",
+  ],
+  [
     "Secret leaked in output or commit",
     '<a href="#secrets-and-credential-leakage">Secrets</a>',
     "Credential leakage",
@@ -99,9 +114,12 @@ Use this page to diagnose setup, Azure deployment, validation, and Accelerator a
 
 **Fixes**:
 
-1. Ensure Docker Desktop is running and has at least 4 GB of RAM allocated
-2. Run `Dev Containers: Rebuild Container Without Cache` from the Command Palette
-3. Check your network; the build pulls images from `mcr.microsoft.com`
+1. Ensure Docker Desktop is running and has at least 4 GB of RAM allocated. Check the build log and access to `mcr.microsoft.com` and your approved package feeds.
+2. Microsoft employees should fully close VS Code and use the host launcher before opening the container. Other organizations should configure their approved feeds on the host. See [Setup Guide: create your repository](../../getting-started/setup/#setup-steps).
+3. If build-time feed settings changed, relaunch with those settings and run `Dev Containers: Rebuild Container`. Wait for post-create setup and check the package-source labels in the startup output.
+4. If the build still fails, preserve the error and ask your organization or facilitator. Do not disable TLS checks, bypass execution policy, or switch to unapproved public feeds.
+
+The participant container uses digest-pinned Azure Linux 4 preview. Ubuntu in WSL is the host, not the container. Codespaces requires separate event validation.
 
 ### Extensions not loading
 
@@ -165,24 +183,24 @@ param location string = resourceGroup().location
 1. Sign out of GitHub in VS Code and sign back in with the correct account
 2. Reload VS Code (`Developer: Reload Window`)
 3. Verify your Copilot subscription at [github.com/settings/copilot](https://github.com/settings/copilot)
-4. Open the current Accelerator agent files and confirm their declared models are permitted by your account or organization
+4. Select the **Copilot** session target and confirm the selected model is allowed by your account and organization
 
-### Agent model is not available
+### Selected model is not available
 
-**Symptoms**: An Accelerator agent cannot start because its declared model is unavailable.
+**Symptoms**: A Copilot session or Accelerator agent cannot start with the selected model.
 
 **Fixes**:
 
-1. Open the affected `.github/agents/*.agent.md` file and note its current `model` value.
-2. Check your Copilot plan entitlements and organization model policy.
-3. Ask the GitHub organization or enterprise owner whether that model is permitted.
-4. Reload VS Code after policy changes.
+1. Confirm the session uses the **Copilot** harness; choosing a model does not select the harness.
+2. Check your Copilot plan entitlements, the selected model, and organization model policy.
+3. Ask the GitHub organization or enterprise owner to resolve blocked access, or select a permitted model.
+4. Reload VS Code after any policy changes and retry the bounded capability check.
 
-Do not replace the model declaration only to make the error disappear. Compare your repository with the current Accelerator and ask the facilitator before changing an upstream-managed agent.
+Current Accelerator agent definitions do not pin a model. Do not edit an agent file or invent a model pin to hide an access failure.
 
 ### Agent not appearing in Chat
 
-**Symptoms**: A main agent such as `01-Orchestrator` does not appear in the agent picker.
+**Symptoms**: An interactive agent such as `01-Orchestrator` does not appear in the agent picker.
 
 **Fixes**:
 
@@ -202,7 +220,19 @@ Do not enable a legacy discovery setting as a substitute for loading the current
 
 1. Break large requests into smaller steps
 2. Provide explicit file paths when referencing artifacts
-3. Use `01-Orchestrator` to identify the next main agent and proposed handoff; the human still selects and approves that handoff
+3. Preserve the actual task error and ask `01-Orchestrator` to continue the remaining authorized work, or use the recovery steps below
+4. Review the resulting artifacts and recorded findings; an incomplete response is not a completed review or stage approval
+
+### Native task or independent review fails
+
+**Symptoms**: An owner cannot be dispatched, a reviewer fails, or findings are missing even though the agent appeared in Chat.
+
+**Fixes**:
+
+1. Check the **Copilot** session target, selected model policy, correct Accelerator repository, and availability of the declared native agent and task tools. Run the configuration checks in [setup step 9](../../getting-started/setup/#setup-steps). Retry only when the workflow permits and within the existing attempt budget.
+2. If a delegated owner returns `REVIEW_REQUIRED` because it cannot launch a nested task, the Orchestrator can invoke the same `challenger-review-subagent` as an independent sibling and return the actual recorded result to the owner.
+3. If a reviewer ran but its receipt is missing, preserve the real task result and recording error. Ask the owner or facilitator to investigate the existing review recorder and provenance checks; do not call it an unavailable reviewer merely to start a new review.
+4. If the parent reviewer, tool, or model is genuinely unavailable, stop the affected stage and escalate. Do not fabricate findings, reset review attempts, self-review, or use the optional `10-Challenger` wrapper to hide a failed automatic review.
 
 ### MCP servers not working
 
@@ -210,18 +240,46 @@ Do not enable a legacy discovery setting as a substitute for loading the current
 
 **Fixes**:
 
-1. Inspect `.vscode/mcp.json` in the template-derived repository and identify the failing server.
+1. Inspect root `.mcp.json` in the template-derived repository and identify the failing `github` or `azure-mcp` server. The portable configuration uses a top-level `mcpServers` object.
 2. Preserve the exact startup or authentication error.
 3. Confirm account and organization policy permits the declared server.
-4. For Azure-backed tools, confirm the required Azure sign-in and subscription context.
+4. For Azure-backed tools, confirm Azure sign-in and subscription context where required. For startup failures, check access to the approved package feed.
 5. Reload VS Code with `Developer: Reload Window`.
-6. Compare your MCP configuration with the current APEX Accelerator.
-
-The server list changes over time. Do not diagnose against the retired Azure Pricing, Draw.io, MS Learn, or Terraform list unless those servers are present in your current repository.
+6. Compare your MCP configuration with the [reviewed Accelerator configuration](https://github.com/jonathan-vella/apex-accelerator/blob/68c15fc006b960f0266c28f6fda9f676b9aebbbe/.mcp.json). Do not add servers that have not been reviewed as a workaround.
 
 GitHub reference: [Configure MCP server access](https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-mcp-usage/configure-mcp-server-access)
 
 APEX reference: [MCP server integration](https://apexops.pro/concepts/how-it-works/mcp-integration/)
+
+### Pricing evidence is missing or incomplete
+
+**Symptoms**: Architecture has a cost summary but no current complete pricing result, or Azure MCP pricing fails.
+
+1. Preserve the exact startup, tool-discovery, authentication, or pricing error. An unavailable tool does not by itself prove an Azure authentication failure.
+2. Check the current registered pricing JSON, initially `02-cost-estimate.json`, for `COMPLETE` status, matching meter identifiers, usage, currency, and source evidence. A valid registered versioned result can also be current.
+3. The pricing worker may use its [documented direct Retail Prices API fallback](https://github.com/jonathan-vella/apex-accelerator/blob/68c15fc006b960f0266c28f6fda9f676b9aebbbe/.github/skills/apex-azure-defaults/references/pricing-guidance.md#constrained-direct-api-fallback) only for eligible MCP failures or ambiguities and must retain labelled evidence and the existing request budget. Otherwise stop and escalate; do not guess prices or invent a successful estimate.
+4. Compare the returned currency and usage assumptions with the EUR budget and document any conversion. Retail estimates are not actual spend; historical spend and forecasts use authorized Cost Management REST calls through `az rest`.
+
+### Resume a paused or interrupted workflow
+
+**Symptoms**: A stage was approved and paused, a task was interrupted, or the chat lost context.
+
+In Copilot Chat, use the project's resume command:
+
+```text
+/apex-workflow-start resume freshconnect
+```
+
+For read-only inspection inside the participant container, run:
+
+```bash
+apex-recall handoff freshconnect --json
+apex-recall show freshconnect --json
+```
+
+The recovery summary `00-handoff.md` helps identify the current owner and evidence; it is not an approval. Preserve existing findings, attempts, and approvals. Do not hand-edit `00-session-state.json`, reinitialize the project, or reset review history to force progress. A resumed or replacement task still needs its original scope and any separate human authorization.
+
+New projects use `practical-v1`; older projects do not adopt it automatically. Follow the [workflow adoption guidance](https://github.com/jonathan-vella/apex-accelerator/blob/68c15fc006b960f0266c28f6fda9f676b9aebbbe/.github/skills/apex-workflow-engine/references/practical-workflow.md) for any owner-approved migration.
 
 ## Validation and Linting
 

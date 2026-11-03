@@ -56,9 +56,11 @@ Complete this checklist before the event, on the morning of the event, and durin
 
 ### Pre-Event (1–2 Days Before)
 
-- [ ] **Copilot access confirmed**: Copilot Chat works in VS Code for each team, and account or organization policy permits the custom agents and current models declared by the APEX Accelerator
-- [ ] **Model access confirmed**: The models declared in the current Accelerator `.github/agents/*.agent.md` files load successfully
-- [ ] **MCP access confirmed**: The GitHub and Azure servers declared in the current Accelerator `.vscode/mcp.json` load and authenticate
+- [ ] **Copilot access confirmed**: Each team can select the Copilot session target in VS Code and use the Accelerator's custom agents and native task tools
+- [ ] **Model access confirmed**: An organization-permitted model is available in the selected session; current agents do not require per-agent model pins
+- [ ] **MCP access confirmed**: The `github` and `azure-mcp` servers declared in the Accelerator's root `.mcp.json` load and authenticate
+- [ ] **Workflow verified**: In a designated test workspace, verify a bounded Orchestrator-to-owner task, its recorded independent review, a stage decision, and pause/resume. Record the Accelerator revision, VS Code build and IaC tracks tested; this does not authorize deployment
+- [ ] **Container and feeds verified**: Test the participant Azure Linux 4 preview Dev Container. Microsoft-managed hosts use the Accelerator's host launcher before opening VS Code; other participants use their organization's approved package sources. Codespaces requires separate validation
 - [ ] **Subscriptions verified**: One dedicated Azure subscription per team, each with Owner access
 - [ ] **Quotas checked**: Each subscription has sufficient quota in `swedencentral` (run `az vm list-usage -l swedencentral -o table`)
 - [ ] **Policies deployed**: `Setup-GovernancePolicies.ps1` run on each subscription
@@ -77,15 +79,15 @@ Complete this checklist before the event, on the morning of the event, and durin
 
 ### Day-of Go/No-Go (09:00)
 
-- [ ] **Docker/Codespaces working**: At least one team member per team can open the Dev Container
+- [ ] **Dev Container working**: At least one team member per team can open the tested container. Use Codespaces only if this event has separately validated it
 - [ ] **Azure CLI authenticated**: Every team can run `az account show` successfully
-- [ ] **Copilot Chat operational**: Custom agents appear in the agent dropdown
-- [ ] **Current agent models available**: The models declared by the Accelerator agents load successfully
-- [ ] **MCP tools available**: Workshop agents show MCP tools from the accelerator template
+- [ ] **Copilot harness operational**: The selected Copilot session can run the required custom agents and native tasks
+- [ ] **Model available**: An organization-permitted model works in the selected session
+- [ ] **MCP tools available**: The Accelerator's root `.mcp.json` servers and required tools load and authenticate
 - [ ] **Policies still active**: Quick spot-check with `Get-GovernanceStatus.ps1 -Subscription "<subscription-name-or-id>" -MicrohackOnly`
 - [ ] **Timer set**: Visible timer for challenge blocks
 
-> **Go/No-Go rule**: If any team cannot authenticate to the required Azure scope, load the Accelerator custom agents, use their declared models, or authenticate the configured MCP servers, resolve the blocker before Challenge 1.
+> **Go/No-Go rule**: If any team cannot authenticate to the required Azure scope, use the Copilot harness and required agents or tools, or authenticate the configured MCP servers, resolve the blocker before Challenge 1.
 
 ### Wrap-Up Checklist
 
@@ -201,7 +203,7 @@ echo "✅ Ready!"
 - Ask: "What questions would you ask the customer?"
 - Prompt teams to quantify NFRs (SLA, RTO, RPO, peak load)
 - Encourage detailed requirement capture — it drives architecture
-- Require the comprehensive `10-Challenger` review and team approval before Architecture
+- Check the recorded independent requirements review, resolve blocking findings, and obtain team approval before Architecture
 
 **Common Issues:**
 
@@ -217,13 +219,15 @@ echo "✅ Ready!"
 **Coaching Tips:**
 
 - Ask: "Which Well-Architected pillar does this address?"
-- Encourage cost estimation using Azure Resource Manager pricing tools
+- Encourage source-backed Azure MCP pricing with explicit usage and currency assumptions
 - Prompt: "How would you justify this service choice to the customer?"
 - Require separate architecture and cost-feasibility reviews before approval
 
 **Common Issues:**
 
-Check the Azure Resource Manager pricing tools in the current MCP configuration. Do not diagnose against the retired stand-alone Pricing MCP server.
+Check the `azure-mcp` pricing tools and the registered cost-estimate evidence. A failed
+lookup is not a zero-cost estimate; use a documented fallback only when the current
+pricing contract permits it.
 
 ### 🍽️ Lunch Break (12:00 - 12:45)
 
@@ -239,7 +243,7 @@ Check the Azure Resource Manager pricing tools in the current MCP configuration.
 - Confirm `04g-Governance` evidence and reconciliation before planning
 - Confirm the IaC plan review is approved before CodeGen
 - Treat validation and deployment authorization as separate checkpoints
-- Participants deploy only through the approved `07b-Bicep Deploy` or `07t-Terraform Deploy` agent after explicit team authorization. Use direct Azure CLI commands only for facilitator diagnostics or evidence collection.
+- Participants use the matching `07b-Bicep Deploy` or `07t-Terraform Deploy` owner, directly or through Orchestrator, only after approving the current preview and exact deployment scope. Use direct Azure CLI commands only for facilitator diagnostics or evidence collection.
 - Ask: "What module structure would make this maintainable?"
 - Prompt: "How does your naming convention ensure uniqueness?"
 - Encourage Mermaid flowchart for deployment workflow visualization
@@ -326,7 +330,7 @@ Use this short buffer to confirm teams are ready for load testing, unblock deplo
 
 - Ask: "What would a new team member need to know?"
 - Prompt: "Which observed results and unresolved issues must `08-As-Built` preserve?"
-- Encourage runbook creation for operational procedures
+- Request the scoped operations runbook and one additional document. If deployment is absent, label an explicitly requested draft or gap report as planned, not verified as-built
 
 #### Challenge 7: Diagnostics (15:30 - 15:35)
 
@@ -334,7 +338,8 @@ Use this short buffer to confirm teams are ready for load testing, unblock deplo
 
 - Ask: "What's your troubleshooting workflow?"
 - Prompt: "How would you diagnose a performance issue?"
-- Encourage diagnostic runbook with monitoring queries
+- Require the workshop's `07-diagnostics-quick-card.md`, using available evidence and monitoring queries
+- A scoped `09-Diagnose` investigation and its separate `08-resource-health-report.md` are optional; remediation requires separate authorization
 
 **Common Issues:**
 
@@ -439,7 +444,7 @@ Fast teams disengage if idle. Offer these stretch activities:
 | Enable **Zone Redundancy** on App Service (bonus +5)                | After C3/C4 |
 | Add **Managed Identities** and remove connection strings (bonus +5) | After C3/C4 |
 | Write a second documentation artifact (e.g., DR runbook)            | After C6    |
-| Run `09-Diagnose` on their own deployed resources                   | Anytime     |
+| Run `09-Diagnose` on a confirmed target and symptom, with an agreed scope and no unapproved remediation | Anytime |
 | Prepare extra slides for the Team Showcase                          | After C7    |
 | Help a struggling neighboring team (peer coaching)                  | Anytime     |
 
@@ -477,14 +482,14 @@ Use this table when a team hits a blocking issue. Identify the failure class, ta
 | Failure Class | Symptoms | Immediate Action | Escalation |
 |---|---|---|---|
 | **Policy not active** | Deployment succeeds but should have been denied; `Get-GovernanceStatus` shows `Unknown` | Wait 10 minutes, re-run the status script, and tell the team to add tags and security settings anyway. | If still inactive after 30 minutes, re-run `Setup-GovernancePolicies.ps1`. |
-| **Copilot access issue** | Agent picker is empty; Copilot is unavailable; a declared model is blocked | Confirm the template-derived repo is open in its Dev Container. Check current plan entitlements, organization model policy, and the affected agent frontmatter. Reload VS Code. | If access cannot be restored, pair the participant with a team member whose environment passes the gate. |
+| **Copilot access issue** | Copilot, a native task, a custom agent, or the selected model is unavailable | Confirm the template-derived repo and Copilot session target. Check entitlements, organization model policy, and tool availability; preserve the error and reload VS Code. | If access cannot be restored, pair the participant with a team member whose environment passes the gate. |
 | **Azure quota exceeded** | `QuotaExceeded` error on deployment | Check quota: `az vm list-usage -l swedencentral -o table`. Try a different SKU or region. | If no quota is available, reduce scope with fewer resources or share deployment output with the team for learning. |
 | **Deployment failure (naming)** | `NameNotAvailable`, `StorageAccountAlreadyTaken` | Use `uniqueString(resourceGroup().id)` suffix pattern. Check resource name constraints. | If persistent, create a fresh resource group with a different name. |
 | **Deployment failure (auth)** | `AuthorizationFailed`, `AADSTS50076` | Re-run `az login --use-device-code`. Verify subscription access: `az account show`. | If subscription lacks Owner role, check if Contributor + Resource Policy Contributor suffices. |
 | **Deployment failure (Bicep/Terraform)** | `BCP035`, `BCP037`, template validation errors, `terraform validate` failures | Read the error message — it usually names the exact property. Use `bicep build` or `terraform validate` to check before deploying. | If team is stuck >5 min, intervene directly with the specific fix. |
-| **MCP servers not responding** | A GitHub or Azure server declared in `.vscode/mcp.json` fails to start or authenticate | Preserve the error, inspect the current server configuration, confirm policy and authentication, and reload VS Code. | Use an equivalent portal, CLI, or web path only when the challenge permits fallback evidence; do not claim the MCP check passed. |
+| **MCP servers not responding** | A `github` or `azure-mcp` server declared in root `.mcp.json` fails to start or authenticate | Preserve the error, inspect the current server configuration, confirm policy and authentication, and reload VS Code. | Use a fallback only when the current owner contract permits its evidence; do not claim the MCP check passed. |
 | **Timing compression** | Team is behind schedule by >15 min | Compress: combine remaining work, reduce scope. At >30 min behind, skip non-essential challenges (C5, C6, C7 can be abbreviated). | Ensure C1–C4 and C8 are completed — these carry the most learning value and points. |
-| **Dev Container failure** | Container fails to build, image pull timeout | Check Docker Desktop is running (4 GB RAM). Run `Dev Containers: Rebuild Without Cache`. Check the network. | If container cannot build, fall back to GitHub Codespaces. |
+| **Dev Container failure** | Container fails to build or an image pull times out | Check Docker Desktop, network and the organization's approved package-feed settings; apply the host launcher before rebuilding when required. | Use Codespaces only if separately validated for this event; otherwise pair or escalate. |
 
 ### Decision Framework
 
@@ -594,7 +599,9 @@ If challenges run long, use this priority guide for what to compress or skip:
 
 ## Post-Event
 
-Remind teams:
+Remind team leads to inspect the actual subscription and resource groups, including
+any secondary region, and obtain explicit authorization before each deletion. For an
+authorized primary resource group, for example:
 
 ```bash
 az group delete --name rg-freshconnect-dev-swc --yes --no-wait

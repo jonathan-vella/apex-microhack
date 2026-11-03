@@ -33,9 +33,9 @@ Do not expose facilitator-only solutions or detailed scoring guidance in partici
 
 ## APEX contract safeguards
 
-- Keep main agents, skills, helper subagents, and human handoffs distinct.
+- Keep interactive agents, native delegated tasks, independent reviewers, and artifact handoffs distinct.
 - Preserve human approval gates and deployment authorization language.
-- Do not imply that the Orchestrator autonomously executes the main-agent sequence.
+- Describe Orchestrator delegation accurately: it can run the next authorized owner after a stage approval, but cannot replace human gates or authorize deployment.
 - Do not remove Challenger findings, evidence limits, unresolved risks, or accepted-risk qualifications.
 - Do not change an estimate into a guarantee or a workshop adaptation into a product contract.
 - Preserve exact artifact names and commands after verifying them against the reviewed APEX revision.

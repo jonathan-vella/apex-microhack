@@ -32,6 +32,7 @@ k6
 WSL
 devcontainer
 pwsh
+az
 ARM
 Pagefind
 repos
@@ -63,6 +64,8 @@ runbooks
 NFRs
 toolchain
 toolchains
+precheck
+serverless
 commitlint
 lefthook
 Templatized

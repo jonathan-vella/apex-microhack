@@ -45,6 +45,11 @@ defense in Challenge 8:
 - **Performance:** Where will peak-season load actually land: app tier, database, storage, or network?
 - **Operations:** Can the current team run this service without creating a hidden support burden?
 
+## Diagram Choices
+
+- For the Challenge 3 workflow, use Mermaid to show bounded owner delegation, independent review, team approvals, and return paths. A workflow arrow does not authorize deployment.
+- For an optional rendered Azure architecture diagram, `apex-python-diagrams` uses `scripts/dlib.py` and produces a Python source, editable SVG, and PNG. WAF and cost charts use the skill's `scripts/diagram_io.py` helper. These rendered diagrams are distinct from the Mermaid workflow.
+
 ## Understanding Agent Output Templates
 
 <details>
@@ -71,8 +76,8 @@ These templates are located in `.github/skills/apex-azure-artifacts/templates/` 
 1. **Deterministic Behavior**: Templates make agent outputs more predictable and consistent.
    The agent fills in the template structure with your specific requirements.
 
-2. **Quality Assurance**: Templates ensure all critical sections are covered — the agent
-   won't forget important aspects like security considerations or cost breakdowns.
+2. **Quality Assurance**: Templates prompt for common sections such as security and cost.
+   Check the actual content and evidence; a template does not guarantee completeness.
 
 3. **Documentation Standards**: The output follows consistent documentation
    format and content organization.
@@ -158,19 +163,22 @@ Before asking for cost estimates, ask yourself:
    - What's the minimum tier for zone redundancy?
    - Could dev/test environments use lower SKUs or serverless?
 
-3. **Cost Discovery**: How would you get actual pricing data?
-   - What information do the Azure Resource Manager pricing tools need?
+3. **Cost Discovery**: How would you obtain source-backed retail pricing?
+   - Which service, SKU, meter, region, currency, and usage does the pricing worker need?
    - How do you compare SKU costs within a service family?
-   - What region affects pricing?
+   - What conversion assumption is needed to compare returned currency with the EUR budget?
 
-**Example Prompt for Azure Resource Manager pricing tools:**
+**Example Prompt for the Architect:**
 
 ```
-"Compare costs for App Service plans in swedencentral:
+"Use the pricing worker to compare App Service plans in swedencentral:
 - P1v3 (production)
 - S1 (staging)
-What features justify the price difference?"
+Include the returned meter, currency, usage basis, and source evidence.
+What features justify the price difference? Report missing pricing rather than guessing."
 ```
+
+The worker uses Azure MCP `pricing_get`, with a documented, labeled Retail Prices API fallback only when eligible. Keep the current registered, validated `COMPLETE` estimate and `03-des-cost-estimate.md`; `02-cost-estimate.json` is the initial target, but a valid versioned result can stand on its own. Retail estimates are not actual spend, which uses authenticated Azure Cost Management data.
 
 💡 **Coaching tip**: Cost optimization isn't about picking the cheapest option —
 it's about matching cost to value. What does each €10/month buy you?
@@ -464,7 +472,7 @@ After running k6, ask:
 
 **The Documentation Question:**
 
-The infrastructure works today. Will your team understand it tomorrow?
+Whether the infrastructure is deployed or remains a plan, will your team understand it tomorrow?
 
 **Discovery Questions:**
 
@@ -493,19 +501,18 @@ The infrastructure works today. Will your team understand it tomorrow?
 "Generate operational runbook for FreshConnect targeted at on-call engineers.
 
 Context:
-- Deployed in swedencentral with DR in germanywestcentral
-- Using App Service, Azure SQL, Storage Account, Key Vault
+- Use current deployment evidence to identify actual regions and resources
 - Common scenarios: high latency, connection errors, storage throttling
 
 Include:
 - Initial assessment checklist (first 60 seconds)
 - Diagnostic steps for common scenarios
 - Azure CLI commands for health checks
-- Escalation criteria"
+- Escalation criteria
+- Gaps and planned-only status if deployment is missing, failed, or unaccepted"
 ```
 
-💡 **Coaching tip**: The `08-As-Built` agent generates the as-built documentation suite from approved artifacts and observed results.
-Which documents provide the most value for FreshConnect's specific needs?
+💡 **Coaching tip**: Ask `08-As-Built` for the two documents required by Challenge 6, grounded in observed results. If deployment is missing, failed, or unaccepted, request both as planned-only drafts or gap reports, not a verified as-built suite.
 
 **Document Types to Consider:**
 
@@ -550,10 +557,10 @@ What do you check first?
    - Kudu console for App Service diagnostics
    - Azure CLI diagnostic commands
 
-4. **Quick fix vs. escalation?**
-   - What can on-call engineer safely restart?
+4. **Proposed remediation vs. escalation?**
+   - Which restart might help, and what target, expected effect, risk, and rollback would the approval request describe?
    - When do you wake up the architect?
-   - What changes need approval vs. immediate action?
+   - Which checks are read-only and within the approved scope? Which proposed side effects need separate human approval?
 
 **Prompt for Diagnostic Runbook:**
 
@@ -568,7 +575,7 @@ Scenarios:
 For each scenario provide:
 1. Likely root causes
 2. Diagnostic commands (Azure CLI, KQL queries)
-3. Remediation steps
+3. Proposed remediation steps for separate approval
 4. Escalation criteria"
 ```
 
@@ -587,13 +594,15 @@ Why check database DTU before App Service CPU? What's the reasoning?
    → Query: What's the P95 latency by dependency?
    → Check: Database DTU utilization
    → Check: App Service CPU/Memory
-   → Decision: Scale up, scale out, or investigate query?
+   → Consider: Investigate the query read-only, or propose scaling for approval?
 
 3. If Connection Errors
    → Check: Connection string configuration
    → Check: Managed identity permissions
    → Check: Network security groups / firewall rules
 ```
+
+These checks do not authorize a restart, scaling, configuration change, enabling diagnostics, data export, or other remediation. Each side effect needs separate explicit human approval of the exact target and action, with its expected effect, risk, and rollback.
 
 </details>
 
@@ -606,7 +615,7 @@ Why check database DTU before App Service CPU? What's the reasoning?
 | Missing uniqueSuffix         | Generate once in main.bicep, pass to all modules    |
 | Hardcoded secrets            | Use Key Vault references or managed identity        |
 | Over-engineering MVP         | Keep it simple — you have one day.                  |
-| Forgetting to deploy         | Run `bicep build` often, deploy incrementally       |
+| Forgetting deployment gates  | Review validation and preview, obtain scoped approval, or use the paper path if blocked |
 
 ## Agent-Specific Tips
 
@@ -645,7 +654,7 @@ Why check database DTU before App Service CPU? What's the reasoning?
 **Instead of "generate all the code"**, try:
 
 - "Generate Key Vault module with name validation and uniqueSuffix parameter"
-- Start with one module, validate it works, then expand
+- Start with one module, validate it works, then expand within the approved plan
 - Run `bicep build` after each major change
 
 💡 Iterate incrementally — don't generate everything at once.
@@ -658,7 +667,7 @@ Why check database DTU before App Service CPU? What's the reasoning?
 - "What specific problem does this document solve?"
 - "Generate [document type] for [audience] covering [scenarios]"
 
-For Challenge 7, select `09-Diagnose` and request a one-page triage card grounded in the current architecture, load-test evidence, and observed state.
+For Challenge 7, create the workshop's `07-diagnostics-quick-card.md` from current architecture, load-test evidence, and any observed state. Optionally use `09-Diagnose` with a confirmed target, symptom, time range, and authorized read scope; its authorized `08-resource-health-report.md` is a separate artifact.
 
 ## Paper Exercise Fallback
 
