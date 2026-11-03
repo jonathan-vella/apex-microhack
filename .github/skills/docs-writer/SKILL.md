@@ -23,7 +23,7 @@ Keep workshop documentation consistent, accurate, and current.
 - Keep language concise and scannable — workshop participants are under time pressure
 - Preserve scoring consistency with `facilitator/scoring-rubric.md`
 - Verify APEX facts, commands, agent names, artifacts, and links before editorial cleanup
-- After technical review, explicitly invoke `microhack-unslop` for authorized prose changes
+- If the user explicitly requests prose review or cleanup, invoke `microhack-unslop` after technical review when the skill is available
 
 ## Constraints
 

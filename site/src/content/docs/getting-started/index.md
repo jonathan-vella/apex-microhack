@@ -20,10 +20,10 @@ is the guide for setup, scenario context, and challenge navigation.
 
 ## What You Need
 
-- GitHub Copilot access in VS Code, with organization policy allowing the custom agents and current models declared by the APEX Accelerator.
-- The GitHub and Azure MCP servers configured by the current APEX Accelerator.
+- GitHub Copilot in VS Code with the **Copilot** session target, an organization-permitted model, and working custom-agent, native-task, and reviewer capabilities.
+- The `github` and `azure-mcp` servers configured in the Accelerator repository's root `.mcp.json`.
 - One Azure subscription per team with the required access and quota in `swedencentral`.
-- A working Dev Container and a repository created from the [APEX Accelerator](https://github.com/jonathan-vella/apex-accelerator).
+- A working local Dev Container and a repository created from the [APEX Accelerator](https://github.com/jonathan-vella/apex-accelerator). Codespaces requires separate event validation.
 
 ## Start Here
 
@@ -56,7 +56,7 @@ Workshop Prep before starting [Challenge 1](../challenges/challenge-1-requiremen
 |---|---|
 | Confirm the container is running | [Dev Container](setup/#dev-container) |
 | Check Azure sign-in and agents | [Ready-to-Start Check](setup/#ready-to-start-check) |
-| Confirm agents, selected models, and MCP servers | [Participation Gate](setup/#participation-gate) |
+| Confirm the harness, model, native task/reviewer, and MCP servers | [Participation Gate](setup/#participation-gate) |
 | Start the first challenge | [Challenge 1: Requirements](../challenges/challenge-1-requirements/) |
 
 ### During the Workshop

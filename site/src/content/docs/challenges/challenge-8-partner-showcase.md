@@ -20,15 +20,15 @@ prev:
 ## Objective
 
 - **Do now:** Build and deliver a stakeholder-ready story from the artifacts you created in C1-C7.
-- **Input:** Requirements, review findings, approvals, architecture and cost evidence, IaC and deployment evidence, ADR, load-test report, documentation, and diagnostics card.
+- **Input:** Requirements, review findings, approvals, architecture and cost evidence, IaC, any deployment evidence, ADR, load-test results or plan, documentation, and diagnostics card.
 - **Output:** A live presentation and Q&A backed by your actual artifacts.
 - **Required to finish:** Explain the solution, justify the trade-offs, show evidence, and handle questions credibly.
 - **Decisions now:** Which artifacts tell the clearest story, which trade-offs you must defend, who presents what, and how honest you will be about gaps.
 - **Next:** Workshop wrap-up, facilitator scoring, and shared reflection across teams.
 
 This challenge is the capstone. The goal is not to look perfect. The goal is to prove
-that your team can explain what it built, why it made those choices, and how the
-solution would operate in the real world.
+that your team can explain what it built or planned, why it made those choices, and
+how the solution would operate in the real world.
 
 ## The Business Challenge
 
@@ -42,23 +42,36 @@ hard questions without hiding trade-offs.
 1. Build a short story around problem, solution, evidence, and next steps.
 2. Assign presenters so the team can explain architecture, delivery evidence, and
    business trade-offs without overlap.
-3. Show the artifacts that matter most: architecture diagram, key decisions, review and approval evidence, delivery
-   evidence, DR response, and operational readiness.
-4. Prepare to answer two or three fair stakeholder questions with direct, evidence-based answers.
-5. When you are the stakeholder team, ask questions that test business fit and decision quality.
+3. Show the artifacts that matter most: architecture, owner delegation, actual review
+   findings, team approvals, delivery evidence, DR response, and operational readiness.
+   Distinguish stage approval from separate authorization of the current deployment
+   preview and exact Azure scope.
+4. Explain measured results, any failures or blockers, and recovery attempted. If a
+   test or recovery did not happen, describe it as a plan rather than a result.
+5. Prepare to answer two or three fair stakeholder questions with direct, evidence-based answers.
+6. When you are the stakeholder team, ask questions that test business fit and decision quality.
 
 ## What to Present
 
 - The business problem, key constraints, and the Azure decisions those constraints forced.
 - The final architecture and why it fits the workload, budget, security, and DR goals.
-- The delivery path: what the team reviewed and approved, what you deployed, what stayed on paper, and what the evidence proves.
-- The operational story: load testing, documentation, diagnostics, and what you would improve next.
-- The trade-offs you made deliberately, the Challenger findings you resolved, and the risks you still own.
+- The delivery path: which owners did the work through bounded delegation or direct
+  selection, the independent review findings actually recorded, team stage approvals,
+  and any separate authorization for the deployment. Identify missing receipts or
+  approvals as gaps.
+- The results: what you deployed, what stayed on paper, actual load-test measurements
+  where available, and the evidence or gaps behind your operational claims.
+- Failures and recovery: what blocked the team, how you recovered or would recover
+  using preserved decisions and evidence, and whether that recovery was attempted.
+  Show the recovery summary or resume path if you used them.
+- The trade-offs you made deliberately, any review findings you resolved, and the
+  unresolved risks you still own.
 
 ## Key Decisions
 
 - Which artifacts best prove the chain from approved requirements through reviewed design to deployment evidence?
 - Which trade-offs must you defend: cost, security, reliability, or delivery risk?
+- What do actual measurements, failures, and recovery evidence show, and what remains unverified?
 - What unfinished work should you acknowledge openly rather than trying to gloss over?
 - How will you connect technical choices back to FreshConnect's business goals?
 
@@ -66,7 +79,7 @@ hard questions without hiding trade-offs.
 
 - Live showcase or slide deck built from your existing artifacts.
 - Architecture diagram that matches your final design.
-- Evidence for reviews, approvals, implementation, and DR, whether deployed or documented on paper.
+- Evidence for owner work, reviews, approvals, implementation, and DR, whether deployed or documented on paper.
 - Load-test, documentation, and diagnostics highlights that show operational maturity.
 - Clear speaking roles and a prepared answer path for stakeholder questions.
 
@@ -74,7 +87,7 @@ hard questions without hiding trade-offs.
 
 | Focus | What good looks like | Evidence |
 | --- | --- | --- |
-| Technical clarity | The team explains the solution without losing the audience | Architecture, delivery path, and key services are described clearly |
+| Technical clarity | The team explains the solution without losing the audience | Architecture, owner work, delivery path, and recovery are described clearly |
 | Stakeholder handling | Questions are answered directly and credibly | Responses use actual artifacts, constraints, and trade-offs |
 | Solution justification | Major decisions are defensible | Cost, security, reliability, and DR choices are backed by evidence |
 | Team coordination | The team presents as one group instead of isolated speakers | Roles are clear and handoffs feel intentional |
@@ -88,9 +101,9 @@ Use a five-part structure:
 
 1. The business challenge and key constraints.
 2. The architecture and why you chose it.
-3. What happened in implementation and DR.
-4. What the evidence says about operations, load, and documentation.
-5. What you would do next with more time.
+3. Who owned the work, what was reviewed and approved, and what happened in implementation and DR.
+4. What measured results, failures, and recovery evidence say about operations.
+5. What remains unverified or risky, and what you would do next.
 
 Useful stakeholder questions:
 
@@ -105,6 +118,7 @@ Useful stakeholder questions:
 
 - Do not turn the presentation into a walkthrough of every artifact you created.
 - Do not hide gaps; explain them and show how you would address them.
+- Do not present planned work, tests that have not been run, or a proposed recovery as observed results.
 - Do not let the DR change, load testing, or diagnostics disappear from the story.
 - Stakeholder questions should be tough but relevant, not performative.
 

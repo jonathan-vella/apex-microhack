@@ -14,31 +14,31 @@ export const challengeSummaryHeaders = [
   "Challenge",
   "Duration",
   "Points",
-  "Agent(s)",
+  "Owners and tools",
 ];
 
 export const challengeSummaryRows = [
-  ["1", "Requirements Capture", "30 min", "20", "<code>02-Requirements</code>, <code>10-Challenger</code>"],
+  ["1", "Requirements Capture", "30 min", "20", "<code>02-Requirements</code> with independent review"],
   [
     "2",
     "Architecture Design",
     "30 min",
     "25",
-    "<code>03-Architect</code>, <code>10-Challenger</code>, optional <code>04-Design</code>",
+    "<code>03-Architect</code> with separate architecture and cost reviews; optional <code>04-Design</code>",
   ],
   [
     "3",
     "IaC Implementation &amp; Deploy",
     "45 min",
     "25",
-    "<code>04g-Governance</code>, <code>05-IaC Planner</code>, <code>10-Challenger</code>, <code>07b-Bicep Deploy</code>/<code>07t-Terraform Deploy</code> with approval",
+    "<code>04g-Governance</code>, <code>05-IaC Planner</code>, CodeGen, and matching Deploy owner with authorization",
   ],
   [
     "4",
     "DR Curveball &amp; Deploy",
     "45 min",
     "10",
-    "<code>03-Architect</code>, <code>10-Challenger</code>, optional <code>04-Design</code>, <code>06b-Bicep CodeGen</code>/<code>06t-Terraform CodeGen</code>, <code>07b-Bicep Deploy</code>/<code>07t-Terraform Deploy</code> with approval",
+    "<code>03-Architect</code>, optional <code>04-Design</code>, the selected CodeGen and Deploy owners, and required reviews",
   ],
   [
     "5",
@@ -59,7 +59,7 @@ export const challengeSummaryRows = [
     "Diagnostics",
     "5 min",
     "5",
-    "<code>09-Diagnose</code>",
+    "Workshop quick card; optional <code>09-Diagnose</code>",
   ],
   ["8", "Team Showcase 🎤", "60 min", "10", "(presentation)"],
 ];
@@ -120,6 +120,10 @@ export const challengeSummaryRows = [
 
 **Bonus targets**: Zone Redundancy (+5), Private Endpoints (+5), Multi-Region DR (+10), Managed Identities (+5)
 
+`01-Orchestrator` can coordinate the owners through native tasks, or teams can
+select a specialist directly. Human stage approvals and separate deployment
+authorization remain required.
+
 :::note
 
 **Coaches**: Use the facilitator guide distributed with your workshop materials for Challenge 4 details.
@@ -156,9 +160,9 @@ Challenge 8 focuses on professional communication and presentation skills.
 
 | Time  | Activity                                    |
 | ----- | ------------------------------------------- |
-| 11:00 | Start — handoff from **requirements** agent |
+| 11:00 | Start — use approved requirements for Architecture |
 | 11:15 | Check-in — WAF recommendations?             |
-| 11:30 | Cost — Azure Resource Manager cost and pricing tools working? |
+| 11:30 | Cost — Azure MCP pricing evidence and currency assumptions available? |
 | 11:45 | Wrap — finalize architecture                |
 | 12:00 | Lunch                                       |
 
@@ -172,7 +176,7 @@ Challenge 8 focuses on professional communication and presentation skills.
 | 12:55 | Plan — implementation plan ready? |
 | 13:05 | Code — IaC code generation agent  |
 | 13:20 | Validate — compile + lint         |
-| 13:25 | Deploy — select the approved **07b-Bicep Deploy** or **07t-Terraform Deploy** agent |
+| 13:25 | Deploy — approve the current preview and exact deployment scope |
 | 13:30 | Complete — move to Challenge 4    |
 
 ### Block 5: Challenge 4 (13:30 - 14:15)
@@ -181,8 +185,8 @@ Challenge 8 focuses on professional communication and presentation skills.
 | ----- | ------------------------------------------ |
 | 13:30 | 📣 **Challenge 4: DR Curveball Announced** |
 | 13:35 | Update architecture for multi-region       |
-| 13:50 | Generate updated Bicep templates           |
-| 14:05 | Review and approve the DR scope, then select the matching Deploy agent |
+| 13:50 | Update the selected IaC track or paper design |
+| 14:05 | Review updated evidence and, if deploying, separately authorize the scope |
 | 14:15 | Complete — checkpoint before load testing  |
 
 ### Facilitator Checkpoint (14:15 - 14:30)
@@ -205,7 +209,7 @@ Use this short buffer to unblock teams, confirm deployments, and reset before th
 | Time  | Activity                                     |
 | ----- | -------------------------------------------- |
 | 15:15 | **Challenge 6: Documentation**               |
-| 15:25 | Generate workload docs with **design** agent |
+| 15:25 | Request scoped documentation from **08-As-Built** |
 | 15:30 | **Challenge 7: Diagnostics**                 |
 | 15:35 | Prep begins                                  |
 | 15:50 | Showcase starts                              |

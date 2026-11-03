@@ -26,7 +26,7 @@ the Nordic Fresh Foods scenario from requirements to deployment planning and fin
 ## What to Bring
 
 - A laptop that can run VS Code and a Dev Container.
-- GitHub Copilot access in VS Code, with your account or organization permitting the custom agents and current models declared by the APEX Accelerator.
+- GitHub Copilot access in VS Code, with your account or organization permitting an available model and the Accelerator's custom agents and tools.
 - Access to the GitHub and Azure MCP servers configured by the Accelerator.
 - One Azure subscription for your team.
 - A repository created from the [APEX Accelerator template](https://github.com/jonathan-vella/apex-accelerator).

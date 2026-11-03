@@ -77,10 +77,6 @@ export async function runChecks(root = defaultRoot) {
       message: "retired operations artifact name",
     },
     {
-      pattern: /customAgentInSubagent\.enabled/gi,
-      message: "retired custom-agent setting",
-    },
-    {
       pattern: /other SKUs do not include the required functionality/gi,
       message: "unsupported Copilot entitlement claim",
     },
@@ -89,8 +85,17 @@ export async function runChecks(root = defaultRoot) {
       message: "retired Node 22 environment claim",
     },
     {
-      pattern: /parallel execution|autonomous pipeline/gi,
-      message: "misleading autonomous or parallel workflow language",
+      pattern: /\bdoes not autonomously execute the main-agent sequence\b/gi,
+      message: "obsolete Orchestrator execution claim",
+    },
+    {
+      pattern:
+        /\b(?:must|have to|are required to)\s+(?:manually\s+)?select\s+`?10-Challenger\b`?/gi,
+      message: "mandatory manual Challenger selection",
+    },
+    {
+      pattern: /\bhuman-selected main reviewer,\s+not an automatic helper\b/gi,
+      message: "obsolete independent-review claim",
     },
   ];
   const failures = [];

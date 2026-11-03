@@ -16,7 +16,7 @@ next:
 ---
 
 :::note[Challenge Info]
-⏱️ **30 min** · 🏆 **25 pts** · 🤖 `03-Architect`, `10-Challenger`, optional `04-Design` · 📄 architecture, cost, reviews, and optional design artifacts
+⏱️ **30 min** · 🏆 **25 pts** · 🤖 `01-Orchestrator` or `03-Architect`, `04g-Governance`, shared reviewer; optional `04-Design` and `10-Challenger` · 📄 architecture, cost, reviews, and optional design artifacts
 
 :::
 
@@ -24,10 +24,10 @@ next:
 
 - **Do now:** Turn the requirements into an Azure architecture you can justify.
 - **Input:** Approved requirements, SKU manifest, and current requirements review evidence.
-- **Output:** Architecture assessment, cost evidence, separate architecture and cost review findings, and an optional design diagram.
-- **Required to move on:** Service choices, WAF trade-offs, cost evidence, resolved architecture and cost findings, and team approval.
+- **Output:** Architecture assessment, preliminary policy feasibility for a new practical project, current cost evidence, separate architecture and cost review findings, and an optional design diagram.
+- **Required to move on:** Service choices, WAF trade-offs, current required policy and cost evidence, resolved architecture and cost findings, and team approval.
 - **Decisions now:** Compute platform, data platform, network/security boundary, cost vs reliability trade-offs.
-- **Next:** C3 turns this assessment and diagram into IaC and deployment work.
+- **Next:** C3 turns this assessment and any optional design artifacts into IaC and deployment work.
 
 Your goal is not to collect every possible Azure option. Your goal is to choose a
 workable MVP architecture that fits the FreshConnect constraints and can survive later
@@ -43,11 +43,12 @@ must balance capability, cost, and operational complexity.
 ## Your Tasks
 
 1. Read the approved C1 requirements and SKU manifest. Identify decisions that still need architecture judgment.
-2. Use `03-Architect` to assess the workload against the Azure Well-Architected Framework and produce architecture, cost, and SKU evidence.
-3. Select `10-Challenger` for a comprehensive architecture review and a separate cost-feasibility review.
-4. Resolve every blocking finding in the artifact owned by `03-Architect`, then approve the architecture and cost evidence as a team.
-5. Use `04-Design` only when a diagram or ADR helps explain the approved design.
-6. Save the artifacts at their required paths without merging the separate review evidence.
+2. In the VS Code Copilot harness, use `01-Orchestrator` to delegate bounded work to `03-Architect`, or select the Architect directly. Supply the approved inputs and ask for an Azure Well-Architected Framework assessment and SKU evidence.
+3. For a new `practical-v1` project, authorize `04g-Governance` to collect preliminary `04-policy-feasibility.json` after Requirements approval, using the confirmed subscription and subscription-and-inherited policy read scope. Orchestrator can delegate this, or you can select Governance directly. This read-only collection is not formal Governance approval or permission to change Azure; a missing target, failed query, or partial coverage leaves Architecture provisional.
+4. Have the Architect obtain source-backed retail pricing from the pricing worker, using Azure MCP pricing or, after an eligible MCP failure or ambiguity, the worker's documented first-party fallback. Require a current `COMPLETE` JSON result and `03-des-cost-estimate.md`; confirm the parent registers the actual result and source-evidence paths in the project index or handoff. `02-cost-estimate.json` is the initial target; a verified current versioned result is also valid on its own. Check source freshness and that the estimate matches the current SKUs, regions, quantities, currency, and usage; document any conversion assumptions before comparing it with €500 per month.
+5. The Architect automatically invokes the shared independent `challenger-review-subagent` for a comprehensive architecture review and a separate cost-feasibility review; the authorized parent records the actual results. If a delegated owner cannot launch the reviewer, Orchestrator can relay it as an independent sibling. `10-Challenger` is an optional manual wrapper, not a required step.
+6. Resolve blocking findings in the owning artifacts, verify both review results and required policy and pricing evidence are current, and explicitly approve Architecture as a team.
+7. Use `04-Design` only when a diagram or ADR helps explain the approved design. Preserve the separate review evidence and its actual paths.
 
 ## Key Decisions
 
@@ -63,8 +64,10 @@ must balance capability, cost, and operational complexity.
 ## Deliverables
 
 - `agent-output/freshconnect/02-architecture-assessment.md`
+- `agent-output/freshconnect/04-policy-feasibility.json` for the authorized preliminary collection in a new `practical-v1` project.
+- A current, registered `COMPLETE` cost JSON and its source evidence. The initial target is `agent-output/freshconnect/02-cost-estimate.json`; a verified versioned result does not need a second alias.
 - `agent-output/freshconnect/03-des-cost-estimate.md`
-- Current architecture and cost-feasibility review findings with no unresolved blocking findings.
+- Current recorded architecture and separate cost-feasibility review findings with no unresolved blocking findings: `challenge-findings-architecture.json` and `challenge-findings-cost-estimate.json` by default, or the registered architecture pass files for deep review.
 - Optional `03-des-*` diagram or ADR artifacts.
 - Assessment includes recommended Azure services, key SKUs, WAF reasoning, risks, and cost assumptions.
 - Any diagram shows services, relationships, data flows, security boundaries, and region placement.
@@ -75,9 +78,9 @@ must balance capability, cost, and operational complexity.
 | --- | --- | --- |
 | Service selection | The chosen Azure services fit the requirements and team capability | Each major service has a short justification tied to a requirement or trade-off |
 | WAF thinking | Reliability, security, cost, performance, and operations are visible in the reasoning | The assessment explains the main trade-offs instead of listing features |
-| Cost fit | The architecture is realistic for the MVP budget | Cost drivers, assumptions, and guardrails are explicit |
+| Cost fit | The architecture is realistic for the MVP budget | Current source evidence, currency, usage, cost drivers, and any conversion assumptions are explicit |
 | Architecture communication | Someone else can understand the design quickly | Optional diagram and written assessment tell the same story |
-| Review and approval | Architecture and cost evidence pass their separate reviews | Both review artifacts are current, blocking findings are resolved, and the team approves the handoff |
+| Review and approval | Architecture and cost evidence pass their separate reviews | Both recorded reviews and required policy/pricing evidence are current, blocking findings are resolved, and the team approves Architecture |
 
 ## Tips / Hints
 
@@ -88,7 +91,8 @@ Use a prompt structure like this:
 
 ```text
 Review agent-output/freshconnect/01-requirements.md and recommend an Azure MVP
-architecture for FreshConnect.
+architecture for FreshConnect. Use the approved SKU manifest and the confirmed
+subscription and authorized inherited-policy read scope.
 
 Decisions I need to make now:
 - compute platform
@@ -96,7 +100,8 @@ Decisions I need to make now:
 - security and network baseline
 - cost trade-offs within ~€500/month
 
-Return: WAF-aligned recommendations, key risks, and a diagram-ready summary.
+Return: WAF-aligned recommendations, a current source-backed cost estimate with
+currency and usage assumptions, key risks, and a diagram-ready summary.
 ```
 
 Use [Hints & Tips](../../guides/hints-and-tips/#architecture-hints) for deeper service
@@ -110,8 +115,9 @@ for the shared security baseline.
 
 - Do not accept an architecture you cannot explain in business terms.
 - Do not let an optional diagram drift away from the written assessment.
-- Do not ignore cost assumptions until the end; they shape the service choices.
-- Do not forget EU residency or governance requirements when comparing services.
+- Do not compare a USD estimate directly with the EUR budget, invent prices or usage, or treat retail estimates as actual bills.
+- Do not treat failed pricing, partial policy discovery, or stale evidence as success. Stop the affected approval and report the blocker; a missing target or current policy snapshot blocks final approval for a new practical project.
+- Do not forget EU residency or governance requirements when comparing services; preliminary feasibility does not replace formal Governance.
 - Do not merge the architecture and cost reviews into one generic approval.
 
 ## Artifact Handoff
@@ -119,8 +125,8 @@ for the shared security baseline.
 | Item | Value |
 | --- | --- |
 | **Input from** | Approved requirements, SKU manifest, and requirements review evidence (Challenge 1) |
-| **Your output** | Architecture and cost artifacts, separate review evidence, and optional design artifacts |
-| **Next challenge uses** | C3 uses the assessment and diagram to choose IaC structure, validation steps, and deployment targets |
+| **Your output** | Architecture, policy feasibility and cost artifacts, separate review evidence, and optional design artifacts |
+| **Next challenge uses** | C3 uses the assessment and any optional diagram to choose IaC structure, validation steps, and deployment targets |
 
 ## Next Step
 
