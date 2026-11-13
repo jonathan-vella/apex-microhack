@@ -239,6 +239,8 @@ What's the impact if it's compromised?
 
 **Example Bicep Security Pattern:**
 
+The raw `Microsoft.Storage/storageAccounts` resource below illustrates the underlying ARM security properties enforced by Azure Policy. During implementation, `06b-Bicep CodeGen` and `06t-Terraform CodeGen` compose Azure Verified Modules (AVM) by default.
+
 ```bicep
 // Storage Account - what does each setting protect against?
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
@@ -277,6 +279,8 @@ If Azure Policies are enabled, you may see deployment errors like:
 
 **Required Bicep Settings:**
 
+These raw `Microsoft.Storage/storageAccounts`, `Microsoft.Sql/servers`, and `Microsoft.Web/sites` snippets illustrate the underlying ARM security properties enforced by Azure Policy. In the APEX workflow, `06b-Bicep CodeGen` and `06t-Terraform CodeGen` compose Azure Verified Modules (AVM) by default rather than authoring raw resource blocks directly.
+
 ```bicep
 // Storage Account - all required for policy compliance
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
@@ -290,7 +294,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   }
 }
 
-// SQL Server - Azure AD only
+// SQL Server - Microsoft Entra ID only
 resource sqlServer 'Microsoft.Sql/servers@2023-05-01-preview' = {
   name: sqlServerName
   location: location
@@ -299,7 +303,7 @@ resource sqlServer 'Microsoft.Sql/servers@2023-05-01-preview' = {
     azureADOnlyAuthentication: true
     administrators: {
       administratorType: 'ActiveDirectory'
-      // ... AD admin config
+      // ... Microsoft Entra admin config
     }
   }
 }
@@ -346,11 +350,13 @@ var kvName = 'kv-${take(projectName, 8)}-${environment}-${take(uniqueSuffix, 6)}
 
 **Required Tags:**
 
+`Environment` and `Project` are required in this workshop because `Setup-GovernancePolicies.ps1` deploys live `Deny` policies (`microhack-require-environment-tag` and `microhack-require-project-tag`) on the team subscription. In APEX, live Azure Policy discovered in `04g-Governance` (`04-governance-constraints.json`) always defines the required tag contract; the APEX lowercase 9-tag set is the greenfield fallback when no tag policy applies at any inherited scope.
+
 ```bicep
 var tags = {
-  Environment: environment      // dev, staging, prod
+  Environment: environment      // Required by microhack-require-environment-tag
   ManagedBy: 'Bicep'
-  Project: projectName
+  Project: projectName          // Required by microhack-require-project-tag
   Owner: owner
 }
 ```

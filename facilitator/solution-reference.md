@@ -131,6 +131,8 @@ After Challenge 4 (DR):
 
 ## Expected Bicep Patterns
 
+The simplified snippets below illustrate the naming, tagging, and ARM security properties verified during grading. In the current APEX workflow, `06b-Bicep CodeGen` and `06t-Terraform CodeGen` compose Azure Verified Modules (AVM) by default. Live Azure Policy discovered in `04g-Governance` (`04-governance-constraints.json`) defines the required tag contract: `Environment` and `Project` come from `Setup-GovernancePolicies.ps1` `Deny` policies on the workshop subscription, while the APEX lowercase 9-tag set is the greenfield fallback when no tag policy applies.
+
 ### main.bicep
 
 ```bicep
@@ -151,7 +153,7 @@ param owner string = 'microhack-team'
 // Generate unique suffix ONCE
 var uniqueSuffix = uniqueString(resourceGroup().id)
 
-// Required tags
+// MicroHack subscription policy tags (discovered via 04g-Governance)
 var tags = {
   Environment: environment
   ManagedBy: 'Bicep'
@@ -410,7 +412,7 @@ support.
 
 ### Database: Azure SQL (S2, 50 DTU)
 
-**Rationale**: Relational data model, geo-replication for DR, Azure AD authentication.
+**Rationale**: Relational data model, geo-replication for DR, Microsoft Entra ID authentication.
 
 **Alternatives Considered**: Cosmos DB (eventual consistency challenges)
 

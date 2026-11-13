@@ -55,16 +55,16 @@ Checkbox items (☐) are for pen-and-paper or digital-form use.
 
 ### 4. Rate each challenge (1=Poor, 5=Excellent)
 
-| Challenge                   | Rating         | Comments |
-| --------------------------- | -------------- | -------- |
-| 1: Requirements (plan)      | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
-| 2: Architecture (architect) | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
-| 3: Implementation (Bicep)   | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
-| 4: DR Curveball             | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
-| 5: Load Testing             | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
-| 6: Documentation            | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
-| 7: Diagnostics              | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
-| 8: Team Showcase            | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
+| Challenge                            | Rating         | Comments |
+| ------------------------------------ | -------------- | -------- |
+| 1: Requirements (02-Requirements)    | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
+| 2: Architecture (03-Architect)       | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
+| 3: Implementation (Bicep or Terraform) | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
+| 4: DR Curveball                      | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
+| 5: Load Testing                      | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
+| 6: Documentation                     | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
+| 7: Diagnostics                       | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
+| 8: Team Showcase                     | ☐1 ☐2 ☐3 ☐4 ☐5 |          |
 
 ### 5. What did you learn? (Select all that apply)
 
@@ -89,13 +89,13 @@ Checkbox items (☐) are for pen-and-paper or digital-form use.
 
 ### 7. Rate the tools (1=Poor, 5=Excellent)
 
-| Tool                       | Rating         | Issues? |
-| -------------------------- | -------------- | ------- |
-| Dev Container              | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
-| GitHub Copilot             | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
-| Custom Agents (plan, etc.) | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
-| Azure MCP pricing tools    | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
-| Rubric / leaderboard tools | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
+| Tool                                                 | Rating         | Issues? |
+| ---------------------------------------------------- | -------------- | ------- |
+| Dev Container                                        | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
+| GitHub Copilot                                       | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
+| Custom Agents (01-Orchestrator, 02-Requirements, etc.) | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
+| Azure MCP pricing tools                              | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
+| Rubric / leaderboard tools                           | ☐1 ☐2 ☐3 ☐4 ☐5 |         |
 
 ### 8. Did you encounter any technical issues?
 

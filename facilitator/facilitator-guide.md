@@ -135,9 +135,9 @@ Deploy Azure Policies to create realistic governance constraints. Teams will enc
 | ----------------------- | ------ | ------------------------------------------ |
 | Allowed locations       | Deny   | Only `swedencentral`, `germanywestcentral` |
 | Require Environment tag | Deny   | Must tag all resources                     |
-| Require Project tag     | Deny   | Must tag all resources                     |
-| SQL Azure AD-only auth  | Deny   | No SQL passwords                           |
-| Storage HTTPS only      | Deny   | `supportsHttpsTrafficOnly: true`           |
+| Require Project tag              | Deny   | Must tag all resources                     |
+| SQL Microsoft Entra ID-only auth | Deny   | No SQL passwords                           |
+| Storage HTTPS only               | Deny   | `supportsHttpsTrafficOnly: true`           |
 | Storage min TLS 1.2     | Deny   | `minimumTlsVersion: 'TLS1_2'`              |
 | Storage no public blob  | Deny   | `allowBlobPublicAccess: false`             |
 | App Service HTTPS       | Deny   | `httpsOnly: true`                          |

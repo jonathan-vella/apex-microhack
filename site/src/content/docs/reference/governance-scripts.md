@@ -110,9 +110,9 @@ pwsh -File scripts/Setup-GovernancePolicies.ps1 \
 | ----------------------------------- | ------------------------ | ------ | ---------------------------------------------------- |
 | `microhack-allowed-locations`       | Allowed locations        | Deny   | `swedencentral`, `germanywestcentral`, `global` only |
 | `microhack-require-environment-tag` | Require tag: Environment | Deny   | All resources must have an `Environment` tag         |
-| `microhack-require-project-tag`     | Require tag: Project     | Deny   | All resources must have a `Project` tag              |
-| `microhack-sql-aad-only-auth`       | SQL Azure AD-only auth   | Deny   | No SQL password authentication                       |
-| `microhack-storage-https-only`      | Storage HTTPS only       | Deny   | `supportsHttpsTrafficOnly: true`                     |
+| `microhack-require-project-tag`     | Require tag: Project          | Deny   | All resources must have a `Project` tag              |
+| `microhack-sql-aad-only-auth`       | SQL Microsoft Entra ID-only auth | Deny   | No SQL password authentication                       |
+| `microhack-storage-https-only`      | Storage HTTPS only            | Deny   | `supportsHttpsTrafficOnly: true`                     |
 | `microhack-storage-min-tls`         | Storage min TLS 1.2      | Deny   | `minimumTlsVersion: 'TLS1_2'`                        |
 | `microhack-storage-no-public-blob`  | Storage no public blob   | Deny   | `allowBlobPublicAccess: false`                       |
 | `microhack-appservice-https`        | App Service HTTPS only   | Deny   | `httpsOnly: true`                                    |
