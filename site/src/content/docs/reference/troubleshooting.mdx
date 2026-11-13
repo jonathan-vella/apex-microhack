@@ -245,7 +245,7 @@ Do not enable a legacy discovery setting as a substitute for loading the current
 3. Confirm account and organization policy permits the declared server.
 4. For Azure-backed tools, confirm Azure sign-in and subscription context where required. For startup failures, check access to the approved package feed.
 5. Reload VS Code with `Developer: Reload Window`.
-6. Compare your MCP configuration with the [reviewed Accelerator configuration](https://github.com/jonathan-vella/apex-accelerator/blob/68c15fc006b960f0266c28f6fda9f676b9aebbbe/.mcp.json). Do not add servers that have not been reviewed as a workaround.
+6. Compare your MCP configuration with the [reviewed Accelerator configuration](https://github.com/jonathan-vella/apex-accelerator/blob/9e7432ca90a9db86e9f85f28d3afd6db78d97c19/.mcp.json). Do not add servers that have not been reviewed as a workaround.
 
 GitHub reference: [Configure MCP server access](https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-mcp-usage/configure-mcp-server-access)
 
@@ -257,7 +257,7 @@ APEX reference: [MCP server integration](https://apexops.pro/concepts/how-it-wor
 
 1. Preserve the exact startup, tool-discovery, authentication, or pricing error. An unavailable tool does not by itself prove an Azure authentication failure.
 2. Check the current registered pricing JSON, initially `02-cost-estimate.json`, for `COMPLETE` status, matching meter identifiers, usage, currency, and source evidence. A valid registered versioned result can also be current.
-3. The pricing worker may use its [documented direct Retail Prices API fallback](https://github.com/jonathan-vella/apex-accelerator/blob/68c15fc006b960f0266c28f6fda9f676b9aebbbe/.github/skills/apex-azure-defaults/references/pricing-guidance.md#constrained-direct-api-fallback) only for eligible MCP failures or ambiguities and must retain labelled evidence and the existing request budget. Otherwise stop and escalate; do not guess prices or invent a successful estimate.
+3. The pricing worker may use its [documented direct Retail Prices API fallback](https://github.com/jonathan-vella/apex-accelerator/blob/9e7432ca90a9db86e9f85f28d3afd6db78d97c19/.github/skills/apex-azure-defaults/references/pricing-guidance.md#constrained-direct-api-fallback) only for eligible MCP failures or ambiguities and must retain labelled evidence and the existing request budget. Otherwise stop and escalate; do not guess prices or invent a successful estimate.
 4. Compare the returned currency and usage assumptions with the EUR budget and document any conversion. Retail estimates are not actual spend; historical spend and forecasts use authorized Cost Management REST calls through `az rest`.
 
 ### Resume a paused or interrupted workflow
@@ -279,7 +279,7 @@ apex-recall show freshconnect --json
 
 The recovery summary `00-handoff.md` helps identify the current owner and evidence; it is not an approval. Preserve existing findings, attempts, and approvals. Do not hand-edit `00-session-state.json`, reinitialize the project, or reset review history to force progress. A resumed or replacement task still needs its original scope and any separate human authorization.
 
-New projects use `practical-v1`; older projects do not adopt it automatically. Follow the [workflow adoption guidance](https://github.com/jonathan-vella/apex-accelerator/blob/68c15fc006b960f0266c28f6fda9f676b9aebbbe/.github/skills/apex-workflow-engine/references/practical-workflow.md) for any owner-approved migration.
+New projects use `practical-v1`; older projects do not adopt it automatically. Follow the [workflow adoption guidance](https://github.com/jonathan-vella/apex-accelerator/blob/9e7432ca90a9db86e9f85f28d3afd6db78d97c19/.github/skills/apex-workflow-engine/references/practical-workflow.md) for any owner-approved migration.
 
 ## Validation and Linting
 
@@ -349,7 +349,7 @@ For remaining issues, check `.markdownlint-cli2.jsonc` for the rule that fired.
 | Storage not HTTPS-only                 | Set `supportsHttpsTrafficOnly: true`                   |
 | Storage TLS version                    | Set `minimumTlsVersion: 'TLS1_2'`                      |
 | Storage public blob access             | Set `allowBlobPublicAccess: false`                     |
-| SQL not Azure AD-only                  | Set `azureADOnlyAuthentication: true`                  |
+| SQL not Microsoft Entra ID-only        | Set `azureADOnlyAuthentication: true`                  |
 | App Service not HTTPS                  | Set `httpsOnly: true`                                  |
 | Location not allowed                   | Deploy to `swedencentral` or `germanywestcentral` only |
 

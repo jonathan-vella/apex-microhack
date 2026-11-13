@@ -68,7 +68,7 @@ The workshop uses the MCP configuration in the current APEX Accelerator. Confirm
 
 :::
 
-The [reviewed Accelerator configuration](https://github.com/jonathan-vella/apex-accelerator/blob/68c15fc006b960f0266c28f6fda9f676b9aebbbe/.mcp.json) declares:
+The [reviewed Accelerator configuration](https://github.com/jonathan-vella/apex-accelerator/blob/9e7432ca90a9db86e9f85f28d3afd6db78d97c19/.mcp.json) declares:
 
 | MCP server | Purpose |
 |---|---|
@@ -193,7 +193,7 @@ Ensure your network allows outbound HTTPS to the following services:
 
 ## Event Baseline
 
-Before the event, the facilitator or self-guided owner should record the reviewed Accelerator source revision, the team repository revision, tested VS Code build and Copilot harness, host/container path, model and MCP access, and the IaC tracks offered. Compare each team repository with that baseline: creating a repository from a template does not pin it to the earlier reviewed source revision. The source reviewed for this guide is [Accelerator `68c15fc`](https://github.com/jonathan-vella/apex-accelerator/tree/68c15fc006b960f0266c28f6fda9f676b9aebbbe).
+Before the event, the facilitator or self-guided owner should record the reviewed Accelerator source revision, the team repository revision, tested VS Code build and Copilot harness, host/container path, model and MCP access, and the IaC tracks offered. Compare each team repository with that baseline: creating a repository from a template does not pin it to the earlier reviewed source revision. The source reviewed for this guide is [Accelerator `9e7432c`](https://github.com/jonathan-vella/apex-accelerator/tree/9e7432ca90a9db86e9f85f28d3afd6db78d97c19).
 
 ## Participation Gate
 
@@ -264,7 +264,7 @@ cd YOUR-REPOSITORY
      ```
 
      Use the launcher again for each fresh VS Code process. Do not run it inside a container or VS Code terminal.
-   - **Everyone else:** skip the Microsoft launcher. Configure any [organization-approved package sources](https://github.com/jonathan-vella/apex-accelerator/blob/68c15fc006b960f0266c28f6fda9f676b9aebbbe/.devcontainer/README.md#package-sources) on the host before opening VS Code, then run `code .`.
+   - **Everyone else:** skip the Microsoft launcher. Configure any [organization-approved package sources](https://github.com/jonathan-vella/apex-accelerator/blob/9e7432ca90a9db86e9f85f28d3afd6db78d97c19/.devcontainer/README.md#package-sources) on the host before opening VS Code, then run `code .`.
 
 When VS Code opens, accept the **"Reopen in Container"** prompt. Do not disable TLS checks or bypass an approved feed if a package is unavailable; resolve the feed issue with your organization.
 
@@ -422,9 +422,9 @@ gh workflow run "Governance Policy Baseline"
 | Workflow | Purpose | Schedule |
 |---|---|---|
 | **Weekly Maintenance** | Checks the pinned Azure MCP release, refreshes the AVM module index, and tracks Azure service deprecations. | Mondays 06:00 UTC |
-| **Governance Policy Baseline** | Collects effective Azure Policy assignments (including management-group inheritance) from your subscription so the IaC planner consumes real governance constraints. Requires step 4 to be complete. | Mondays 05:00 UTC |
+| **Governance Policy Baseline** | Queries effective Azure Policy assignments at Management Group scope only when `GOVERNANCE_BASELINE_ENABLED=true` and `GOVERNANCE_MG_ID` are set after step 4. During Challenge 3, teams run `04g-Governance` directly against their team subscription. | Mondays 05:00 UTC |
 
-The [reviewed workflow](https://github.com/jonathan-vella/apex-accelerator/blob/68c15fc006b960f0266c28f6fda9f676b9aebbbe/.github/workflows/weekly-maintenance.yml) contains those three maintenance jobs. The template README also mentions documentation/orphan audits and link checks, but they are not jobs in that reviewed workflow; inspect your event revision before relying on them.
+The [reviewed workflow](https://github.com/jonathan-vella/apex-accelerator/blob/9e7432ca90a9db86e9f85f28d3afd6db78d97c19/.github/workflows/weekly-maintenance.yml) runs three jobs: `azure-mcp-release`, `refresh-avm-module-index`, and `track-deprecations`. Inspect your event revision if your repository customizes that workflow.
 
 Verify both runs succeeded:
 
@@ -554,7 +554,7 @@ Verify subscription quota before the microhack. Quota issues are one of the most
 | Resource type | Quantity | SKU or tier | Region |
 |---|---|---|---|
 | Resource groups | 1-2 | N/A | Sweden Central |
-| App Service plan | 1 | P1v4 or S1 | Sweden Central |
+| App Service plan | 1 | P1v3 or P1v4 (P1v3+), or S1 | Sweden Central |
 | App Services | 1-2 | N/A | Sweden Central |
 | Azure SQL server | 1 | N/A | Sweden Central |
 | Azure SQL database | 1 | S0 or Basic | Sweden Central |
@@ -571,7 +571,7 @@ Verify subscription quota before the microhack. Quota issues are one of the most
 | Resource type | Quantity | SKU or tier | Region |
 |---|---|---|---|
 | Resource groups | 1 | N/A | Germany West Central |
-| App Service plan | 1 | P1v4 or S1 | Germany West Central |
+| App Service plan | 1 | P1v3 or P1v4 (P1v3+), or S1 | Germany West Central |
 | App Services | 1 | N/A | Germany West Central |
 | Azure SQL database replica | 1 | S0 or Basic | Germany West Central |
 | Storage account | 1 | Standard_GRS | Sweden Central |

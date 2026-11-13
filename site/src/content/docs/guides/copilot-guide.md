@@ -108,7 +108,7 @@ At a stage gate, **approve and continue** completes the step and dispatches the 
 
 New projects default to `practical-v1`, which batches routine work within the approved scope while retaining independent reviews and human gates. Each required artifact and lens has one initial review and, if needed, one ordinary closure review within its allowed scope. Existing projects remain on their legacy workflow until explicitly adopted with owner approval; do not edit state by hand or reset review history.
 
-For `practical-v1`, Governance may collect preliminary policy feasibility after approved requirements and within an authorized read scope, before final Architecture approval. This does not complete formal Governance or authorize Azure changes. Missing policy evidence leaves compatibility unverified.
+For `practical-v1`, new delivery projects prompt for a policy source before Architecture (`target-verified` or `assumed-corp`). Select **target-verified policy evidence** (`target-verified`) for your dedicated team subscription rather than shared ALZ Corp (`assumed-corp`) assumptions so `04g-Governance` captures the active `microhack-*` policies. Governance may collect preliminary policy feasibility after approved requirements and within an authorized read scope, before final Architecture approval. This does not complete formal Governance or authorize Azure changes. Missing policy evidence leaves compatibility unverified.
 
 Challenge 4 changes material requirements. Reopen affected owners, invalidate stale dependent evidence, preserve review history, and obtain the required fresh reviews and approvals.
 
@@ -162,7 +162,7 @@ Instructions under `.github/instructions/` apply repository rules to matching fi
 
 ## MCP servers
 
-Use the root `.mcp.json` in your Accelerator-derived repository. The [reviewed Accelerator configuration](https://github.com/jonathan-vella/apex-accelerator/blob/68c15fc006b960f0266c28f6fda9f676b9aebbbe/.mcp.json) declares:
+Use the root `.mcp.json` in your Accelerator-derived repository. The [reviewed Accelerator configuration](https://github.com/jonathan-vella/apex-accelerator/blob/9e7432ca90a9db86e9f85f28d3afd6db78d97c19/.mcp.json) declares:
 
 | Server | Workshop use |
 |---|---|

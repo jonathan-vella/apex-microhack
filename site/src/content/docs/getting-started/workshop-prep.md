@@ -104,7 +104,7 @@ Design and deploy the Azure infrastructure for the **FreshConnect MVP** (Minimum
 | RPO            | 1 hour (initially)                           |
 | Peak Load      | 500 concurrent users                         |
 | Seasonal Spike | 3x normal volume                             |
-| Authentication | Azure AD (internal), Azure AD B2C (external) |
+| Authentication | Microsoft Entra ID (internal), Microsoft Entra External ID (external) |
 | Network        | Public endpoints acceptable for MVP          |
 
 **Key stakeholders:**

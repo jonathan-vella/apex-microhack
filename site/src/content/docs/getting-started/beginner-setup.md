@@ -138,7 +138,7 @@ Choose your organization's launch path **before** opening VS Code or building th
    ```
 
    This opens VS Code with the Microsoft package feeds. Run it again for each fresh VS Code process; do not use a VS Code terminal or run it inside the container. The [Setup Guide](../setup/#setup-steps) also shows the Windows PowerShell launcher.
-2. **Everyone else:** skip the Microsoft launcher. Configure any [organization-approved package sources](https://github.com/jonathan-vella/apex-accelerator/blob/68c15fc006b960f0266c28f6fda9f676b9aebbbe/.devcontainer/README.md#package-sources) on the host first, then click **Open in Visual Studio Code** in GitHub Desktop.
+2. **Everyone else:** skip the Microsoft launcher. Configure any [organization-approved package sources](https://github.com/jonathan-vella/apex-accelerator/blob/9e7432ca90a9db86e9f85f28d3afd6db78d97c19/.devcontainer/README.md#package-sources) on the host first, then click **Open in Visual Studio Code** in GitHub Desktop.
 
 ![GitHub Desktop Open in Visual Studio Code button](../../../assets/images/getting-started/03-github-desktop-open-vscode.png)
 
