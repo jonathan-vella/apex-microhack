@@ -13,8 +13,8 @@
   },
   "devDependencies": {
     "lefthook": "^2.2.2",
-    "markdownlint-cli2": "^0.24.0",
-    "prettier": "^3.9.10",
+    "markdownlint-cli2": "^0.24.1",
+    "prettier": "^3.10.1",
     "prettier-plugin-astro": "^1.1.2"
   },
   "overrides": {
